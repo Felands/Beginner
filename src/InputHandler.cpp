@@ -1,9 +1,12 @@
+#include "SDL.h"
+
 #include "InputHandler.h"
 #include "Game.h"
+#include "Vector2D.h"
 
 InputHandler* InputHandler::s_pInstance = nullptr;
 
-InputHandler::InputHandler() : m_keystates(SDL_GetKeyboardState(nullptr))
+InputHandler::InputHandler() : m_keystates(SDL_GetKeyboardState(nullptr)), m_mousePosition(new Vector2D(0, 0))
 {
     for(int i = 0; i < 3; i++) {
         m_mouseButtonStates.push_back(false);
@@ -13,6 +16,9 @@ InputHandler::InputHandler() : m_keystates(SDL_GetKeyboardState(nullptr))
 void InputHandler::Clean()
 {
     if (s_pInstance != nullptr) {
+        if (m_mousePosition != nullptr) {
+            delete m_mousePosition;
+        }
         delete s_pInstance;
     }
 }
