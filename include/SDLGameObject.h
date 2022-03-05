@@ -3,6 +3,8 @@
 
 #include <string>
 
+#include "SDLGameObject.h"
+#include "LoaderParams.h"
 #include "GameObject.h"
 #include "Vector2D.h"
 

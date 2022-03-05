@@ -4,7 +4,7 @@
 #include <vector>
 
 #include "SDL.h"
-#include "Resource.h"
+
 #include "GameObject.h"
 
 class Game
@@ -33,14 +33,19 @@ public:
         return m_pRenderer;
     }
 
+    void Quit()
+    {
+        m_bRunning = false;
+    }
+
     static Game* Instance()
     {
-        if(s_pInstance == 0)
+        if(s_pInstance == nullptr)
         {
             s_pInstance = new Game();
         }
         return s_pInstance;
-}
+    }
 
 private:
     Game():m_pWindow(nullptr), m_pRenderer(nullptr), m_bRunning(true)

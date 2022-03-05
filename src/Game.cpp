@@ -3,7 +3,9 @@
 
 #include "SDL.h"
 #include "SDL_image.h"
+
 #include "Game.h"
+#include "Resource.h"
 #include "LoaderParams.h"
 #include "GameObject.h"
 #include "Player.h"
@@ -14,13 +16,11 @@ Game* Game::s_pInstance = nullptr;
 
 bool Game::Init(const char* title, int xpos, int ypos, int height, int width, bool fullScreen)
 {
-    if(SDL_Init(SDL_INIT_EVERYTHING) == 0)
-    {
+    if(SDL_Init(SDL_INIT_EVERYTHING) == 0) {
         std::cout << "SDL init success\n";
         m_pWindow = SDL_CreateWindow(title, xpos, ypos, height, width,
             fullScreen ? SDL_WINDOW_FULLSCREEN : SDL_WINDOW_SHOWN);
-        if(m_pWindow != nullptr)
-        {
+        if(m_pWindow != nullptr) {
             std::cout << "Window init success\n";
             m_pRenderer = SDL_CreateRenderer(m_pWindow, -1, 0);
             if (m_pRenderer != nullptr) {
@@ -46,26 +46,27 @@ bool Game::Init(const char* title, int xpos, int ypos, int height, int width, bo
         std::cout << "IMG init fail\n";
         return false;
     }
-    InputHandler::Instance()->initialiseJoysticks();
 
     TextureManager::Instance()->Load("assets/drawable/halo_explosion1.PNG", "halo_explosion1",
         Instance()->GetRenderer());
     TextureManager::Instance()->Load("assets/drawable/halo_explosion2.PNG", "halo_explosion2",
         Instance()->GetRenderer());
 
-    m_gameObjects.push_back(new Player(new LoaderParams(100, 100, 48, 48, "halo_explosion1")));
-    m_gameObjects.push_back(new Enemy(new LoaderParams(100, 150, 16, 16, "halo_explosion2")));
+    LoaderParams *params = nullptr;
+    params = new LoaderParams(100, 100, 48, 48, "halo_explosion1");
+    m_gameObjects.push_back(new Player(params));
+    delete params;
+    params = new LoaderParams(100, 150, 16, 16, "halo_explosion2");
+    m_gameObjects.push_back(new Enemy(params));
+    delete params;
 
     return true;
 }
 
 void Game::Render()
 {
-    SDL_SetRenderDrawColor(m_pRenderer, 0, 0, 0, 255);
-    // clear the window to black
     SDL_RenderClear(m_pRenderer);
-    for(std::vector<GameObject*>::size_type i = 0; i != m_gameObjects.size(); i++)
-    {
+    for(std::vector<GameObject*>::size_type i = 0; i != m_gameObjects.size(); i++) {
         m_gameObjects[i]->Draw();
     }
     SDL_RenderPresent(m_pRenderer);
@@ -73,13 +74,12 @@ void Game::Render()
 
 void Game::HandleEvents()
 {
-    InputHandler::Instance()->update();
+    InputHandler::Instance()->Update();
 }
 
 void Game::Update()
 {
-    for(std::vector<GameObject*>::size_type i = 0; i != m_gameObjects.size(); i++)
-    {
+    for(std::vector<GameObject*>::size_type i = 0; i != m_gameObjects.size(); i++) {
         m_gameObjects[i]->Update();
     }
 }
@@ -87,11 +87,10 @@ void Game::Update()
 void Game::Clean()
 {
     std::cout << "Cleaning game\n";
-    for(std::vector<GameObject*>::size_type i = 0; i != m_gameObjects.size(); ++i)
-    {
+    for(std::vector<GameObject*>::size_type i = 0; i != m_gameObjects.size(); ++i) {
         m_gameObjects[i]->Clean();
     }
-    InputHandler::Instance()->clean();
+    InputHandler::Instance()->Clean();
     SDL_DestroyWindow(m_pWindow);
     SDL_DestroyRenderer(m_pRenderer);
     IMG_Quit();
