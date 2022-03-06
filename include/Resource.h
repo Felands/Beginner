@@ -19,6 +19,15 @@ public:
 
     static TextureManager* Instance();
 
+	void Clean()
+	{
+		if (s_pInstance != nullptr) {
+			delete s_pInstance;
+		} 
+	}
+
+	void TextureManager::ClearFromTextureMap(std::string id);
+
 private:
     TextureManager()
 	{}

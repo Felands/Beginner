@@ -10,6 +10,8 @@ public:
     Enemy(const LoaderParams* pParams);
 
     virtual void Update();
+
+    virtual void Draw();
 };
 
 #endif

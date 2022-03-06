@@ -105,3 +105,10 @@ void InputHandler::OnMouseButtonUp(SDL_Event& event)
         m_mouseButtonStates[RIGHT] = false;
     }
 }
+
+void InputHandler::Reset()
+{
+    m_mouseButtonStates[LEFT] = false;
+    m_mouseButtonStates[MIDDLE] = false;
+    m_mouseButtonStates[RIGHT] = false;
+}

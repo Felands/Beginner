@@ -2,6 +2,7 @@
 #define _SDL_GAME_OBJECT_H_
 
 #include <string>
+#include <stdint.h>
 
 #include "SDLGameObject.h"
 #include "LoaderParams.h"
@@ -19,6 +20,18 @@ public:
 
     virtual void Update();
 
+    Vector2D& GetPosition() { return m_position; }
+
+    int32_t GetWidth()
+    {
+        return m_width;
+    }
+
+    int32_t GetHeight()
+    {
+        return m_height;
+    }
+
 protected:
     Vector2D m_position;
     Vector2D m_velocity;
@@ -26,6 +39,7 @@ protected:
     int m_height;
     int m_currentRow;
     int m_currentFrame;
+    int32_t m_numFrames;
     std::string m_textureID;
 };
 

@@ -10,6 +10,8 @@ public:
     Player(const LoaderParams* pParams);
 
     virtual void Update();
+
+    virtual void HandleInput();
 };
 
 #endif

@@ -8,6 +8,11 @@
 
 TextureManager* TextureManager::s_pInstance = nullptr;
 
+void TextureManager::ClearFromTextureMap(std::string id)
+{
+    m_textureMap.erase(id);
+}
+
 bool TextureManager::Load(std::string fileName, std::string id, SDL_Renderer* pRenderer)
 {
     SDL_Surface* pTempSurface = IMG_Load(fileName.c_str());
@@ -21,6 +26,7 @@ bool TextureManager::Load(std::string fileName, std::string id, SDL_Renderer* pR
             std::cout << "Texture create fail\n";
         } else {
             std::cout << "Texture create success\n";
+            SDL_DestroyTexture(m_textureMap[id]);
             m_textureMap[id] = pTexture;
             return true;
         }

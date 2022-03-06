@@ -40,6 +40,8 @@ public:
 
     bool GetMouseButtonState(int buttonNumber);
 
+    void Reset();
+
 private:
     void OnMouseMove(SDL_Event& event);
 
