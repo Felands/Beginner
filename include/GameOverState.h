@@ -6,7 +6,7 @@
 #include "GameState.h"
 #include "GameState.h"
 
-class GameOverState : public GameState
+class GameOverState : public  MenuState
 {
 public:
     virtual void Update();
@@ -21,6 +21,8 @@ public:
     {
         return s_gameOverId;
     }
+
+    virtual void setCallbacks(const std::vector<Callback>& callbacks);
 
 private:
     static void s_GameOverToMain();

@@ -73,6 +73,18 @@ bool Game::Init(const char* title, int xpos, int ypos, int height, int width, bo
     m_gameObjects.push_back(new Enemy(params));
     delete params;
 
+    TheGameObjectFactory::Instance()->registerType("MenuButton", new 
+MenuButtonCreator());
+
+TheGameObjectFactory::Instance()->registerType("Player", new 
+PlayerCreator());
+TheGameObjectFactory::Instance()->registerType("Enemy", new 
+EnemyCreator());
+
+TheGameObjectFactory::Instance()->registerType("AnimatedGraphic", 
+new AnimatedGraphicCreator());
+
+
     return true;
 }
 
@@ -128,4 +140,33 @@ void Game::Clean()
     SDL_DestroyRenderer(m_pRenderer);
     IMG_Quit();
     SDL_Quit();
+}
+
+void Game::setCurrentLevel(int currentLevel)
+{
+ m_currentLevel = currentLevel;
+ m_pGameStateMachine->changeState(new BetweenLevelState());
+ m_bLevelComplete = false;
+}
+
+update()
+{
+for (std::vector<PlayerBullet*>::iterator p_it = 
+m_playerBullets.begin(); p_it != m_playerBullets.end();)
+{
+ if((*p_it)->getPosition().getX() < 0 || (*p_it)
+ ->getPosition().getX() >TheGame::Instance()->getGameWidth()
+ || (*p_it)->getPosition().getY() < 0 || (*p_it)->
+ getPosition().getY() >TheGame::Instance()->getGameHeight() || 
+ (*p_it)->dead())// if off screen or dead
+ {
+ delete * p_it; // delete the bullet
+ p_it = m_playerBullets.erase(p_it); //remove
+ }
+ else// continue to update and loop
+ {
+ (*p_it)->update();
+ ++p_it;
+ }
+}
 }

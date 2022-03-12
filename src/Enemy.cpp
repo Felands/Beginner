@@ -10,6 +10,12 @@ Enemy::Enemy(const LoaderParams* pParams) : SDLGameObject(pParams)
     m_velocity.SetX(0.001);
 }
 
+void Enemy::load(const LoaderParams *pParams)
+{
+ SDLGameObject::load(pParams);
+ m_velocity.setY(2);
+}
+
 void Enemy::Draw()
 {
     SDLGameObject::Draw();

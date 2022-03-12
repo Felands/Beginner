@@ -56,6 +56,15 @@ public:
         return m_pGameStateMachine;
     }
 
+    int getGameWidth() const 
+{ 
+ return m_gameWidth; 
+}
+int getGameHeight() const 
+{ 
+ return m_gameHeight; 
+}
+
 private:
     Game():m_pWindow(nullptr), m_pRenderer(nullptr), m_bRunning(true)
     {}

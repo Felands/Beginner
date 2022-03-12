@@ -22,6 +22,9 @@ public:
     virtual bool OnExit() = 0;
 
     virtual std::string GetStateId() const = 0;
+
+    protected:
+std::vector<std::string> m_textureIDList;
 };
 
 #endif

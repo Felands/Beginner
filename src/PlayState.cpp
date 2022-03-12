@@ -57,6 +57,29 @@ bool PlayState::OnEnter()
     return true;
 }
 
+bool PlayState::onEnter()
+{
+ // parse the state
+ StateParser stateParser;
+ stateParser.parseState("test.xml", s_playID, &m_gameObjects, 
+ &m_textureIDList);
+ std::cout << "entering PlayState\n";
+ return true;
+}
+
+bool PlayState::onEnter()
+{
+ LevelParser levelParser;
+ pLevel = levelParser.parseLevel("assets/map1.tmx");
+ std::cout << "entering PlayState\n";
+ return true;
+}
+
+void PlayState::render()
+{
+ pLevel->render();
+}
+
 bool PlayState::CheckCollision(SDLGameObject* p1, SDLGameObject* p2)
 {
     int leftA, leftB;
@@ -107,4 +130,9 @@ void PlayState::Update()
         dynamic_cast<SDLGameObject*>(m_gameObjects[1]))) {
         Game::Instance()->GetStateMachine()->pushState(new GameOverState());
     }
+}
+
+void PlayState::update()
+{
+ pLevel->update();
 }

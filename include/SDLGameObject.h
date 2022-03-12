@@ -12,7 +12,7 @@
 class SDLGameObject : public GameObject
 {
 public:
-    SDLGameObject(const LoaderParams* pParams);
+    SDLGameObject();
 
     virtual void Draw();
 
@@ -31,6 +31,8 @@ public:
     {
         return m_height;
     }
+
+    virtual void SDLGameObject::load(const LoaderParams *pParams);
 
 protected:
     Vector2D m_position;
