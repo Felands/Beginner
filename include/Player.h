@@ -3,17 +3,22 @@
 
 #include "SDLGameObject.h"
 #include "LoaderParams.h"
+#include "ShooterObject.h"
 
 class Player : public ShooterObject
 {
 public:
     Player();
 
+    virtual void Draw();
+
     virtual void Update();
 
-    virtual void HandleInput();
+    virtual void Clean();
 
-    virtual void Player::load(const LoaderParams *pParams);
+    virtual void Player::Load(const LoaderParams *pParams);
+
+    virtual void HandleInput();
 
 private:
  // bring the player back if there are lives left
@@ -26,7 +31,6 @@ private:
  int m_invulnerable;
  int m_invulnerableTime;
  int m_invulnerableCounter;
-};
 };
 
 #endif

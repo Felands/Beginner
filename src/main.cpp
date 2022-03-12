@@ -12,7 +12,7 @@ int main(int argc, char **args)
     uint32_t frameStart;
     uint32_t frameTime;
 
-    if (!Game::Instance()->Init("Chapter 1", 100, 100, 640, 580, false)) {
+    if (!Game::Instance()->Init("Beginner", 100, 100, 640, 580, false)) {
         return 1;
     }
 

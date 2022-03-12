@@ -1,23 +1,26 @@
 #ifndef _GAME_H_
 #define _GAME_H_
 
+#include <stdint.h>
 #include <vector>
 
 #include "SDL.h"
 
 #include "GameObject.h"
-#include "GameStateMachine.h"
-#include "Player.h"
-#include "Enemy.h"
-#include "MenuBotton.h"
+/*#include "GameStateMachine.h"*/
 
 class Game
 {
 public:
-    ~Game()
-    {}
+    static Game* Instance()
+    {
+        if (s_pInstance == nullptr) {
+            s_pInstance = new Game();
+        }
+        return s_pInstance;
+    }
 
-    bool Init(const char* title, int xpos, int ypos, int height, int width, bool fullScreen);
+    bool Init(const char* title, int32_t xpos, int32_t ypos, uint32_t height, uint32_t width, bool fullScreen);
 
     void Render();
 
@@ -26,6 +29,8 @@ public:
     void Update();
 
     void Clean();
+
+    void SetCurrentLevel(uint32_t currentLevel);
  
     bool Running()
     {
@@ -42,47 +47,43 @@ public:
         m_bRunning = false;
     }
 
-    static Game* Instance()
-    {
-        if(s_pInstance == nullptr)
-        {
-            s_pInstance = new Game();
-        }
-        return s_pInstance;
-    }
-
-    GameStateMachine* GetStateMachine()
+    /*GameStateMachine* GetStateMachine()
     {
         return m_pGameStateMachine;
+    }*/
+
+    uint32_t GetGameWidth() const 
+    { 
+        return m_gameWidth; 
     }
 
-    int getGameWidth() const 
-{ 
- return m_gameWidth; 
-}
-int getGameHeight() const 
-{ 
- return m_gameHeight; 
-}
+    uint32_t GetGameHeight() const 
+    { 
+        return m_gameHeight; 
+    }
 
 private:
-    Game():m_pWindow(nullptr), m_pRenderer(nullptr), m_bRunning(true)
+    Game()
+    {}
+
+    ~Game()
     {}
 
 private:
-    SDL_Window* m_pWindow;
-    SDL_Renderer* m_pRenderer;
+    uint32_t m_gameWidth;
+    uint32_t m_gameHeight;
+    /*uint32_t m_currentGameState = MENU;*/
+    uint32_t m_currentLevel;
+    bool m_bRunning = true;
+    bool m_bLevelComplete; 
+
+    SDL_Window* m_pWindow = nullptr;
+    SDL_Renderer* m_pRenderer = nullptr;
+
     std::vector<GameObject*> m_gameObjects;
+    /*GameStateMachine* m_pGameStateMachine = nullptr;*/
 
     static Game* s_pInstance;
-
-    bool m_bRunning;
-    int m_currentGameState = MENU;
-    GameStateMachine* m_pGameStateMachine;
-    Player *m_pPlayer;
-    Enemy *m_pEnemy;
-    MenuButton *m_menuObj1;
-    MenuButton *m_menuObj2;
 };
 
 #endif

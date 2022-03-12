@@ -1,3 +1,5 @@
+#include "GameObject.h"
+
 class ShooterObject : public GameObject
 {
 public:

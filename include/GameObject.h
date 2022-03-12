@@ -9,15 +9,13 @@ public:
     virtual void Draw() = 0;
     virtual void Update() = 0;
     virtual void Clean() = 0;
-
-    // new load function 
- virtual void load(const LoaderParams* pParams)=0;
+    virtual void Load(const LoaderParams* pParams) = 0;
 
 protected:
     GameObject() {}
     virtual ~GameObject() {}
 };
-
+/*
 class GameObject
 {
 public:
@@ -32,7 +30,7 @@ pCollisionLayers = layers; }
  // do update stuff
  virtual void update()=0;
  // remove anything that needs to be deleted
- virtual void clean()=0;
+ virtual void Clean()=0;
  // object has collided, handle accordingly
  virtual void collision() = 0;
  // get the type of the object
@@ -89,6 +87,6 @@ protected:
  // blending
  int m_alpha;
  std::vector<TileLayer*>* m_pCollisionLayers;
-};
+};*/
 
 #endif
