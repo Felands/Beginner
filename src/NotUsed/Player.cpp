@@ -11,16 +11,26 @@
 Player::Player() : SDLGameObject()
 {}
 
-void Player::load(const LoaderParams *pParams)
+void Player::Load(std::unique_ptr<LoaderParams> pParams)
 {
- SDLGameObject::load(pParams);
+    SDLGameObject::Load(std::move(pParams));
 }
 
 void Player::Update()
 {
-    m_currentFrame = int32_t(((SDL_GetTicks() / 100) % 8));
+    m_currentFrame = uint32_t(((SDL_GetTicks() / 100) % m_numFrames));
     m_velocity.SetX(1);
     SDLGameObject::Update();
+}
+
+void Player::Clean()
+{
+    delete this;
+}
+
+std::string Player::Type()
+{
+    return "Player";
 }
 
 void Player::HandleInput()

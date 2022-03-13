@@ -17,7 +17,7 @@ public:
         SDL_Renderer* pRenderer, SDL_RendererFlip flip = SDL_FLIP_NONE);
 
     void DrawFrame(std::string id, int x, int y, int width, int height,int currentRow, int currentFrame,
-        SDL_Renderer *pRenderer, double angle, int alpha, SDL_RendererFlip flip);
+        SDL_Renderer *pRenderer, double angle, int alpha, SDL_RendererFlip flip = SDL_FLIP_NONE);
 
     void Clean();
 
