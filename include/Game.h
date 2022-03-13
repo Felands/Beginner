@@ -6,7 +6,7 @@
 
 #include "SDL.h"
 
-#include "GameObject.h"
+/*#include "GameObject.h"*/
 /*#include "GameStateMachine.h"*/
 
 class Game
@@ -80,7 +80,7 @@ private:
     SDL_Window* m_pWindow = nullptr;
     SDL_Renderer* m_pRenderer = nullptr;
 
-    std::vector<GameObject*> m_gameObjects;
+    /*std::vector<GameObject*> m_gameObjects;*/
     /*GameStateMachine* m_pGameStateMachine = nullptr;*/
 
     static Game* s_pInstance;

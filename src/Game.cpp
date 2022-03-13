@@ -6,11 +6,11 @@
 
 #include "Game.h"
 #include "TextureManager.h"
+#include "InputHandler.h"
 /*#include "LoaderParams.h"
 #include "GameObject.h"
 #include "Player.h"
-#include "Enemy.h"
-#include "InputHandler.h"*/
+#include "Enemy.h"*/
 /*#include "MenuState.h"
 #include "PlayState.h"
 #include "MenuBotton.h"*/
@@ -95,11 +95,11 @@ void Game::Render()
 
 void Game::HandleEvents()
 {
-    /*InputHandler::Instance()->Update();*/
+    InputHandler::Instance()->Update();
 
-    /*if(InputHandler::Instance()->IsKeyDown(SDL_SCANCODE_RETURN)) {
-        m_pGameStateMachine->ChangeState(new PlayState());
-    }*/
+    if(InputHandler::Instance()->IsKeyDown(SDL_SCANCODE_RETURN)) {
+        /*m_pGameStateMachine->ChangeState(new PlayState());*/
+    }
 }
 
 void Game::Update()
