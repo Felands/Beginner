@@ -26,7 +26,7 @@ public:
 		} 
 	}
 
-	void TextureManager::ClearFromTextureMap(std::string id);
+	void ClearFromTextureMap(std::string id);
 
 private:
     TextureManager()
