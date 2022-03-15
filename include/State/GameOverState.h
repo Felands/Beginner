@@ -2,13 +2,16 @@
 #define _GAME_OVER_STATE_H_
 
 #include <string>
+#include <vector>
 
 #include "GameState.h"
-#include "GameState.h"
+#include "GameObject.h"
 
 class GameOverState : public GameState
 {
 public:
+    virtual ~GameOverState(); 
+
     virtual void Update();
 
     virtual void Render();

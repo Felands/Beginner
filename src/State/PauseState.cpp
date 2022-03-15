@@ -74,13 +74,3 @@ bool PauseState::OnExit()
 
     return true;
 }
-
-void PauseState::s_ResumePlay()
-{
-    Game::Instance()->GetStateMachine()->PopState();
-}
-
-void PauseState::s_PauseToMain()
-{
-    Game::Instance()->GetStateMachine()->ChangeState(new MenuState());
-}

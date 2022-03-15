@@ -15,6 +15,9 @@
 
 const std::string PlayState::s_playId = "PLAY";
 
+PlayState::~PlayState()
+{}
+
 void PlayState::Render()
 {
     for(int i = 0; i < m_gameObjects.size(); i++) {
@@ -105,6 +108,6 @@ void PlayState::Update()
 
     if(CheckCollision(dynamic_cast<SDLGameObject*>(m_gameObjects[0]),
         dynamic_cast<SDLGameObject*>(m_gameObjects[1]))) {
-        Game::Instance()->GetStateMachine()->pushState(new GameOverState());
+        Game::Instance()->GetStateMachine()->PushState(new GameOverState());
     }
 }

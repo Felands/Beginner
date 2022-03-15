@@ -13,6 +13,9 @@
 
 const std::string GameOverState::s_gameOverId = "GAMEOVER";
 
+GameOverState::~GameOverState()
+{}
+
 void GameOverState::s_GameOverToMain()
 {
     Game::Instance()->GetStateMachine()->ChangeState(new MenuState());
@@ -53,3 +56,12 @@ bool GameOverState::OnEnter()
 
     return true;
 }
+
+void GameOverState::Update()
+{}
+
+void GameOverState::Render()
+{}
+
+bool GameOverState::OnExit()
+{return false;}
