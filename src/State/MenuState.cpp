@@ -28,7 +28,7 @@ void MenuState::Render()
 
 bool MenuState::OnEnter()
 {
-    if(!TextureManager::Instance()->Load("assets/button.png", "playbutton", Game::Instance()->GetRenderer()))
+    /*if(!TextureManager::Instance()->Load("assets/button.png", "playbutton", Game::Instance()->GetRenderer()))
     {
         return false;
     }
@@ -47,7 +47,7 @@ bool MenuState::OnEnter()
     m_gameObjects.push_back(button1);
     m_gameObjects.push_back(button2);
 
-    std::cout << "Entering MenuState\n";
+    std::cout << "Entering MenuState\n";*/
 
     return true;
 }

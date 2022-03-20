@@ -38,7 +38,7 @@ bool PlayState::OnExit()
 
 bool PlayState::OnEnter()
 {
-    if(!TextureManager::Instance()->Load("assets/helicopter.png", "helicopter", Game::Instance()->GetRenderer())) {
+    /*if(!TextureManager::Instance()->Load("assets/helicopter.png", "helicopter", Game::Instance()->GetRenderer())) {
         return false;
     }
     if(!TextureManager::Instance()->Load("assets/helicopter2.png", "helicopter2", Game::Instance()->GetRenderer())){
@@ -55,7 +55,7 @@ bool PlayState::OnEnter()
     m_gameObjects.push_back(player);
     m_gameObjects.push_back(enemy);
 
-    std::cout << "Entering PlayState\n";
+    std::cout << "Entering PlayState\n";*/
 
     return true;
 }

@@ -28,7 +28,7 @@ void GameOverState::s_RestartPlay()
 
 bool GameOverState::OnEnter()
 {
-    if(!TextureManager::Instance()->Load("assets/gameover.png", "gameovertext", Game::Instance()->GetRenderer())) {
+    /*if(!TextureManager::Instance()->Load("assets/gameover.png", "gameovertext", Game::Instance()->GetRenderer())) {
         return false;
     }
     if(!TextureManager::Instance()->Load("assets/main.png", "mainbutton", Game::Instance()->GetRenderer())) {
@@ -52,7 +52,7 @@ bool GameOverState::OnEnter()
     m_gameObjects.push_back(button1);
     m_gameObjects.push_back(button2);
 
-    std::cout << "Entering PauseState\n";
+    std::cout << "Entering PauseState\n";*/
 
     return true;
 }

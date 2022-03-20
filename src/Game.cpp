@@ -14,6 +14,7 @@
 #include "MenuState.h"
 #include "PlayState.h"
 #include "MenuBotton.h"
+#include "Map.h"
 
 Game* Game::s_pInstance = nullptr;
 
@@ -50,12 +51,20 @@ bool Game::Init(const char* title, int xpos, int ypos, int height, int width, bo
         return false;
     }
 
-    TextureManager::Instance()->Load("assets/drawable/halo_explosion1.PNG", "halo_explosion1",
-        Instance()->GetRenderer());
-    TextureManager::Instance()->Load("assets/drawable/halo_explosion2.PNG", "halo_explosion2",
-        Instance()->GetRenderer());
+    TextureManager::Instance()->LoadAllResource();
 
-    m_pGameStateMachine = new GameStateMachine();
+    LoaderParams *params = nullptr;
+    params = new LoaderParams(100, 100, "elf_f_idle_anim"); // 闲置
+    m_gameObjects.push_back(new Player(params));
+    delete params;
+    params = new LoaderParams(200, 100, "elf_f_run_anim");
+    m_gameObjects.push_back(new Player(params));
+    delete params; 
+    params = new LoaderParams(300, 100, "elf_f_hit_anim");
+    m_gameObjects.push_back(new Player(params));
+    delete params;
+
+    /*m_pGameStateMachine = new GameStateMachine();
     m_pGameStateMachine->ChangeState(new MenuState());
 
     LoaderParams *params = nullptr;
@@ -71,7 +80,7 @@ bool Game::Init(const char* title, int xpos, int ypos, int height, int width, bo
     delete params;
     params = new LoaderParams(100, 150, 16, 16, "halo_explosion2");
     m_gameObjects.push_back(new Enemy(params));
-    delete params;
+    delete params;*/
 
     return true;
 }
@@ -82,7 +91,7 @@ void Game::Render()
     for(std::vector<GameObject*>::size_type i = 0; i != m_gameObjects.size(); i++) {
         m_gameObjects[i]->Draw();
     }
-    m_pGameStateMachine->Render();
+    /*m_pGameStateMachine->Render();*/
     SDL_RenderPresent(m_pRenderer);
 }
 
@@ -90,9 +99,9 @@ void Game::HandleEvents()
 {
     InputHandler::Instance()->Update();
 
-    if(InputHandler::Instance()->IsKeyDown(SDL_SCANCODE_RETURN)) {
+    /*if(InputHandler::Instance()->IsKeyDown(SDL_SCANCODE_RETURN)) {
         m_pGameStateMachine->ChangeState(new PlayState());
-    }
+    }*/
 }
 
 void Game::Update()
@@ -101,7 +110,7 @@ void Game::Update()
         m_gameObjects[i]->Update();
     }
 
-    switch(m_currentGameState) {
+    /*switch(m_currentGameState) {
         case MENU:
             m_menuObj1->Update();
             m_menuObj2->Update();
@@ -113,7 +122,7 @@ void Game::Update()
         case GAMEOVER:
             break;
     }
-    m_pGameStateMachine->Update();
+    m_pGameStateMachine->Update();*/
 }
 
 void Game::Clean()

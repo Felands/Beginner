@@ -37,7 +37,7 @@ void PauseState::Render()
 
 bool PauseState::OnEnter()
 {
-    if(!TextureManager::Instance()->Load("assets/resume.png", "resumebutton", Game::Instance()->GetRenderer())) {
+    /*if(!TextureManager::Instance()->Load("assets/resume.png", "resumebutton", Game::Instance()->GetRenderer())) {
         return false;
     }
     if(!TextureManager::Instance()->Load("assets/main.png", "mainbutton", Game::Instance()->GetRenderer())) {
@@ -53,7 +53,7 @@ bool PauseState::OnEnter()
     m_gameObjects.push_back(button1);
     m_gameObjects.push_back(button2);
 
-    std::cout << "Entering PauseState\n";
+    std::cout << "Entering PauseState\n";*/
 
     return true;
 }

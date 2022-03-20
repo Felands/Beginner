@@ -37,7 +37,6 @@ protected:
     Vector2D m_velocity;
     int m_width;
     int m_height;
-    int m_currentRow;
     int m_currentFrame;
     int32_t m_numFrames;
     std::string m_textureID;
