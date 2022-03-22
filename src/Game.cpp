@@ -6,15 +6,9 @@
 
 #include "Game.h"
 #include "Resource.h"
-#include "LoaderParams.h"
-#include "GameObject.h"
+#include "InputHandler.h"
 #include "Player.h"
 #include "Enemy.h"
-#include "InputHandler.h"
-#include "MenuState.h"
-#include "PlayState.h"
-#include "MenuBotton.h"
-#include "Map.h"
 
 Game* Game::s_pInstance = nullptr;
 
@@ -53,34 +47,15 @@ bool Game::Init(const char* title, int xpos, int ypos, int height, int width, bo
 
     TextureManager::Instance()->LoadAllResource();
 
-    LoaderParams *params = nullptr;
-    params = new LoaderParams(100, 100, "elf_f_idle_anim"); // 闲置
-    m_gameObjects.push_back(new Player(params));
-    delete params;
-    params = new LoaderParams(200, 100, "elf_f_run_anim");
-    m_gameObjects.push_back(new Player(params));
-    delete params; 
-    params = new LoaderParams(300, 100, "elf_f_hit_anim");
-    m_gameObjects.push_back(new Player(params));
-    delete params;
+    for (uint32_t i = 0; players[i]; ++i) {
+        m_gameObjects[players[i]] = new Player(players[i]);
+        m_gameObjects[players[i]]->Load();
+    }
 
-    /*m_pGameStateMachine = new GameStateMachine();
-    m_pGameStateMachine->ChangeState(new MenuState());
-
-    LoaderParams *params = nullptr;
-    params = new LoaderParams(100, 100, 400, 100, "playbutton");
-    m_menuObj1 = new MenuButton(params, MenuState::s_MenuToPlay);
-    delete params;
-    params = new LoaderParams(100, 300, 400, 100, "exitbutton");
-    m_menuObj2 = new MenuButton(params, MenuState::s_ExitFromMenu);
-    delete params;
-
-    params = new LoaderParams(100, 100, 48, 48, "halo_explosion1");
-    m_gameObjects.push_back(new Player(params));
-    delete params;
-    params = new LoaderParams(100, 150, 16, 16, "halo_explosion2");
-    m_gameObjects.push_back(new Enemy(params));
-    delete params;*/
+    for (uint32_t i = 0; enemies[i]; ++i) {
+        m_gameObjects[enemies[i]] = new Enemy(enemies[i]);
+        m_gameObjects[enemies[i]]->Load();
+    }
 
     return true;
 }
@@ -88,48 +63,32 @@ bool Game::Init(const char* title, int xpos, int ypos, int height, int width, bo
 void Game::Render()
 {
     SDL_RenderClear(m_pRenderer);
-    for(std::vector<GameObject*>::size_type i = 0; i != m_gameObjects.size(); i++) {
-        m_gameObjects[i]->Draw();
+    for(auto object : m_gameObjects) {
+        object.second->Draw();
     }
-    /*m_pGameStateMachine->Render();*/
     SDL_RenderPresent(m_pRenderer);
 }
 
 void Game::HandleEvents()
 {
     InputHandler::Instance()->Update();
-
-    /*if(InputHandler::Instance()->IsKeyDown(SDL_SCANCODE_RETURN)) {
-        m_pGameStateMachine->ChangeState(new PlayState());
-    }*/
+    for(auto object : m_gameObjects) {
+        object.second->HandleInput();
+    }
 }
 
 void Game::Update()
 {
-    for(std::vector<GameObject*>::size_type i = 0; i != m_gameObjects.size(); i++) {
-        m_gameObjects[i]->Update();
+    for(auto object : m_gameObjects) {
+        object.second->Update();
     }
-
-    /*switch(m_currentGameState) {
-        case MENU:
-            m_menuObj1->Update();
-            m_menuObj2->Update();
-            break;
-        case PLAY:
-            m_pPlayer->Update();
-            m_pEnemy->Update();
-            break;
-        case GAMEOVER:
-            break;
-    }
-    m_pGameStateMachine->Update();*/
 }
 
 void Game::Clean()
 {
     std::cout << "Cleaning game\n";
-    for(std::vector<GameObject*>::size_type i = 0; i != m_gameObjects.size(); ++i) {
-        m_gameObjects[i]->Clean();
+    for(auto object : m_gameObjects) {
+        object.second->Clean();
     }
     TextureManager::Instance()->Clean();
     InputHandler::Instance()->Clean();

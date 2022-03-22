@@ -1,15 +1,11 @@
 #ifndef _GAME_H_
 #define _GAME_H_
 
-#include <vector>
+#include <unordered_map>
 
 #include "SDL.h"
 
 #include "GameObject.h"
-#include "GameStateMachine.h"
-#include "Player.h"
-#include "Enemy.h"
-#include "MenuBotton.h"
 
 class Game
 {
@@ -51,11 +47,6 @@ public:
         return s_pInstance;
     }
 
-    GameStateMachine* GetStateMachine()
-    {
-        return m_pGameStateMachine;
-    }
-
 private:
     Game():m_pWindow(nullptr), m_pRenderer(nullptr), m_bRunning(true)
     {}
@@ -63,17 +54,11 @@ private:
 private:
     SDL_Window* m_pWindow;
     SDL_Renderer* m_pRenderer;
-    std::vector<GameObject*> m_gameObjects;
+    std::unordered_map<std::string, GameObject*> m_gameObjects;
 
     static Game* s_pInstance;
 
     bool m_bRunning;
-    int m_currentGameState = MENU;
-    GameStateMachine* m_pGameStateMachine;
-    Player *m_pPlayer;
-    Enemy *m_pEnemy;
-    MenuButton *m_menuObj1;
-    MenuButton *m_menuObj2;
 };
 
 #endif
