@@ -138,8 +138,8 @@ void TextureManager::DrawFrame(std::string id, int x, int y, int currentFrame, S
     srcRect.y = m_infoMap[id]->coordinate.GetY();
     srcRect.w = destRect.w = m_infoMap[id]->size.GetX();
     srcRect.h = destRect.h = m_infoMap[id]->size.GetY();
-    destRect.x = x;
-    destRect.y = y;
+    destRect.x = x - 0.5 * m_infoMap[id]->size.GetX();
+    destRect.y = y - 0.5 * m_infoMap[id]->size.GetY();
     SDL_RenderCopyEx(pRenderer, m_textureMap[id], &srcRect, &destRect, 0, 0, flip);
 }
 

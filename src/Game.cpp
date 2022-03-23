@@ -57,6 +57,8 @@ bool Game::Init(const char* title, int xpos, int ypos, int height, int width, bo
         m_gameObjects[enemies[i]]->Load();
     }
 
+    m_ui.push_back(new Ui("title"));
+
     return true;
 }
 
@@ -65,6 +67,9 @@ void Game::Render()
     SDL_RenderClear(m_pRenderer);
     for(auto object : m_gameObjects) {
         object.second->Draw();
+    }
+    for(auto ui : m_ui) {
+        ui->Draw();
     }
     SDL_RenderPresent(m_pRenderer);
 }
@@ -82,6 +87,9 @@ void Game::Update()
     for(auto object : m_gameObjects) {
         object.second->Update();
     }
+    for(auto ui : m_ui) {
+        ui->Update();
+    }
 }
 
 void Game::Clean()
@@ -89,6 +97,10 @@ void Game::Clean()
     std::cout << "Cleaning game\n";
     for(auto object : m_gameObjects) {
         object.second->Clean();
+        delete object.second;
+    }
+    for(auto ui : m_ui) {
+        delete ui;
     }
     TextureManager::Instance()->Clean();
     InputHandler::Instance()->Clean();

@@ -2,7 +2,7 @@ CC = g++
 
 OBJECT = ./bin/main.o ./bin/Game.o \
          ./bin/Resource.o ./bin/InputHandler.o \
-		 ./bin/Player.o ./bin/Enemy.o ./bin/SpecialEffect.o\
+		 ./bin/Player.o ./bin/Enemy.o ./bin/SpecialEffect.o ./bin/Ui.o
          
 LIBRARY = ./lib/SDL2/SDL2.lib ./lib/SDL2/SDL2main.lib ./lib/SDL2/SDL2.dll \
           ./lib/SDL2/SDL2_image.lib ./lib/SDL2/SDL2_image.dll ./lib/SDL2/libpng16-16.dll
@@ -12,7 +12,8 @@ INCLUDE = -I ./include/SDL2/ -I ./include/ -I ./include/Foundation/ -I ./include
 HEADFILE = ./include/Game.h \
 		   ./include/Foundation/InputHandler.h ./include/Foundation/Resource.h\
 		   ./include/Foundation/Vector2D.h \
-	       ./include/Object/GameObject.h ./include/Object/Player.h ./include/Object/Enemy.h ./include/Object/SpecialEffect.h
+	       ./include/Object/GameObject.h ./include/Object/Player.h ./include/Object/Enemy.h \
+		   ./include/Object/SpecialEffect.h ./include/Object/Ui.h
 
 beginner : $(OBJECT)
 	$(CC) -o beginner -Wl,-rpath ./lib/SDL2/ $(OBJECT) $(LIBRARY)
@@ -37,6 +38,9 @@ beginner : $(OBJECT)
 
 ./bin/SpecialEffect.o : $(HEADFILE) ./src/Object/SpecialEffect.cpp
 	$(CC) $(INCLUDE) -o ./bin/SpecialEffect.o -c ./src/Object/SpecialEffect.cpp
+
+./bin/Ui.o : $(HEADFILE) ./src/Object/Ui.cpp
+	$(CC) $(INCLUDE) -o ./bin/Ui.o -c ./src/Object/Ui.cpp
 
 clean:
 	rm ./bin/*.o beginner

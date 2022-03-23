@@ -2,10 +2,12 @@
 #define _GAME_H_
 
 #include <unordered_map>
+#include <vector>
 
 #include "SDL.h"
 
 #include "GameObject.h"
+#include "Ui.h"
 
 class Game
 {
@@ -55,6 +57,7 @@ private:
     SDL_Window* m_pWindow;
     SDL_Renderer* m_pRenderer;
     std::unordered_map<std::string, GameObject*> m_gameObjects;
+    std::vector<Ui *> m_ui;
 
     static Game* s_pInstance;
 

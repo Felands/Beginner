@@ -22,8 +22,14 @@ void Enemy::Load()
 
 void Enemy::Draw()
 {
+    SDL_RendererFlip flip;
+    if (m_velocity.GetX() >= 0) {
+        flip = SDL_FLIP_NONE;
+    } else {
+        flip = SDL_FLIP_HORIZONTAL;
+    }
     TextureManager::Instance()->DrawFrame(m_enemyTexture[m_state], m_position.GetX(), m_position.GetY(),
-        m_currentFrame, Game::Instance()->GetRenderer());
+        m_currentFrame, Game::Instance()->GetRenderer(), flip);
 }
 
 void Enemy::Update()

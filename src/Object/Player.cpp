@@ -48,7 +48,7 @@ void Player::Update()
             delete *it;
             m_specialEffects.erase(it);
         }
-    }*/
+    }*/ 
     for (auto it = m_specialEffects.begin(); it != m_specialEffects.end(); ++it) {
         (*it)->SetPosition(m_position);
         (*it)->Update();
