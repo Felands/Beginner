@@ -22,23 +22,12 @@ public:
 
     Vector2D& GetPosition() { return m_position; }
 
-    int32_t GetWidth()
-    {
-        return m_width;
-    }
-
-    int32_t GetHeight()
-    {
-        return m_height;
-    }
+    std::string GetName() { return m_textureID; }
 
 protected:
     Vector2D m_position;
     Vector2D m_velocity;
-    int m_width;
-    int m_height;
     int m_currentFrame;
-    int32_t m_numFrames;
     std::string m_textureID;
 };
 

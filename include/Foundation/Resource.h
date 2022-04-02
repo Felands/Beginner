@@ -1,6 +1,7 @@
 #ifndef _RESOURCE_H_
 #define _RESOURCE_H_
 
+#include <iostream>
 #include <unordered_map>
 #include <string>
 
@@ -41,11 +42,25 @@ public:
 
 	SDL_Texture* GetTextureMap(std::string id)
 	{
+		if (m_textureMap.count(id) < 1) {
+			std::cout << id << "is incorrect.\n";
+		}
 		return m_textureMap[id];
+	}
+
+	ResourceInfo* GetInfoMap(std::string id)
+	{
+		if (m_infoMap.count(id) < 1) {
+			std::cout << id << "is incorrect.\n";
+		}
+		return m_infoMap[id];
 	}
 
 	uint8_t GetNumFrame(std::string id)
 	{
+		if (m_infoMap.count(id) < 1) {
+			std::cout << id << "is incorrect.\n";
+		}
 		return m_infoMap[id]->numFrame;
 	}
 

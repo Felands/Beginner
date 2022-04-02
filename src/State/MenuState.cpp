@@ -28,26 +28,17 @@ void MenuState::Render()
 
 bool MenuState::OnEnter()
 {
-    /*if(!TextureManager::Instance()->Load("assets/button.png", "playbutton", Game::Instance()->GetRenderer()))
-    {
-        return false;
-    }
-    if(!TextureManager::Instance()->Load("assets/exit.png", "exitbutton", Game::Instance()->GetRenderer()))
-    {
-        return false;
-    }
-
-    LoaderParams *params = new LoaderParams(100, 100, 400, 100, "playbutton");
-    GameObject* button1 = new MenuButton(params, nullptr);
+    LoaderParams *params = new LoaderParams(100, 100, "login_button");
+    GameObject* login = new MenuButton(params, s_MenuToPlay);
     delete params;
-    params = new LoaderParams(100, 300, 400, 100, "exitbutton");
-    GameObject* button2 = new MenuButton(params, nullptr);
+    params = new LoaderParams(100, 300, "exit_button");
+    GameObject* exit = new MenuButton(params, s_ExitFromMenu);
     delete params;
 
-    m_gameObjects.push_back(button1);
-    m_gameObjects.push_back(button2);
+    m_gameObjects.push_back(login);
+    m_gameObjects.push_back(exit);
 
-    std::cout << "Entering MenuState\n";*/
+    std::cout << "Entering MenuState\n";
 
     return true;
 }
@@ -59,9 +50,6 @@ bool MenuState::OnExit()
         m_gameObjects[i]->Clean();
     }
     m_gameObjects.clear();
-
-    TextureManager::Instance()->ClearFromTextureMap("playbutton");
-    TextureManager::Instance()->ClearFromTextureMap("exitbutton");
 
     std::cout << "Exiting MenuState\n";
 

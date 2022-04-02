@@ -37,23 +37,16 @@ void PauseState::Render()
 
 bool PauseState::OnEnter()
 {
-    /*if(!TextureManager::Instance()->Load("assets/resume.png", "resumebutton", Game::Instance()->GetRenderer())) {
-        return false;
-    }
-    if(!TextureManager::Instance()->Load("assets/main.png", "mainbutton", Game::Instance()->GetRenderer())) {
-        return false;
-    }
-
-    LoaderParams *params = new LoaderParams(200, 100, 200, 80, "mainbutton");
+    LoaderParams *params = new LoaderParams(200, 100, "axe");
     GameObject* button1 = new MenuButton(params, s_PauseToMain);
     delete params;
-    params = new LoaderParams(200, 300, 200, 80, "resumebutton");
+    params = new LoaderParams(200, 300, "staff");
     GameObject* button2 = new MenuButton(params, s_ResumePlay);
     delete params;
     m_gameObjects.push_back(button1);
     m_gameObjects.push_back(button2);
 
-    std::cout << "Entering PauseState\n";*/
+    std::cout << "Entering PauseState\n";
 
     return true;
 }
@@ -64,9 +57,6 @@ bool PauseState::OnExit()
         m_gameObjects[i]->Clean();
     }
     m_gameObjects.clear();
-
-    TextureManager::Instance()->ClearFromTextureMap("resumebutton");
-    TextureManager::Instance()->ClearFromTextureMap("mainbutton");
 
     InputHandler::Instance()->Reset();
 

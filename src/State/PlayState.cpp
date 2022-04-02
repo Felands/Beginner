@@ -31,31 +31,23 @@ bool PlayState::OnExit()
         m_gameObjects[i]->Clean();
     }
     m_gameObjects.clear();
-    TextureManager::Instance()->ClearFromTextureMap("helicopter");
     std::cout << "Exiting PlayState\n";
     return true;
 }
 
 bool PlayState::OnEnter()
 {
-    /*if(!TextureManager::Instance()->Load("assets/helicopter.png", "helicopter", Game::Instance()->GetRenderer())) {
-        return false;
-    }
-    if(!TextureManager::Instance()->Load("assets/helicopter2.png", "helicopter2", Game::Instance()->GetRenderer())){
-        return false;
-    }
-
-    LoaderParams *params = new LoaderParams(500, 100, 128, 55, "helicopter");
-    GameObject* player = new Player(params);
+    LoaderParams *params = new LoaderParams(500, 100, "elf_f_idle_anim");
+    GameObject* elf_f = new Player(params);
     delete params;
-    params = new LoaderParams(100, 100, 128, 55, "helicopter2");
-    GameObject* enemy = new Enemy(params);
+    params = new LoaderParams(500, 500, "elf_m_idle_anim");
+    GameObject* elf_m = new Player(params);
     delete params;
 
-    m_gameObjects.push_back(player);
-    m_gameObjects.push_back(enemy);
+    m_gameObjects.push_back(elf_f);
+    m_gameObjects.push_back(elf_m);
 
-    std::cout << "Entering PlayState\n";*/
+    std::cout << "Entering PlayState\n";
 
     return true;
 }
@@ -68,14 +60,14 @@ bool PlayState::CheckCollision(SDLGameObject* p1, SDLGameObject* p2)
     int bottomA, bottomB;
 
     leftA = p1->GetPosition().GetX();
-    rightA = p1->GetPosition().GetX() + p1->GetWidth();
+    rightA = p1->GetPosition().GetX() + TextureManager::Instance()->GetInfoMap(p1->GetName())->size.GetX();
     topA = p1->GetPosition().GetY();
-    bottomA = p1->GetPosition().GetY() + p1->GetHeight();
+    bottomA = p1->GetPosition().GetY() + TextureManager::Instance()->GetInfoMap(p1->GetName())->size.GetY();
 
     leftB = p2->GetPosition().GetX();
-    rightB = p2->GetPosition().GetX() + p2->GetWidth();
+    rightB = p2->GetPosition().GetX() + TextureManager::Instance()->GetInfoMap(p2->GetName())->size.GetX();
     topB = p2->GetPosition().GetY();
-    bottomB = p2->GetPosition().GetY() + p2->GetHeight();
+    bottomB = p2->GetPosition().GetY() + TextureManager::Instance()->GetInfoMap(p2->GetName())->size.GetY();
 
     if( bottomA <= topB ) {
         return false;
@@ -106,8 +98,8 @@ void PlayState::Update()
         m_gameObjects[i]->Update();
     }
 
-    if(CheckCollision(dynamic_cast<SDLGameObject*>(m_gameObjects[0]),
+    /*if(CheckCollision(dynamic_cast<SDLGameObject*>(m_gameObjects[0]),
         dynamic_cast<SDLGameObject*>(m_gameObjects[1]))) {
         Game::Instance()->GetStateMachine()->PushState(new GameOverState());
-    }
+    }*/
 }

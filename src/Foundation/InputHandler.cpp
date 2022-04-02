@@ -1,3 +1,5 @@
+#include <iostream>
+
 #include "SDL.h"
 
 #include "InputHandler.h"
@@ -25,6 +27,9 @@ void InputHandler::Clean()
 
 bool InputHandler::GetMouseButtonState(int buttonNumber)
 {
+    if (buttonNumber >= m_mouseButtonStates.size()) {
+        std::cout << "buttonNumber is out of array.\n";
+    }
     return m_mouseButtonStates[buttonNumber];
 }
 

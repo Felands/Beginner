@@ -3,6 +3,7 @@
 #include "Enemy.h"
 #include "LoaderParams.h"
 #include "SDLGameObject.h"
+#include "Resource.h"
 
 Enemy::Enemy(const LoaderParams* pParams) : SDLGameObject(pParams)
 {
@@ -17,7 +18,7 @@ void Enemy::Draw()
 
 void Enemy::Update()
 {
-    m_currentFrame = int(((SDL_GetTicks() / 100) % m_numFrames));
+    m_currentFrame = int(((SDL_GetTicks() / 100) % TextureManager::Instance()->GetInfoMap(m_textureID)->numFrame));
     if(m_position.GetY() < 0) {
         m_velocity.SetY(2);
     } else if(m_position.GetY() > 400) {

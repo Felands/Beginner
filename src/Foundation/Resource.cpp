@@ -44,6 +44,8 @@ const char *tilesetPath[] = {
     "./assets/drawable/Thunder_Yellow",
     "./assets/drawable/attack_up",
     "./assets/drawable/powerful_bow",
+    "./assets/drawable/button/login_button/login_button",
+    "./assets/drawable/button/exit_button/exit_button",
     nullptr
 };
 
@@ -67,14 +69,14 @@ bool TextureManager::Load(std::string fileName, SDL_Renderer* pRenderer)
         std::cout << "IMG " << imageName << " load fail.\n";
         return false;
     } else {
-        std::cout << "IMG " << imageName << " load success.\n";
+        //std::cout << "IMG " << imageName << " load success.\n";
          pTexture = SDL_CreateTextureFromSurface(pRenderer, pTempSurface);
         SDL_FreeSurface(pTempSurface);
         if (pTexture == nullptr) {
             std::cout << "Texture " << imageName << " create fail\n";
             return false;
         } else {
-            std::cout << "Texture " << imageName << " create success\n";
+            //std::cout << "Texture " << imageName << " create success\n";
         }
     }
 
@@ -102,7 +104,7 @@ bool TextureManager::Load(std::string fileName, SDL_Renderer* pRenderer)
         m_infoMap[infoId] = resourceInfo;
         SDL_DestroyTexture(m_textureMap[infoId]);
         m_textureMap[infoId] = pTexture;
-        std::cout << infoId << std::endl;
+        //std::cout << infoId << std::endl;
     }
 
     return true;
@@ -118,6 +120,9 @@ void TextureManager::LoadAllResource()
 void TextureManager::Draw(std::string id, int x, int y, int width, int height,
     SDL_Renderer* pRenderer, SDL_RendererFlip flip)
 {
+    if (m_infoMap.count(id) < 1 || m_textureMap.count(id) < 1) {
+        std::cout << id << "is incorrect.\n";
+    }
     SDL_Rect srcRect;
     SDL_Rect destRect;
     srcRect.x = 0;
@@ -132,6 +137,9 @@ void TextureManager::Draw(std::string id, int x, int y, int width, int height,
 void TextureManager::DrawFrame(std::string id, int x, int y, int currentFrame, SDL_Renderer *pRenderer,
     SDL_RendererFlip flip)
 {
+    if (m_infoMap.count(id) < 1 || m_textureMap.count(id) < 1) {
+        std::cout << id << "is incorrect.\n";
+    }
     SDL_Rect srcRect;
     SDL_Rect destRect;
     srcRect.x = m_infoMap[id]->coordinate.GetX() + m_infoMap[id]->size.GetX() * (currentFrame - 1);

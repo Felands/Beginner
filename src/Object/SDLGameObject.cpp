@@ -8,8 +8,7 @@
 
 SDLGameObject::SDLGameObject(const LoaderParams* pParams) :
     GameObject(pParams), m_position(pParams->GetX(), pParams->GetY()), m_velocity(0,0),
-    m_currentFrame(1), m_textureID(pParams->GetTextureID()),
-    m_numFrames(TextureManager::Instance()->GetNumFrame(pParams->GetTextureID()))
+    m_currentFrame(1), m_textureID(pParams->GetTextureID())
 {}
 
 void SDLGameObject::Draw()
