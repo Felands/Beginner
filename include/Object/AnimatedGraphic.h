@@ -9,7 +9,6 @@
 class AnimatedGraphic : public SDLGameObject
 {
 public:
-    AnimatedGraphic(const LoaderParams* pParams, int32_t animSpeed);
     void Update();
 
 private:

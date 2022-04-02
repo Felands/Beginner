@@ -5,7 +5,7 @@
 #include "SDLGameObject.h"
 #include "Resource.h"
 
-Enemy::Enemy(const LoaderParams* pParams) : SDLGameObject(pParams)
+Enemy::Enemy()
 {
     m_velocity.SetY(2);
     m_velocity.SetX(0.001);

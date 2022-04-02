@@ -3,15 +3,22 @@
 
 #include "SDLGameObject.h"
 #include "LoaderParams.h"
+#include "GameObjectFactory.h"
 
 class Player : public SDLGameObject
 {
 public:
-    Player(const LoaderParams* pParams);
-
     virtual void Update();
 
     virtual void HandleInput();
+};
+
+class PlayerCreator : public BaseCreator
+{
+    GameObject* createGameObject() const
+    {
+        return new Player();
+    }
 };
 
 #endif

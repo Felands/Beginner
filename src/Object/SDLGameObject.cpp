@@ -6,10 +6,17 @@
 #include "LoaderParams.h"
 #include "SDLGameObject.h"
 
-SDLGameObject::SDLGameObject(const LoaderParams* pParams) :
-    GameObject(pParams), m_position(pParams->GetX(), pParams->GetY()), m_velocity(0,0),
-    m_currentFrame(1), m_textureID(pParams->GetTextureID())
-{}
+void SDLGameObject::Load(const LoaderParams* pParams)
+{
+    m_position.SetX(pParams->GetX());
+    m_position.SetY(pParams->GetY());
+    m_velocity.SetX(0);
+    m_velocity.SetY(0);
+    m_currentFrame = 1;
+    m_textureID = pParams->GetTextureID();
+    callbackID = pParams->GetCallBackID();
+    animSpeed = pParams->GetAnimSpeed();
+}
 
 void SDLGameObject::Draw()
 {

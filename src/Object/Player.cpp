@@ -9,9 +9,6 @@
 #include "InputHandler.h"
 #include "Resource.h"
 
-Player::Player(const LoaderParams* pParams) : SDLGameObject(pParams)
-{}
-
 void Player::Update()
 {
     m_currentFrame = int32_t(((SDL_GetTicks() / 100) % TextureManager::Instance()->GetInfoMap(m_textureID)->numFrame));

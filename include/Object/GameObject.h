@@ -9,9 +9,10 @@ public:
     virtual void Draw() = 0;
     virtual void Update() = 0;
     virtual void Clean() = 0;
+    virtual void Load(const LoaderParams* pParams) = 0;
 
 protected:
-    GameObject(const LoaderParams* pParams) {}
+    GameObject() {}
     virtual ~GameObject() {}
 }; 
 

@@ -1,0 +1,25 @@
+{
+    "configurations": [
+        {
+            "name": "Win32",
+            "includePath": [
+                "${workspaceFolder}/include/",
+                "${workspaceFolder}/include/Foundation/",
+                "${workspaceFolder}/include/Object/",
+                "${workspaceFolder}/include/SDL2/",
+                "${workspaceFolder}/include/State/",
+                "${workspaceFolder}/include/TinyXml/"
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE"
+            ],
+            "compilerPath": "C:\\Program Files (x86)\\mingw64\\bin\\g++.exe",
+            "cStandard": "gnu17",
+            "cppStandard": "gnu++14",
+            "intelliSenseMode": "windows-gcc-x64"
+        }
+    ],
+    "version": 4
+}

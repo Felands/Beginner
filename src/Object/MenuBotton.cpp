@@ -2,7 +2,7 @@
 #include "Resource.h"
 #include "InputHandler.h"
 
-MenuButton::MenuButton(const LoaderParams* pParams, void (*callback)()) : SDLGameObject(pParams), m_callback(callback)
+MenuButton::MenuButton()
 {
     m_currentFrame = MOUSE_OUT;
 }

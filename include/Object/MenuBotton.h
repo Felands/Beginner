@@ -14,7 +14,7 @@ enum button_state
 class MenuButton : public SDLGameObject
 {
 public:
-    MenuButton(const LoaderParams* pParams, void (*callback)());
+    MenuButton();
 
     virtual void Draw();
 

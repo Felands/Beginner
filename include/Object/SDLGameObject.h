@@ -12,13 +12,16 @@
 class SDLGameObject : public GameObject
 {
 public:
-    SDLGameObject(const LoaderParams* pParams);
+    SDLGameObject()
+    {}
 
     virtual void Draw();
 
     virtual void Clean();
 
     virtual void Update();
+
+    virtual void Load(const LoaderParams* pParams);
 
     Vector2D& GetPosition() { return m_position; }
 
@@ -28,6 +31,8 @@ protected:
     Vector2D m_position;
     Vector2D m_velocity;
     int m_currentFrame;
+    int32_t callbackID;
+    int32_t animSpeed;
     std::string m_textureID;
 };
 

@@ -7,7 +7,7 @@
 class Enemy : public SDLGameObject
 {
 public:
-    Enemy(const LoaderParams* pParams);
+    Enemy();
 
     virtual void Update();
 
