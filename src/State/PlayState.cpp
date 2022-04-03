@@ -12,6 +12,7 @@
 #include "Enemy.h"
 #include "SDLGameObject.h"
 #include "GameOverState.h"
+#include "StateParser.h"
 
 const std::string PlayState::s_playId = "PLAY";
 
@@ -31,26 +32,23 @@ bool PlayState::OnExit()
         m_gameObjects[i]->Clean();
     }
     m_gameObjects.clear();
+    // clear the texture manager
+    for(int i = 0; i < m_textureIDList.size(); i++) {
+        TextureManager::Instance()->ClearFromTextureMap(m_textureIDList[i]);
+    }
     std::cout << "Exiting PlayState\n";
     return true;
 }
 
 bool PlayState::OnEnter()
 {
-    LoaderParams *params = new LoaderParams(500, 100, "elf_f_idle_anim");
-    GameObject* elf_f = new Player(params);
-    delete params;
-    params = new LoaderParams(500, 500, "elf_m_idle_anim");
-    GameObject* elf_m = new Player(params);
-    delete params;
-
-    m_gameObjects.push_back(elf_f);
-    m_gameObjects.push_back(elf_m);
-
-    std::cout << "Entering PlayState\n";
-
+    // parse the state
+    StateParser stateParser;
+    stateParser.parseState("test.xml", s_playId, &m_gameObjects, &m_textureIDList);
+    std::cout << "entering PlayState\n";
     return true;
 }
+
 
 bool PlayState::CheckCollision(SDLGameObject* p1, SDLGameObject* p2)
 {

@@ -23,6 +23,8 @@ public:
 
     virtual void Load(const LoaderParams* pParams);
 
+    int getCallbackID() { return m_callbackID; }
+
     Vector2D& GetPosition() { return m_position; }
 
     std::string GetName() { return m_textureID; }
@@ -31,8 +33,8 @@ protected:
     Vector2D m_position;
     Vector2D m_velocity;
     int m_currentFrame;
-    int32_t callbackID;
-    int32_t animSpeed;
+    int32_t m_callbackID;
+    int32_t m_animSpeed;
     std::string m_textureID;
 };
 

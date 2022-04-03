@@ -14,8 +14,8 @@ void SDLGameObject::Load(const LoaderParams* pParams)
     m_velocity.SetY(0);
     m_currentFrame = 1;
     m_textureID = pParams->GetTextureID();
-    callbackID = pParams->GetCallBackID();
-    animSpeed = pParams->GetAnimSpeed();
+    m_callbackID = pParams->GetCallBackID();
+    m_animSpeed = pParams->GetAnimSpeed();
 }
 
 void SDLGameObject::Draw()

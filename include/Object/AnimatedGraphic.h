@@ -5,14 +5,20 @@
 
 #include "LoaderParams.h"
 #include "SDLGameObject.h"
+#include "GameObjectFactory.h"
 
 class AnimatedGraphic : public SDLGameObject
 {
 public:
     void Update();
+};
 
-private:
-    int32_t m_animSpeed;
+class AnimatedGraphicCreator : public BaseCreator
+{
+    GameObject* createGameObject() const
+    {
+        return new AnimatedGraphic();
+    }
 };
 
 #endif

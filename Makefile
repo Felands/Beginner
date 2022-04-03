@@ -3,7 +3,7 @@ CC = g++
 OBJECT = ./bin/main.o ./bin/Game.o \
          ./bin/Resource.o ./bin/InputHandler.o \
 		 ./bin/SDLGameObject.o ./bin/Player.o ./bin/Enemy.o ./bin/AnimatedGraphic.o ./bin/MenuBotton.o \
-		 ./bin/GameStateMachine.o ./bin/PlayState.o ./bin/PauseState.o ./bin/GameOverState.o ./bin/MenuState.o
+		 ./bin/GameStateMachine.o ./bin/PlayState.o ./bin/PauseState.o ./bin/GameOverState.o ./bin/MainMenuState.o
          
 LIBRARY = ./lib/SDL2/SDL2.lib ./lib/SDL2/SDL2main.lib ./lib/SDL2/SDL2.dll \
           ./lib/SDL2/SDL2_image.lib ./lib/SDL2/SDL2_image.dll ./lib/SDL2/libpng16-16.dll
@@ -16,7 +16,7 @@ HEADFILE = ./include/Game.h \
 	       ./include/Object/AnimatedGraphic.h ./include/Object/Enemy.h ./include/Object/GameObject.h \
 		   ./include/Object/MenuBotton.h ./include/Object/Player.h ./include/Object/SDLGameObject.h \
 	       ./include/State/GameOverState.h ./include/State/GameState.h ./include/State/GameStateMachine.h \
-		   ./include/State/MenuState.h ./include/State/PauseState.h ./include/State/PlayState.h
+		   ./include/State/MainMenuState.h ./include/State/PauseState.h ./include/State/PlayState.h
 
 beginner : $(OBJECT)
 	$(CC) -o beginner -Wl,-rpath ./lib/SDL2/ $(OBJECT) $(LIBRARY)
@@ -54,8 +54,8 @@ beginner : $(OBJECT)
 ./bin/GameOverState.o : $(HEADFILE) ./src/State/GameOverState.cpp
 	$(CC) $(INCLUDE) -o ./bin/GameOverState.o -c ./src/State/GameOverState.cpp
 
-./bin/MenuState.o : $(HEADFILE) ./src/State/MenuState.cpp
-	$(CC) $(INCLUDE) -o ./bin/MenuState.o -c ./src/State/MenuState.cpp
+./bin/MainMenuState.o : $(HEADFILE) ./src/State/MainMenuState.cpp
+	$(CC) $(INCLUDE) -o ./bin/MainMenuState.o -c ./src/State/MainMenuState.cpp
 
 ./bin/PauseState.o : $(HEADFILE) ./src/State/PauseState.cpp
 	$(CC) $(INCLUDE) -o ./bin/PauseState.o -c ./src/State/PauseState.cpp

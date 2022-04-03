@@ -3,13 +3,14 @@
 
 #include "GameOverState.h"
 #include "Game.h"
-#include "MenuState.h"
+#include "MainMenuState.h"
 #include "GameObject.h"
 #include "Resource.h"
 #include "PlayState.h"
 #include "LoaderParams.h"
 #include "MenuBotton.h"
 #include "AnimatedGraphic.h"
+#include "StateParser.h"
 
 const std::string GameOverState::s_gameOverId = "GAMEOVER";
 
@@ -18,7 +19,7 @@ GameOverState::~GameOverState()
 
 void GameOverState::s_GameOverToMain()
 {
-    Game::Instance()->GetStateMachine()->ChangeState(new MenuState());
+    Game::Instance()->GetStateMachine()->ChangeState(new MainMenuState());
 }
 
 void GameOverState::s_RestartPlay()
@@ -28,8 +29,15 @@ void GameOverState::s_RestartPlay()
 
 bool GameOverState::OnEnter()
 {
-    std::cout << "Entering PauseState\n";
-
+    // parse the state
+    StateParser stateParser;
+    stateParser.parseState("test.xml", s_gameOverId, &m_gameObjects, &m_textureIDList);
+    m_callbacks.push_back(0);
+    m_callbacks.push_back(s_GameOverToMain);
+    m_callbacks.push_back(s_RestartPlay);
+    // set the callbacks for menu items
+    setCallbacks(m_callbacks);
+    std::cout << "entering PauseState\n";
     return true;
 }
 
@@ -40,4 +48,18 @@ void GameOverState::Render()
 {}
 
 bool GameOverState::OnExit()
-{return true;}
+{
+    for(int i = 0; i < m_gameObjects.size(); i++) {
+        m_gameObjects[i]->Clean();
+    }
+    m_gameObjects.clear();
+
+    // clear the texture manager
+    for(int i = 0; i < m_textureIDList.size(); i++) {
+        TextureManager::Instance()->ClearFromTextureMap(m_textureIDList[i]);
+    }
+
+    std::cout << "Exiting PauseState\n";
+
+    return true;
+}

@@ -11,10 +11,11 @@
 #include "Player.h"
 #include "Enemy.h"
 #include "InputHandler.h"
-#include "MenuState.h"
+#include "MainMenuState.h"
 #include "PlayState.h"
 #include "MenuBotton.h"
 #include "Map.h"
+#include "AnimatedGraphic.h"
 
 Game* Game::s_pInstance = nullptr;
 
@@ -53,19 +54,14 @@ bool Game::Init(const char* title, int xpos, int ypos, int height, int width, bo
 
     TextureManager::Instance()->LoadAllResource();
 
-    LoaderParams *params = nullptr;
-    params = new LoaderParams(100, 100, "elf_f_idle_anim"); // 闲置
-    m_gameObjects.push_back(new Player(params));
-    delete params;
-    params = new LoaderParams(200, 100, "elf_f_run_anim");
-    m_gameObjects.push_back(new Player(params));
-    delete params; 
-    params = new LoaderParams(300, 100, "elf_f_hit_anim");
-    m_gameObjects.push_back(new Player(params));
-    delete params;
+    GameObjectFactory::Instance()->registerType("MenuButton", new MenuButtonCreator());
+    GameObjectFactory::Instance()->registerType("Player", new PlayerCreator());
+    GameObjectFactory::Instance()->registerType("Enemy", new EnemyCreator());
+    GameObjectFactory::Instance()->registerType("AnimatedGraphic", new AnimatedGraphicCreator());
+
 
     m_pGameStateMachine = new GameStateMachine();
-    m_pGameStateMachine->ChangeState(new MenuState());
+    m_pGameStateMachine->ChangeState(new MainMenuState());
 
     return true;
 }

@@ -3,6 +3,7 @@
 
 #include "LoaderParams.h"
 #include "SDLGameObject.h"
+#include "GameObjectFactory.h"
 
 enum button_state
 {
@@ -22,9 +23,19 @@ public:
 
     virtual void Clean();
 
+    void setCallback(void(*callback)()) { m_callback = callback;}
+
 private:
     void (*m_callback)();
     bool m_bReleased;
+};
+
+class MenuButtonCreator : public BaseCreator
+{
+    GameObject* createGameObject() const
+    {
+        return new MenuButton();
+    }
 };
 
 #endif
