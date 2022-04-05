@@ -2,7 +2,6 @@
 #define _INPUT_HANDLER_H_
 
 #include <vector>
-#include <stdint.h>
 
 #include "SDL.h"
 
@@ -20,21 +19,20 @@ class InputHandler
 public:
     static InputHandler* Instance()
     {
-        if(s_pInstance == nullptr)
-        {
+        if(s_pInstance == nullptr) {
             s_pInstance = new InputHandler();
         }
         return s_pInstance;
     }
 
-    void Update();
-
-    void Clean();
-
     Vector2D* GetMousePosition()
     {
         return m_mousePosition;
     }
+
+    void Update();
+
+    void Clean();
 
     bool IsKeyDown(SDL_Scancode key);
 
@@ -49,13 +47,8 @@ private:
 
     void OnMouseButtonUp(SDL_Event& event);
 
-private:
     InputHandler();
- 
-    ~InputHandler()
-    {}
 
-private:
     static InputHandler* s_pInstance;
     std::vector<bool> m_mouseButtonStates;
     Vector2D *m_mousePosition;

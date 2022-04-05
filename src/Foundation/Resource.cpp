@@ -1,10 +1,6 @@
 #include <iostream>
-#include <string>
-#include <fstream>
-#include <stdio.h>
 
 #include "SDL_image.h"
-#include "SDL.h"
 
 #include "Resource.h"
 #include "Game.h"
@@ -53,99 +49,46 @@ TextureManager* TextureManager::s_pInstance = nullptr;
 
 TextureManager* TextureManager::Instance()
 {
-    if(s_pInstance == nullptr)
-    {
+    if(s_pInstance == nullptr) {
         s_pInstance = new TextureManager();
     }
     return s_pInstance;
 }
 
-bool TextureManager::Load(std::string fileName, SDL_Renderer* pRenderer)
+void TextureManager::Clean()
 {
-    std::string imageName = fileName + ".png";
-    SDL_Texture* pTexture = nullptr;
-    SDL_Surface* pTempSurface = IMG_Load(imageName.c_str());
+	if (s_pInstance != nullptr) {
+        for (auto it : m_textureMap) {
+			SDL_DestroyTexture(it.second);
+		}
+		delete s_pInstance;
+	} 
+}
+
+bool TextureManager::Load(std::string fileName, std::string id, SDL_Renderer* pRenderer)
+{
+    SDL_Surface* pTempSurface = IMG_Load(fileName.c_str());
     if(pTempSurface == nullptr) {
-        std::cout << "IMG " << imageName << " load fail.\n";
-        return false;
-    } else {
-        //std::cout << "IMG " << imageName << " load success.\n";
-         pTexture = SDL_CreateTextureFromSurface(pRenderer, pTempSurface);
-        SDL_FreeSurface(pTempSurface);
-        if (pTexture == nullptr) {
-            std::cout << "Texture " << imageName << " create fail\n";
-            return false;
-        } else {
-            //std::cout << "Texture " << imageName << " create success\n";
-        }
-    }
-
-    std::ifstream infoFile(fileName, std::ios_base::in);
-    if (!infoFile.is_open()) {
-        std::cout << "Open file " << fileName << " failed.\n";
-        SDL_DestroyTexture(pTexture);
         return false;
     }
-
-    std::string infoId;
-    uint32_t x;
-    uint32_t y;
-    uint32_t width;
-    uint32_t height;
-    uint32_t numFrame;
-    ResourceInfo *resourceInfo;
-    while (infoFile >> infoId >> x >> y >> width >> height >> numFrame ) {
-        resourceInfo = new ResourceInfo();
-        resourceInfo->coordinate.SetX(x);
-        resourceInfo->coordinate.SetY(y);
-        resourceInfo->size.SetX(width);
-        resourceInfo->size.SetY(height);
-        resourceInfo->numFrame = numFrame;
-        m_infoMap[infoId] = resourceInfo;
-        SDL_DestroyTexture(m_textureMap[infoId]);
-        m_textureMap[infoId] = pTexture;
-        //std::cout << infoId << std::endl;
+    SDL_Texture* pTexture = SDL_CreateTextureFromSurface(pRenderer, pTempSurface);
+    SDL_FreeSurface(pTempSurface);
+    if(pTexture != nullptr) {
+        m_textureMap[id] = pTexture;
+        return true;
     }
-
-    return true;
+    return false;
 }
 
-void TextureManager::LoadAllResource()
+void TextureManager::DrawFrame(std::string id, int32_t x, int32_t y, uint32_t width, uint32_t height, uint32_t currentRow,
+    uint32_t currentFrame, SDL_Renderer* pRenderer, SDL_RendererFlip flip = SDL_FLIP_NONE)
 {
-    for (int i = 0; tilesetPath[i] != nullptr; ++i) {
-        Load(tilesetPath[i], Game::Instance()->GetRenderer());
-    }
-}
-
-void TextureManager::Draw(std::string id, int x, int y, int width, int height,
-    SDL_Renderer* pRenderer, SDL_RendererFlip flip)
-{
-    if (m_infoMap.count(id) < 1 || m_textureMap.count(id) < 1) {
-        std::cout << id << "is incorrect.\n";
-    }
     SDL_Rect srcRect;
     SDL_Rect destRect;
-    srcRect.x = 0;
-    srcRect.y = 0;
+    srcRect.x = width * currentFrame;
+    srcRect.y = height * (currentRow - 1);
     srcRect.w = destRect.w = width;
     srcRect.h = destRect.h = height;
-    destRect.x = x;
-    destRect.y = y;
-    SDL_RenderCopyEx(pRenderer, m_textureMap[id], &srcRect, &destRect, 0, 0, SDL_FLIP_NONE);
-}
-
-void TextureManager::DrawFrame(std::string id, int x, int y, int currentFrame, SDL_Renderer *pRenderer,
-    SDL_RendererFlip flip)
-{
-    if (m_infoMap.count(id) < 1 || m_textureMap.count(id) < 1) {
-        std::cout << id << "is incorrect.\n";
-    }
-    SDL_Rect srcRect;
-    SDL_Rect destRect;
-    srcRect.x = m_infoMap[id]->coordinate.GetX() + m_infoMap[id]->size.GetX() * (currentFrame - 1);
-    srcRect.y = m_infoMap[id]->coordinate.GetY();
-    srcRect.w = destRect.w = m_infoMap[id]->size.GetX();
-    srcRect.h = destRect.h = m_infoMap[id]->size.GetY();
     destRect.x = x;
     destRect.y = y;
     SDL_RenderCopyEx(pRenderer, m_textureMap[id], &srcRect, &destRect, 0, 0, flip);
@@ -153,11 +96,12 @@ void TextureManager::DrawFrame(std::string id, int x, int y, int currentFrame, S
 
 void TextureManager::ClearFromTextureMap(std::string id)
 {
+    SDL_DestroyTexture(m_textureMap[id]);
     m_textureMap.erase(id);
 }
 
-void TextureManager::drawTile(std::string id, int margin, int spacing, int x, int y, int width, int height,
-    int currentRow, int currentFrame, SDL_Renderer *pRenderer)
+void TextureManager::DrawTile(std::string id, int32_t margin, int32_t spacing, int32_t x, int32_t y, int32_t width, int32_t height,
+    int32_t currentRow, int32_t currentFrame, SDL_Renderer *pRenderer)
 {
     SDL_Rect srcRect;
     SDL_Rect destRect;

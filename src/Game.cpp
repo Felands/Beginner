@@ -14,7 +14,6 @@
 #include "MainMenuState.h"
 #include "PlayState.h"
 #include "MenuBotton.h"
-#include "Map.h"
 #include "AnimatedGraphic.h"
 
 Game* Game::s_pInstance = nullptr;

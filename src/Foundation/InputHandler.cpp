@@ -1,16 +1,13 @@
 #include <iostream>
 
-#include "SDL.h"
-
 #include "InputHandler.h"
 #include "Game.h"
-#include "Vector2D.h"
 
 InputHandler* InputHandler::s_pInstance = nullptr;
 
 InputHandler::InputHandler() : m_keystates(SDL_GetKeyboardState(nullptr)), m_mousePosition(new Vector2D(0, 0))
 {
-    for(int i = 0; i < 3; i++) {
+    for(size_t i = 0; i < 3; i++) {
         m_mouseButtonStates.push_back(false);
     }
 }
@@ -55,24 +52,19 @@ void InputHandler::Update()
             case SDL_QUIT:
                 Game::Instance()->Quit();
                 break;
-
             case SDL_MOUSEMOTION:
                 OnMouseMove(event);
                 break;
-
             case SDL_MOUSEBUTTONDOWN:
                 OnMouseButtonDown(event);
                 break;
-
             case SDL_MOUSEBUTTONUP:
                 OnMouseButtonUp(event);
                 break;
-
             case SDL_KEYDOWN:
             case SDL_KEYUP:
                 SDL_PumpEvents();
                 break;
-
             default:
                 break;
         }
