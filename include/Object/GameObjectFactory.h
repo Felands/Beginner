@@ -1,6 +1,7 @@
 #ifndef _GAME_OBJECT_FACTORY_H_
 #define _GAME_OBJECT_FACTORY_H_
 
+#include <iostream>
 #include <string>
 #include <map>
 
@@ -16,37 +17,11 @@ public:
 class GameObjectFactory
 {
 public:
-    bool registerType(std::string typeID, BaseCreator* pCreator)
-    {
-        std::map<std::string, BaseCreator*>::iterator it = m_creators.find(typeID);
-        // if the type is already registered, do nothing
-        if(it != m_creators.end()) {
-            delete pCreator;
-            return false;
-        }
-        m_creators[typeID] = pCreator;
-        return true;
-    }
+    bool RegisterType(std::string typeID, BaseCreator* pCreator);
 
-    GameObject* create(std::string typeID)
-    {
-        std::map<std::string, BaseCreator*>::iterator it = m_creators.find(typeID);
-        if(it == m_creators.end()) {
-            std::cout << "could not find type: " << typeID << "\n";
-            return NULL;
-        }
-        BaseCreator* pCreator = (*it).second;
-        return pCreator->createGameObject();
-    }
+    GameObject *Create(std::string typeID);
 
-    static GameObjectFactory* Instance()
-    {
-        if(s_pInstance == nullptr)
-        {
-            s_pInstance = new GameObjectFactory();
-        }
-        return s_pInstance;
-    }
+    static GameObjectFactory *Instance();
 
 private:
     std::map<std::string, BaseCreator*> m_creators;

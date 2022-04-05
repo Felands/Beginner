@@ -1,7 +1,7 @@
 #ifndef _RESOURCE_H_
 #define _RESOURCE_H_
 
-#include <unordered_map>
+#include <map>
 #include <string>
 
 #include "SDL.h"
@@ -9,12 +9,12 @@
 class TextureManager
 {
 public:
-    static TextureManager* Instance();
+    static TextureManager *Instance();
 
 	bool Load(std::string fileName, std::string id, SDL_Renderer *pRenderer);
 
     void DrawFrame(std::string id, int32_t x, int32_t y, uint32_t width, uint32_t height, uint32_t currentRow,
-	    uint32_t currentFrame, SDL_Renderer* pRenderer, SDL_RendererFlip flip = SDL_FLIP_NONE);
+	    uint32_t currentFrame, SDL_Renderer *pRenderer, SDL_RendererFlip flip = SDL_FLIP_NONE);
 
     void ClearFromTextureMap(std::string id);
 
@@ -28,7 +28,7 @@ private:
 	{}
 
 	std::map<std::string, SDL_Texture*> m_textureMap;
-	static TextureManager* s_pInstance;
+	static TextureManager *s_pInstance;
 };
 
 #endif

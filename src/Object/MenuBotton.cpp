@@ -2,23 +2,12 @@
 #include "Resource.h"
 #include "InputHandler.h"
 
-MenuButton::MenuButton()
-{
-    m_currentFrame = MOUSE_OUT;
-}
-
-void MenuButton::Draw()
-{
-    SDLGameObject::Draw();
-}
-
 void MenuButton::Update()
 {
+    SDLGameObject::Update();
     Vector2D* pMousePos = InputHandler::Instance()->GetMousePosition();
-    if(pMousePos->GetX() < (m_position.GetX() + TextureManager::Instance()->GetInfoMap(m_textureID)->size.GetX()) &&
-        pMousePos->GetX() > m_position.GetX() &&
-        pMousePos->GetY() < (m_position.GetY() + TextureManager::Instance()->GetInfoMap(m_textureID)->size.GetY()) &&
-        pMousePos->GetY() > m_position.GetY()) {
+    if(pMousePos->GetX() < (m_position.GetX() + m_width) && pMousePos->GetX() > m_position.GetX() &&
+        pMousePos->GetY() < (m_position.GetY() + m_height) && pMousePos->GetY() > m_position.GetY()) {
         if(InputHandler::Instance()->GetMouseButtonState(LEFT) && m_bReleased) {
             m_currentFrame = CLICKED;
             m_callback();
@@ -30,9 +19,4 @@ void MenuButton::Update()
     } else {
         m_currentFrame = MOUSE_OUT;
     }
-}
-
-void MenuButton::Clean()
-{
-    SDLGameObject::Clean();
 }

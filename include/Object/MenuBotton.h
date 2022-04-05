@@ -1,13 +1,12 @@
 #ifndef _MENU_BOTTON_H_
 #define _MENU_BOTTON_H_
 
-#include "LoaderParams.h"
 #include "SDLGameObject.h"
 #include "GameObjectFactory.h"
 
 enum button_state
 {
-    MOUSE_OUT = 1,
+    MOUSE_OUT,
     MOUSE_OVER,
     CLICKED
 };
@@ -23,7 +22,10 @@ public:
 
     virtual void Clean();
 
-    void setCallback(void(*callback)()) { m_callback = callback;}
+    void SetCallback(void(*callback)())
+    {
+        m_callback = callback;
+    }
 
 private:
     void (*m_callback)();

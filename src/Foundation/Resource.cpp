@@ -1,53 +1,10 @@
-#include <iostream>
-
 #include "SDL_image.h"
 
 #include "Resource.h"
-#include "Game.h"
 
-const char *tilesetPath[] = {
-    "./assets/drawable/0x72_DungeonTilesetII_v1_3",
-    "./assets/drawable/fireball_explosion1",
-    "./assets/drawable/halo_explosion1",
-    "./assets/drawable/halo_explosion2",
-    "./assets/drawable/fireball",
-    "./assets/drawable/floor_spike",
-    "./assets/drawable/floor_exit",
-    "./assets/drawable/HpMed",
-    "./assets/drawable/SwordFx",
-    "./assets/drawable/ClawFx",
-    "./assets/drawable/Shine",
-    "./assets/drawable/Thunder",
-    "./assets/drawable/BloodBound",
-    "./assets/drawable/arrow",
-    "./assets/drawable/explosion-2",
-    "./assets/drawable/ClawFx2",
-    "./assets/drawable/Axe",
-    "./assets/drawable/cross_hit",
-    "./assets/drawable/blood",
-    "./assets/drawable/SolidFx",
-    "./assets/drawable/IcePick",
-    "./assets/drawable/IceShatter",
-    "./assets/drawable/Ice",
-    "./assets/drawable/SwordPack",
-    "./assets/drawable/HolyShield",
-    "./assets/drawable/golden_cross_hit",
-    "./assets/drawable/ui",
-    "./assets/drawable/title",
-    "./assets/drawable/purple_ball",
-    "./assets/drawable/purple_exp",
-    "./assets/drawable/staff",
-    "./assets/drawable/Thunder_Yellow",
-    "./assets/drawable/attack_up",
-    "./assets/drawable/powerful_bow",
-    "./assets/drawable/button/login_button/login_button",
-    "./assets/drawable/button/exit_button/exit_button",
-    nullptr
-};
+TextureManager *TextureManager::s_pInstance = nullptr;
 
-TextureManager* TextureManager::s_pInstance = nullptr;
-
-TextureManager* TextureManager::Instance()
+TextureManager *TextureManager::Instance()
 {
     if(s_pInstance == nullptr) {
         s_pInstance = new TextureManager();
