@@ -56,8 +56,18 @@ public:
         return m_pGameStateMachine;
     }
 
+    int getGameWidth() const 
+    { 
+        return m_gameWidth; 
+    }
+
+    int getGameHeight() const 
+    { 
+        return m_gameHeight; 
+    }
+
 private:
-    Game():m_pWindow(nullptr), m_pRenderer(nullptr), m_bRunning(true)
+    Game():m_pWindow(nullptr), m_pRenderer(nullptr), m_bRunning(true), m_gameWidth(0), m_gameHeight(0)
     {}
 
 private:
@@ -74,6 +84,9 @@ private:
     Enemy *m_pEnemy;
     MenuButton *m_menuObj1;
     MenuButton *m_menuObj2;
+
+    int m_gameWidth;
+    int m_gameHeight;
 };
 
 #endif

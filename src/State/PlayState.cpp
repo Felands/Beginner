@@ -13,6 +13,7 @@
 #include "SDLGameObject.h"
 #include "GameOverState.h"
 #include "StateParser.h"
+#include "LevelParser.h"
 
 const std::string PlayState::s_playId = "PLAY";
 
@@ -21,9 +22,7 @@ PlayState::~PlayState()
 
 void PlayState::Render()
 {
-    for(int i = 0; i < m_gameObjects.size(); i++) {
-        m_gameObjects[i]->Draw();
-    }
+    m_pLevel->render();
 }
 
 bool PlayState::OnExit()
@@ -42,9 +41,8 @@ bool PlayState::OnExit()
 
 bool PlayState::OnEnter()
 {
-    // parse the state
-    StateParser stateParser;
-    stateParser.parseState("test.xml", s_playId, &m_gameObjects, &m_textureIDList);
+    LevelParser levelParser;
+    m_pLevel = levelParser.parseLevel("assets/map1.tmx");
     std::cout << "entering PlayState\n";
     return true;
 }
@@ -95,6 +93,8 @@ void PlayState::Update()
     for(int i = 0; i < m_gameObjects.size(); i++){
         m_gameObjects[i]->Update();
     }
+
+    m_pLevel->update();
 
     /*if(CheckCollision(dynamic_cast<SDLGameObject*>(m_gameObjects[0]),
         dynamic_cast<SDLGameObject*>(m_gameObjects[1]))) {

@@ -8,7 +8,8 @@
                 "${workspaceFolder}/include/Object/",
                 "${workspaceFolder}/include/SDL2/",
                 "${workspaceFolder}/include/State/",
-                "${workspaceFolder}/include/TinyXml/"
+                "${workspaceFolder}/include/TinyXml/",
+                "${workspaceFolder}/include/Layer/"
             ],
             "defines": [
                 "_DEBUG",

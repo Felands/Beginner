@@ -21,6 +21,8 @@ Game* Game::s_pInstance = nullptr;
 
 bool Game::Init(const char* title, int xpos, int ypos, int height, int width, bool fullScreen)
 {
+    m_gameWidth = width;
+    m_gameHeight = height;
     if(SDL_Init(SDL_INIT_EVERYTHING) == 0) {
         std::cout << "SDL init success\n";
         m_pWindow = SDL_CreateWindow(title, xpos, ypos, height, width,

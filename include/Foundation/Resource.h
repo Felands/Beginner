@@ -33,6 +33,9 @@ public:
 
     void ClearFromTextureMap(std::string id);
 
+	void drawTile(std::string id, int margin, int spacing, int x, int y, int width, int height,
+        int currentRow, int currentFrame, SDL_Renderer *pRenderer);
+
 	void Clean()
 	{
 		if (s_pInstance != nullptr) {
