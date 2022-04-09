@@ -4,13 +4,9 @@
 #include "GameOverState.h"
 #include "Game.h"
 #include "MainMenuState.h"
-#include "GameObject.h"
-#include "Resource.h"
 #include "PlayState.h"
-#include "LoaderParams.h"
-#include "MenuBotton.h"
-#include "AnimatedGraphic.h"
 #include "StateParser.h"
+#include "Resource.h"
 
 const std::string GameOverState::s_gameOverId = "GAMEOVER";
 
@@ -31,12 +27,12 @@ bool GameOverState::OnEnter()
 {
     // parse the state
     StateParser stateParser;
-    stateParser.parseState("test.xml", s_gameOverId, &m_gameObjects, &m_textureIDList);
+    stateParser.ParseState("test.xml", s_gameOverId, &m_gameObjects, &m_textureIDList);
     m_callbacks.push_back(0);
     m_callbacks.push_back(s_GameOverToMain);
     m_callbacks.push_back(s_RestartPlay);
     // set the callbacks for menu items
-    setCallbacks(m_callbacks);
+    SetCallbacks(m_callbacks);
     std::cout << "entering PauseState\n";
     return true;
 }

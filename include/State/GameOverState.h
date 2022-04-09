@@ -25,7 +25,7 @@ public:
         return s_gameOverId;
     }
 
-    virtual void setCallbacks(const std::vector<Callback>& callbacks);
+    virtual void SetCallbacks(const std::vector<Callback>& callbacks);
 
 private:
     static void s_GameOverToMain();

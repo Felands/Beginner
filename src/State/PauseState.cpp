@@ -4,11 +4,9 @@
 #include "PauseState.h"
 #include "Game.h"
 #include "MainMenuState.h"
-#include "LoaderParams.h"
-#include "Resource.h"
-#include "MenuBotton.h"
-#include "InputHandler.h"
 #include "StateParser.h"
+#include "InputHandler.h"
+#include "Resource.h"
 
 const std::string PauseState::s_pauseId = "PAUSE";
 
@@ -24,14 +22,14 @@ void PauseState::s_ResumePlay()
 
 void PauseState::Update()
 {
-    for(int i = 0; i < m_gameObjects.size(); i++) {
+    for(size_t i = 0; i < m_gameObjects.size(); i++) {
         m_gameObjects[i]->Update();
     }
 }
 
 void PauseState::Render()
 {
-    for(int i = 0; i < m_gameObjects.size(); i++) {
+    for(size_t i = 0; i < m_gameObjects.size(); i++) {
         m_gameObjects[i]->Draw();
     }
 }
@@ -39,11 +37,11 @@ void PauseState::Render()
 bool PauseState::OnEnter()
 {
     StateParser stateParser;
-    stateParser.parseState("test.xml", s_pauseId, &m_gameObjects, &m_textureIDList);
+    stateParser.ParseState("test.xml", s_pauseId, &m_gameObjects, &m_textureIDList);
     m_callbacks.push_back(0);
     m_callbacks.push_back(s_PauseToMain);
     m_callbacks.push_back(s_ResumePlay);
-    setCallbacks(m_callbacks);
+    SetCallbacks(m_callbacks);
     std::cout << "entering PauseState\n";
     return true;
 }
@@ -67,13 +65,12 @@ bool PauseState::OnExit()
     return true;
 }
 
-void PauseState::setCallbacks(const std::vector<Callback>& callbacks)
+void PauseState::SetCallbacks(const std::vector<Callback>& callbacks)
 {
     for(int i = 0; i < m_gameObjects.size(); i++) {
         if(dynamic_cast<MenuButton*>(m_gameObjects[i])) {
             MenuButton* pButton = dynamic_cast<MenuButton*>(m_gameObjects[i]);
-            pButton->setCallback(callbacks[pButton->getCallbackID()]);
+            pButton->SetCallback(callbacks[pButton->GetCallbackID()]);
         }
     }
 }
-
