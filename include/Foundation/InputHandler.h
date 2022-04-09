@@ -36,7 +36,7 @@ public:
 
     bool IsKeyDown(SDL_Scancode key);
 
-    bool GetMouseButtonState(int buttonNumber);
+    bool GetMouseButtonState(int32_t buttonNumber);
 
     void Reset();
 

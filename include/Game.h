@@ -56,12 +56,12 @@ public:
         return m_pGameStateMachine;
     }
 
-    int getGameWidth() const 
+    int GetGameWidth() const 
     { 
         return m_gameWidth; 
     }
 
-    int getGameHeight() const 
+    int GetGameHeight() const 
     { 
         return m_gameHeight; 
     }

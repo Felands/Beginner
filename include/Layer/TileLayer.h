@@ -4,38 +4,37 @@
 #include <vector>
 
 #include "Level.h"
-#include "Layer.h"
 #include "Vector2D.h"
 
 class TileLayer : public Layer
 {
 public:
-    TileLayer(int tileSize, const std::vector<Tileset> &tilesets);
+    TileLayer(uint32_t tileSize, const std::vector<Tileset> &tilesets);
 
-    virtual void update();
+    virtual void Update();
 
-    virtual void render();
+    virtual void Render();
 
-    void setTileIDs(const std::vector<std::vector<int>>& data) 
+    void SetTileIDs(const std::vector<std::vector<uint32_t>> &data) 
     { 
         m_tileIDs = data; 
     }
 
-    void setTileSize(int tileSize) 
+    void SetTileSize(uint32_t tileSize) 
     { 
         m_tileSize = tileSize; 
     }
 
-    Tileset getTilesetByID(int tileID);
+    Tileset GetTilesetByID(uint32_t tileID);
 
 private:
-    int m_numColumns;
-    int m_numRows;
-    int m_tileSize;
+    uint32_t m_numColumns;
+    uint32_t m_numRows;
+    uint32_t m_tileSize;
     Vector2D m_position;
     Vector2D m_velocity;
     const std::vector<Tileset> &m_tilesets;
-    std::vector<std::vector<int>> m_tileIDs;
+    std::vector<std::vector<uint32_t>> m_tileIDs;
 };
 
 #endif

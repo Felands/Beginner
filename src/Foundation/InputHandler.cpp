@@ -22,7 +22,7 @@ void InputHandler::Clean()
     }
 }
 
-bool InputHandler::GetMouseButtonState(int buttonNumber)
+bool InputHandler::GetMouseButtonState(int32_t buttonNumber)
 {
     if (buttonNumber >= m_mouseButtonStates.size()) {
         std::cout << "buttonNumber is out of array.\n";

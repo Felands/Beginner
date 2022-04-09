@@ -5,45 +5,46 @@
 #include <vector>
 
 #include "Layer.h"
-#include "LevelParser.h"
 
 struct Tileset
 {
-    int firstGridID;
-    int tileWidth;
-    int tileHeight;
-    int spacing;
-    int margin;
-    int width;
-    int height;
-    int numColumns;
+    uint32_t firstGridID;
+    uint32_t tileWidth;
+    uint32_t tileHeight;
+    uint32_t spacing;
+    uint32_t margin;
+    uint32_t width;
+    uint32_t height;
+    uint32_t numColumns;
     std::string name;
 };
 
 class Level
 {
 public:
-    ~Level() {}
+    void Update();
 
-    void update();
+    void Render();
 
-    void render();
-
-    std::vector<Tileset>* getTilesets() 
+    std::vector<Tileset> *GetTilesets() 
     { 
         return &m_tilesets; 
     }
 
-    std::vector<Layer*>* getLayers() 
+    std::vector<Layer*> *GetLayers() 
     { 
         return &m_layers; 
     }
 
 private:
     friend class LevelParser;
-    Level();
 
-private:
+    Level()
+    {}
+
+    ~Level()
+    {}
+
     std::vector<Tileset> m_tilesets;
     std::vector<Layer*> m_layers;
 };

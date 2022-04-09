@@ -9,20 +9,20 @@
 class LevelParser
 {
 public:
-    Level* parseLevel(const char* levelFile);
+    Level* ParseLevel(const char* levelFile);
 
 private:
-    void parseTilesets(TiXmlElement* pTilesetRoot,std::vector<Tileset>* pTilesets);
+    void ParseTilesets(TiXmlElement* pTilesetRoot,std::vector<Tileset>* pTilesets);
 
-    void parseTileLayer(TiXmlElement* pTileElement,std::vector<Layer*> *pLayers, const std::vector<Tileset> *pTilesets);
+    void ParseTileLayer(TiXmlElement* pTileElement,std::vector<Layer*> *pLayers, const std::vector<Tileset> *pTilesets);
 
-    void parseTextures(TiXmlElement* pTextureRoot);
+    void ParseTextures(TiXmlElement* pTextureRoot);
 
-    void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Layer*> *pLayers);
+    void ParseObjectLayer(TiXmlElement* pObjectElement, std::vector<Layer*> *pLayers);
 
-    int m_tileSize;
-    int m_width;
-    int m_height;
+    uint32_t m_tileSize;
+    uint32_t m_width;
+    uint32_t m_height;
 };
 
 #endif

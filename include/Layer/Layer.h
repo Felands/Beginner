@@ -4,8 +4,8 @@
 class Layer
 {
 public:
-    virtual void render() = 0;
-    virtual void update() = 0;
+    virtual void Render() = 0;
+    virtual void Update() = 0;
 
 protected:
     virtual ~Layer() {}
