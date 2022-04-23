@@ -9,7 +9,7 @@ class AnimatedGraphic : public SDLGameObject
 
 class AnimatedGraphicCreator : public BaseCreator
 {
-    GameObject* createGameObject() const
+    GameObject* CreateGameObject() const
     {
         return new AnimatedGraphic();
     }

@@ -1,0 +1,85 @@
+<?xml version="1.0" ?>
+<STATES>
+    <MENU>
+        <TEXTURES>
+            <texture>
+                <name value="login_button_out"/>
+                <source value="./assets/drawable/button/login_button/login_button_out.png"/>
+                <width value="324"/>
+                <height value="53"/>
+                <numColumns value="1"/>
+                <numRows value="1"/>
+            </texture>
+            <texture>
+                <name value="login_button_over"/>
+                <source value="./assets/drawable/button/login_button/login_button_over.png"/>
+                <width value="324"/>
+                <height value="53"/>
+                <numColumns value="1"/>
+                <numRows value="1"/>
+            </texture>
+            <texture>
+                <name value="login_button_click"/>
+                <source value="./assets/drawable/button/login_button/login_button_click.png"/>
+                <width value="324"/>
+                <height value="53"/>
+                <numColumns value="1"/>
+                <numRows value="1"/>
+            </texture>
+            <texture>
+                <name value="exit_button_out"/>
+                <source value="./assets/drawable/button/exit_button/exit_button_out.png"/>
+                <width value="43"/>
+                <height value="43"/>
+                <numColumns value="1"/>
+                <numRows value="1"/>
+            </texture>
+            <texture>
+                <name value="exit_button_over"/>
+                <source value="./assets/drawable/button/exit_button/exit_button_over.png"/>
+                <width value="43"/>
+                <height value="43"/>
+                <numColumns value="1"/>
+                <numRows value="1"/>
+            </texture>
+            <texture>
+                <name value="exit_button_click"/>
+                <source value="./assets/drawable/button/exit_button/exit_button_click.png"/>
+                <width value="43"/>
+                <height value="43"/>
+                <numColumns value="1"/>
+                <numRows value="1"/>
+            </texture>
+        </TEXTURES>
+        <OBJECTS>
+            <object name="login_button">
+                <type value="MenuButton"/>
+                <x value="100"/>
+                <y value="300"/>
+                <textureNames>
+                    <textureName value="login_button_out"/>
+                    <textureName value="login_button_over"/>
+                    <textureName value="login_button_click"/>
+                </textureNames>
+                <callbackId value="1"/>
+                <animeSpeed value="10"/>
+            </object>
+            <object name="exit_button">
+                <type value="MenuButton"/>
+                <x value="100"/>
+                <y value="100"/>
+                <textureNames>
+                    <textureName value="exit_button_out"/>
+                    <textureName value="exit_button_over"/>
+                    <textureName value="exit_button_click"/>
+                </textureNames>
+                <callbackId value="2"/>
+                <animeSpeed value="10"/>
+            </object>
+        </OBJECTS>
+    </MENU>
+    <PLAY>
+    </PLAY>
+    <GAMEOVER>
+    </GAMEOVER>
+</STATES>

@@ -3,44 +3,7 @@
 #include "InputHandler.h"
 #include "Game.h"
 
-InputHandler* InputHandler::s_pInstance = nullptr;
-
-InputHandler::InputHandler() : m_keystates(SDL_GetKeyboardState(nullptr)), m_mousePosition(new Vector2D(0, 0))
-{
-    for(size_t i = 0; i < 3; i++) {
-        m_mouseButtonStates.push_back(false);
-    }
-}
-
-void InputHandler::Clean()
-{
-    if (s_pInstance != nullptr) {
-        if (m_mousePosition != nullptr) {
-            delete m_mousePosition;
-        }
-        delete s_pInstance;
-    }
-}
-
-bool InputHandler::GetMouseButtonState(int32_t buttonNumber)
-{
-    if (buttonNumber >= m_mouseButtonStates.size()) {
-        std::cout << "buttonNumber is out of array.\n";
-    }
-    return m_mouseButtonStates[buttonNumber];
-}
-
-bool InputHandler::IsKeyDown(SDL_Scancode key)
-{
-    if(m_keystates != nullptr) {
-        if(m_keystates[key] == 1) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-    return false;
-}
+InputHandler *InputHandler::instance = nullptr;
 
 void InputHandler::Update()
 {
@@ -71,41 +34,65 @@ void InputHandler::Update()
     }
 }
 
-void InputHandler::OnMouseMove(SDL_Event& event)
+void InputHandler::Clean()
 {
-    m_mousePosition->SetX(event.motion.x);
-    m_mousePosition->SetY(event.motion.y);
+    if (instance != nullptr) {
+        delete instance;
+    }
 }
 
-void InputHandler::OnMouseButtonDown(SDL_Event& event)
+bool InputHandler::IsKeyDown(SDL_Scancode key)
+{
+    if(keyStates != nullptr) {
+        if(keyStates[key] == 1) {
+            return true;
+        }
+    }
+    return false;
+}
+
+void InputHandler::Reset()
+{
+    mouseButtonStates[(size_t)MouseButtons::LEFT] = false;
+    mouseButtonStates[(size_t)MouseButtons::MIDDLE] = false;
+    mouseButtonStates[(size_t)MouseButtons::RIGHT] = false;
+}
+
+InputHandler::InputHandler() : keyStates(SDL_GetKeyboardState(nullptr)), mousePosition(0, 0)
+{
+    for(size_t i = (size_t)MouseButtons::LEFT; i <= (size_t)MouseButtons::RIGHT; ++i) {
+        mouseButtonStates.push_back(false);
+    }
+}
+
+void InputHandler::OnMouseMove(SDL_Event &event)
+{
+    mousePosition.SetX(event.motion.x);
+    mousePosition.SetY(event.motion.y);
+}
+
+void InputHandler::OnMouseButtonDown(SDL_Event &event)
 {
     if(event.button.button == SDL_BUTTON_LEFT) {
-        m_mouseButtonStates[LEFT] = true;
+        mouseButtonStates[(size_t)MouseButtons::LEFT] = true;
     }
     if(event.button.button == SDL_BUTTON_MIDDLE) {
-        m_mouseButtonStates[MIDDLE] = true;
+        mouseButtonStates[(size_t)MouseButtons::MIDDLE] = true;
     }
     if(event.button.button == SDL_BUTTON_RIGHT) {
-        m_mouseButtonStates[RIGHT] = true;
+        mouseButtonStates[(size_t)MouseButtons::RIGHT] = true;
     }
 }
 
 void InputHandler::OnMouseButtonUp(SDL_Event& event)
 {
     if(event.button.button == SDL_BUTTON_LEFT) {
-        m_mouseButtonStates[LEFT] = false;
+        mouseButtonStates[(size_t)MouseButtons::LEFT] = false;
     }
     if(event.button.button == SDL_BUTTON_MIDDLE) {
-        m_mouseButtonStates[MIDDLE] = false;
+        mouseButtonStates[(size_t)MouseButtons::MIDDLE] = false;
     }
     if(event.button.button == SDL_BUTTON_RIGHT) {
-        m_mouseButtonStates[RIGHT] = false;
+        mouseButtonStates[(size_t)MouseButtons::RIGHT] = false;
     }
-}
-
-void InputHandler::Reset()
-{
-    m_mouseButtonStates[LEFT] = false;
-    m_mouseButtonStates[MIDDLE] = false;
-    m_mouseButtonStates[RIGHT] = false;
 }

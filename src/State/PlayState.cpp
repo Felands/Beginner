@@ -1,62 +1,87 @@
-#include <iostream>
 #include <string>
 
 #include "PlayState.h"
-#include "Resource.h"
 #include "LevelParser.h"
+#include "Resource.h"
 #include "InputHandler.h"
 #include "Game.h"
-#include "GameOverState.h"
 #include "PauseState.h"
+#include "GameOverState.h"
+#include "log.h"
 
-const std::string PlayState::s_playId = "PLAY";
+const std::string PlayState::playId = "PLAY";
 
-PlayState::~PlayState()
-{}
-
-void PlayState::Render()
+bool PlayState::OnEnter()
 {
-    m_pLevel->Render();
+    LOG_DBG("[PlayState][OnEnter] Entering the play state");
+
+    LevelParser levelParser;
+    level = levelParser.ParseLevel(LevelParser::level);
+
+    LOG_DBG("[PlayState][OnEnter] Entered the play state");
+    return true;
 }
 
 bool PlayState::OnExit()
 {
-    for(int i = 0; i < m_gameObjects.size(); i++) {
-        m_gameObjects[i]->Clean();
+    LOG_DBG("[PlayState][OnExit] Exiting the play state");
+
+    InputHandler::Instance()->Reset();
+
+    for(int i = 0; i < textureIdList.size(); i++) {
+        TextureManager::Instance()->ClearFromTextureMap(textureIdList[i]);
     }
-    m_gameObjects.clear();
-    // clear the texture manager
-    for(int i = 0; i < m_textureIDList.size(); i++) {
-        TextureManager::Instance()->ClearFromTextureMap(m_textureIDList[i]);
-    }
-    std::cout << "Exiting PlayState\n";
+
+    level->Clean();
+    delete level;
+
+    LOG_DBG("[PlayState][OnExit] Exited the play state");
     return true;
 }
 
-bool PlayState::OnEnter()
+void PlayState::Render()
 {
-    LevelParser levelParser;
-    m_pLevel = levelParser.ParseLevel("assets/map1.tmx");
-    std::cout << "entering PlayState\n";
-    return true;
+    LOG_DBG("[PlayState][Render] Rendering the play state");
+
+    level->Render();
+
+    LOG_DBG("[PlayState][Render] Rendered the play state");
 }
 
-bool PlayState::CheckCollision(SDLGameObject* p1, SDLGameObject* p2)
+void PlayState::Update()
 {
+    LOG_DBG("[PlayState][Update] Updating the play state");
+
+    level->Update();
+
+    /*if (CheckCollision(dynamic_cast<SDLGameObject*>(gameObjects[0]),
+        dynamic_cast<SDLGameObject*>(gameObjects[1]))) {
+        Game::Instance()->GetStateMachine()->PushState(new GameOverState());
+    } else if (InputHandler::Instance()->IsKeyDown(SDL_SCANCODE_ESCAPE)) {
+        Game::Instance()->GetStateMachine()->PushState(new PauseState());
+    }*/
+
+    LOG_DBG("[PlayState][Update] Updated the play state");
+}
+
+/*bool PlayState::CheckCollision(SDLGameObject *object1, SDLGameObject *object2)
+{
+    LOG_DBG("[PlayState][CheckCollision] Checking the collision");
+
     uint32_t leftA, leftB;
     uint32_t rightA, rightB;
     uint32_t topA, topB;
     uint32_t bottomA, bottomB;
 
-    leftA = p1->GetPosition().GetX();
-    rightA = p1->GetPosition().GetX() + p1->GetWidth();
-    topA = p1->GetPosition().GetY();
-    bottomA = p1->GetPosition().GetY() + p1->GetHeight();
+    leftA = object1->GetPosition().GetX();
+    rightA = object1->GetPosition().GetX() + object1->GetWidth();
+    topA = object1->GetPosition().GetY();
+    bottomA = object1->GetPosition().GetY() + object1->GetHeight();
 
-    leftB = p2->GetPosition().GetX();
-    rightB = p2->GetPosition().GetX() + p2->GetWidth();
-    topB = p2->GetPosition().GetY();
-    bottomB = p2->GetPosition().GetY() + p2->GetHeight();
+    leftB = object2->GetPosition().GetX();
+    rightB = object2->GetPosition().GetX() + object2->GetWidth();
+    topB = object2->GetPosition().GetY();
+    bottomB = object2->GetPosition().GetY() + object2->GetHeight();
 
     if( bottomA <= topB ) {
         return false;
@@ -72,22 +97,5 @@ bool PlayState::CheckCollision(SDLGameObject* p1, SDLGameObject* p2)
     }
 
     return true;
-}
-
-void PlayState::Update()
-{
-    if(InputHandler::Instance()->IsKeyDown(SDL_SCANCODE_ESCAPE)) {
-        Game::Instance()->GetStateMachine()->PushState(new PauseState());
-    }
-
-    for(int i = 0; i < m_gameObjects.size(); i++){
-        m_gameObjects[i]->Update();
-    }
-
-    m_pLevel->Update();
-
-    if(CheckCollision(dynamic_cast<SDLGameObject*>(m_gameObjects[0]),
-        dynamic_cast<SDLGameObject*>(m_gameObjects[1]))) {
-        Game::Instance()->GetStateMachine()->PushState(new GameOverState());
-    }
-}
+    LOG_DBG("[PlayState][CheckCollision] Checked the collision");
+}*/

@@ -1,0 +1,650 @@
+<tileset name="column_mid.png">
+    <firstgid value="8"/>
+    <tilewidth value="16"/>
+    <tileheight value="16"/>
+    <numColumns value="1"/>
+    <numRows value="1"/>
+    <spacing value="0"/>
+    <margin value="0"/>
+    <source value="./assets/drawable/map/column_mid.png.png"/>
+</tileset>
+<tileset name="column_top.png">
+    <firstgid value="8"/>
+    <tilewidth value="16"/>
+    <tileheight value="16"/>
+    <numColumns value="1"/>
+    <numRows value="1"/>
+    <spacing value="0"/>
+    <margin value="0"/>
+    <source value="./assets/drawable/map/column_top.png.png"/>
+</tileset>
+<tileset name="coulmn_base.png">
+    <firstgid value="8"/>
+    <tilewidth value="16"/>
+    <tileheight value="16"/>
+    <numColumns value="1"/>
+    <numRows value="1"/>
+    <spacing value="0"/>
+    <margin value="0"/>
+    <source value="./assets/drawable/map/coulmn_base.png.png"/>
+</tileset>
+<tileset name="doors_all.png">
+    <firstgid value="8"/>
+    <tilewidth value="16"/>
+    <tileheight value="16"/>
+    <numColumns value="1"/>
+    <numRows value="1"/>
+    <spacing value="0"/>
+    <margin value="0"/>
+    <source value="./assets/drawable/map/doors_all.png.png"/>
+</tileset>
+<tileset name="doors_frame_left.png">
+    <firstgid value="8"/>
+    <tilewidth value="16"/>
+    <tileheight value="16"/>
+    <numColumns value="1"/>
+    <numRows value="1"/>
+    <spacing value="0"/>
+    <margin value="0"/>
+    <source value="./assets/drawable/map/doors_frame_left.png.png"/>
+</tileset>
+<tileset name="doors_frame_righ.png">
+    <firstgid value="8"/>
+    <tilewidth value="16"/>
+    <tileheight value="16"/>
+    <numColumns value="1"/>
+    <numRows value="1"/>
+    <spacing value="0"/>
+    <margin value="0"/>
+    <source value="./assets/drawable/map/doors_frame_righ.png.png"/>
+</tileset>
+<tileset name="doors_frame_top.png">
+    <firstgid value="8"/>
+    <tilewidth value="16"/>
+    <tileheight value="16"/>
+    <numColumns value="1"/>
+    <numRows value="1"/>
+    <spacing value="0"/>
+    <margin value="0"/>
+    <source value="./assets/drawable/map/doors_frame_top.png.png"/>
+</tileset>
+<tileset name="doors_leaf_closed.png">
+    <firstgid value="8"/>
+    <tilewidth value="16"/>
+    <tileheight value="16"/>
+    <numColumns value="1"/>
+    <numRows value="1"/>
+    <spacing value="0"/>
+    <margin value="0"/>
+    <source value="./assets/drawable/map/doors_leaf_closed.png.png"/>
+</tileset>
+<tileset name="doors_leaf_open.png">
+    <firstgid value="8"/>
+    <tilewidth value="16"/>
+    <tileheight value="16"/>
+    <numColumns value="1"/>
+    <numRows value="1"/>
+    <spacing value="0"/>
+    <margin value="0"/>
+    <source value="./assets/drawable/map/doors_leaf_open.png.png"/>
+</tileset>
+<tileset name="edge.png">
+    <firstgid value="8"/>
+    <tilewidth value="16"/>
+    <tileheight value="16"/>
+    <numColumns value="1"/>
+    <numRows value="1"/>
+    <spacing value="0"/>
+    <margin value="0"/>
+    <source value="./assets/drawable/map/edge.png.png"/>
+</tileset>
+<tileset name="floor_1.png">
+    <firstgid value="8"/>
+    <tilewidth value="16"/>
+    <tileheight value="16"/>
+    <numColumns value="1"/>
+    <numRows value="1"/>
+    <spacing value="0"/>
+    <margin value="0"/>
+    <source value="./assets/drawable/map/floor_1.png.png"/>
+</tileset>
+<tileset name="floor_2.png">
+    <firstgid value="8"/>
+    <tilewidth value="16"/>
+    <tileheight value="16"/>
+    <numColumns value="1"/>
+    <numRows value="1"/>
+    <spacing value="0"/>
+    <margin value="0"/>
+    <source value="./assets/drawable/map/floor_2.png.png"/>
+</tileset>
+<tileset name="floor_3.png">
+    <firstgid value="8"/>
+    <tilewidth value="16"/>
+    <tileheight value="16"/>
+    <numColumns value="1"/>
+    <numRows value="1"/>
+    <spacing value="0"/>
+    <margin value="0"/>
+    <source value="./assets/drawable/map/floor_3.png.png"/>
+</tileset>
+<tileset name="floor_4.png">
+    <firstgid value="8"/>
+    <tilewidth value="16"/>
+    <tileheight value="16"/>
+    <numColumns value="1"/>
+    <numRows value="1"/>
+    <spacing value="0"/>
+    <margin value="0"/>
+    <source value="./assets/drawable/map/floor_4.png.png"/>
+</tileset>
+<tileset name="floor_5.png">
+    <firstgid value="8"/>
+    <tilewidth value="16"/>
+    <tileheight value="16"/>
+    <numColumns value="1"/>
+    <numRows value="1"/>
+    <spacing value="0"/>
+    <margin value="0"/>
+    <source value="./assets/drawable/map/floor_5.png.png"/>
+</tileset>
+<tileset name="floor_6.png">
+    <firstgid value="8"/>
+    <tilewidth value="16"/>
+    <tileheight value="16"/>
+    <numColumns value="1"/>
+    <numRows value="1"/>
+    <spacing value="0"/>
+    <margin value="0"/>
+    <source value="./assets/drawable/map/floor_6.png.png"/>
+</tileset>
+<tileset name="floor_7.png">
+    <firstgid value="8"/>
+    <tilewidth value="16"/>
+    <tileheight value="16"/>
+    <numColumns value="1"/>
+    <numRows value="1"/>
+    <spacing value="0"/>
+    <margin value="0"/>
+    <source value="./assets/drawable/map/floor_7.png.png"/>
+</tileset>
+<tileset name="floor_8.png">
+    <firstgid value="8"/>
+    <tilewidth value="16"/>
+    <tileheight value="16"/>
+    <numColumns value="1"/>
+    <numRows value="1"/>
+    <spacing value="0"/>
+    <margin value="0"/>
+    <source value="./assets/drawable/map/floor_8.png.png"/>
+</tileset>
+<tileset name="floor_exit.png">
+    <firstgid value="8"/>
+    <tilewidth value="16"/>
+    <tileheight value="16"/>
+    <numColumns value="1"/>
+    <numRows value="1"/>
+    <spacing value="0"/>
+    <margin value="0"/>
+    <source value="./assets/drawable/map/floor_exit.png.png"/>
+</tileset>
+<tileset name="floor_ladder.png">
+    <firstgid value="8"/>
+    <tilewidth value="16"/>
+    <tileheight value="16"/>
+    <numColumns value="1"/>
+    <numRows value="1"/>
+    <spacing value="0"/>
+    <margin value="0"/>
+    <source value="./assets/drawable/map/floor_ladder.png.png"/>
+</tileset>
+<tileset name="floor_spike.png">
+    <firstgid value="8"/>
+    <tilewidth value="16"/>
+    <tileheight value="16"/>
+    <numColumns value="1"/>
+    <numRows value="1"/>
+    <spacing value="0"/>
+    <margin value="0"/>
+    <source value="./assets/drawable/map/floor_spike.png.png"/>
+</tileset>
+<tileset name="floor_spikes_anim.png">
+    <firstgid value="8"/>
+    <tilewidth value="16"/>
+    <tileheight value="16"/>
+    <numColumns value="1"/>
+    <numRows value="1"/>
+    <spacing value="0"/>
+    <margin value="0"/>
+    <source value="./assets/drawable/map/floor_spikes_anim.png.png"/>
+</tileset>
+<tileset name="hole.png">
+    <firstgid value="8"/>
+    <tilewidth value="16"/>
+    <tileheight value="16"/>
+    <numColumns value="1"/>
+    <numRows value="1"/>
+    <spacing value="0"/>
+    <margin value="0"/>
+    <source value="./assets/drawable/map/hole.png.png"/>
+</tileset>
+<tileset name="wall_banner_blue.png">
+    <firstgid value="8"/>
+    <tilewidth value="16"/>
+    <tileheight value="16"/>
+    <numColumns value="1"/>
+    <numRows value="1"/>
+    <spacing value="0"/>
+    <margin value="0"/>
+    <source value="./assets/drawable/map/wall_banner_blue.png.png"/>
+</tileset>
+<tileset name="wall_banner_green.png">
+    <firstgid value="8"/>
+    <tilewidth value="16"/>
+    <tileheight value="16"/>
+    <numColumns value="1"/>
+    <numRows value="1"/>
+    <spacing value="0"/>
+    <margin value="0"/>
+    <source value="./assets/drawable/map/wall_banner_green.png.png"/>
+</tileset>
+<tileset name="wall_banner_red.png">
+    <firstgid value="8"/>
+    <tilewidth value="16"/>
+    <tileheight value="16"/>
+    <numColumns value="1"/>
+    <numRows value="1"/>
+    <spacing value="0"/>
+    <margin value="0"/>
+    <source value="./assets/drawable/map/wall_banner_red.png.png"/>
+</tileset>
+<tileset name="wall_banner_yellow.png">
+    <firstgid value="8"/>
+    <tilewidth value="16"/>
+    <tileheight value="16"/>
+    <numColumns value="1"/>
+    <numRows value="1"/>
+    <spacing value="0"/>
+    <margin value="0"/>
+    <source value="./assets/drawable/map/wall_banner_yellow.png.png"/>
+</tileset>
+<tileset name="wall_column_mid.png">
+    <firstgid value="8"/>
+    <tilewidth value="16"/>
+    <tileheight value="16"/>
+    <numColumns value="1"/>
+    <numRows value="1"/>
+    <spacing value="0"/>
+    <margin value="0"/>
+    <source value="./assets/drawable/map/wall_column_mid.png.png"/>
+</tileset>
+<tileset name="wall_column_top.png">
+    <firstgid value="8"/>
+    <tilewidth value="16"/>
+    <tileheight value="16"/>
+    <numColumns value="1"/>
+    <numRows value="1"/>
+    <spacing value="0"/>
+    <margin value="0"/>
+    <source value="./assets/drawable/map/wall_column_top.png.png"/>
+</tileset>
+<tileset name="wall_corner_bottom_left.png">
+    <firstgid value="8"/>
+    <tilewidth value="16"/>
+    <tileheight value="16"/>
+    <numColumns value="1"/>
+    <numRows value="1"/>
+    <spacing value="0"/>
+    <margin value="0"/>
+    <source value="./assets/drawable/map/wall_corner_bottom_left.png.png"/>
+</tileset>
+<tileset name="wall_corner_bottom_right.png">
+    <firstgid value="8"/>
+    <tilewidth value="16"/>
+    <tileheight value="16"/>
+    <numColumns value="1"/>
+    <numRows value="1"/>
+    <spacing value="0"/>
+    <margin value="0"/>
+    <source value="./assets/drawable/map/wall_corner_bottom_right.png.png"/>
+</tileset>
+<tileset name="wall_corner_front_left.png">
+    <firstgid value="8"/>
+    <tilewidth value="16"/>
+    <tileheight value="16"/>
+    <numColumns value="1"/>
+    <numRows value="1"/>
+    <spacing value="0"/>
+    <margin value="0"/>
+    <source value="./assets/drawable/map/wall_corner_front_left.png.png"/>
+</tileset>
+<tileset name="wall_corner_front_right.png">
+    <firstgid value="8"/>
+    <tilewidth value="16"/>
+    <tileheight value="16"/>
+    <numColumns value="1"/>
+    <numRows value="1"/>
+    <spacing value="0"/>
+    <margin value="0"/>
+    <source value="./assets/drawable/map/wall_corner_front_right.png.png"/>
+</tileset>
+<tileset name="wall_corner_left.png">
+    <firstgid value="8"/>
+    <tilewidth value="16"/>
+    <tileheight value="16"/>
+    <numColumns value="1"/>
+    <numRows value="1"/>
+    <spacing value="0"/>
+    <margin value="0"/>
+    <source value="./assets/drawable/map/wall_corner_left.png.png"/>
+</tileset>
+<tileset name="wall_corner_right.png">
+    <firstgid value="8"/>
+    <tilewidth value="16"/>
+    <tileheight value="16"/>
+    <numColumns value="1"/>
+    <numRows value="1"/>
+    <spacing value="0"/>
+    <margin value="0"/>
+    <source value="./assets/drawable/map/wall_corner_right.png.png"/>
+</tileset>
+<tileset name="wall_corner_top_left.png">
+    <firstgid value="8"/>
+    <tilewidth value="16"/>
+    <tileheight value="16"/>
+    <numColumns value="1"/>
+    <numRows value="1"/>
+    <spacing value="0"/>
+    <margin value="0"/>
+    <source value="./assets/drawable/map/wall_corner_top_left.png.png"/>
+</tileset>
+<tileset name="wall_corner_top_right.png">
+    <firstgid value="8"/>
+    <tilewidth value="16"/>
+    <tileheight value="16"/>
+    <numColumns value="1"/>
+    <numRows value="1"/>
+    <spacing value="0"/>
+    <margin value="0"/>
+    <source value="./assets/drawable/map/wall_corner_top_right.png.png"/>
+</tileset>
+<tileset name="wall_coulmn_base.png">
+    <firstgid value="8"/>
+    <tilewidth value="16"/>
+    <tileheight value="16"/>
+    <numColumns value="1"/>
+    <numRows value="1"/>
+    <spacing value="0"/>
+    <margin value="0"/>
+    <source value="./assets/drawable/map/wall_coulmn_base.png.png"/>
+</tileset>
+<tileset name="wall_fountain_basin_blue_anim.png">
+    <firstgid value="8"/>
+    <tilewidth value="16"/>
+    <tileheight value="16"/>
+    <numColumns value="1"/>
+    <numRows value="1"/>
+    <spacing value="0"/>
+    <margin value="0"/>
+    <source value="./assets/drawable/map/wall_fountain_basin_blue_anim.png.png"/>
+</tileset>
+<tileset name="wall_fountain_basin_red_anim.png">
+    <firstgid value="8"/>
+    <tilewidth value="16"/>
+    <tileheight value="16"/>
+    <numColumns value="1"/>
+    <numRows value="1"/>
+    <spacing value="0"/>
+    <margin value="0"/>
+    <source value="./assets/drawable/map/wall_fountain_basin_red_anim.png.png"/>
+</tileset>
+<tileset name="wall_fountain_mid_blue_anim.png">
+    <firstgid value="8"/>
+    <tilewidth value="16"/>
+    <tileheight value="16"/>
+    <numColumns value="1"/>
+    <numRows value="1"/>
+    <spacing value="0"/>
+    <margin value="0"/>
+    <source value="./assets/drawable/map/wall_fountain_mid_blue_anim.png.png"/>
+</tileset>
+<tileset name="wall_fountain_mid_red_anim.png">
+    <firstgid value="8"/>
+    <tilewidth value="16"/>
+    <tileheight value="16"/>
+    <numColumns value="1"/>
+    <numRows value="1"/>
+    <spacing value="0"/>
+    <margin value="0"/>
+    <source value="./assets/drawable/map/wall_fountain_mid_red_anim.png.png"/>
+</tileset>
+<tileset name="wall_fountain_top.png">
+    <firstgid value="8"/>
+    <tilewidth value="16"/>
+    <tileheight value="16"/>
+    <numColumns value="1"/>
+    <numRows value="1"/>
+    <spacing value="0"/>
+    <margin value="0"/>
+    <source value="./assets/drawable/map/wall_fountain_top.png.png"/>
+</tileset>
+<tileset name="wall_goo.png">
+    <firstgid value="8"/>
+    <tilewidth value="16"/>
+    <tileheight value="16"/>
+    <numColumns value="1"/>
+    <numRows value="1"/>
+    <spacing value="0"/>
+    <margin value="0"/>
+    <source value="./assets/drawable/map/wall_goo.png.png"/>
+</tileset>
+<tileset name="wall_goo_base.png">
+    <firstgid value="8"/>
+    <tilewidth value="16"/>
+    <tileheight value="16"/>
+    <numColumns value="1"/>
+    <numRows value="1"/>
+    <spacing value="0"/>
+    <margin value="0"/>
+    <source value="./assets/drawable/map/wall_goo_base.png.png"/>
+</tileset>
+<tileset name="wall_hole_1.png">
+    <firstgid value="8"/>
+    <tilewidth value="16"/>
+    <tileheight value="16"/>
+    <numColumns value="1"/>
+    <numRows value="1"/>
+    <spacing value="0"/>
+    <margin value="0"/>
+    <source value="./assets/drawable/map/wall_hole_1.png.png"/>
+</tileset>
+<tileset name="wall_hole_2.png">
+    <firstgid value="8"/>
+    <tilewidth value="16"/>
+    <tileheight value="16"/>
+    <numColumns value="1"/>
+    <numRows value="1"/>
+    <spacing value="0"/>
+    <margin value="0"/>
+    <source value="./assets/drawable/map/wall_hole_2.png.png"/>
+</tileset>
+<tileset name="wall_inner_corner_l_top_left.png">
+    <firstgid value="8"/>
+    <tilewidth value="16"/>
+    <tileheight value="16"/>
+    <numColumns value="1"/>
+    <numRows value="1"/>
+    <spacing value="0"/>
+    <margin value="0"/>
+    <source value="./assets/drawable/map/wall_inner_corner_l_top_left.png.png"/>
+</tileset>
+<tileset name="wall_inner_corner_l_top_rigth.png">
+    <firstgid value="8"/>
+    <tilewidth value="16"/>
+    <tileheight value="16"/>
+    <numColumns value="1"/>
+    <numRows value="1"/>
+    <spacing value="0"/>
+    <margin value="0"/>
+    <source value="./assets/drawable/map/wall_inner_corner_l_top_rigth.png.png"/>
+</tileset>
+<tileset name="wall_inner_corner_mid_left.png">
+    <firstgid value="8"/>
+    <tilewidth value="16"/>
+    <tileheight value="16"/>
+    <numColumns value="1"/>
+    <numRows value="1"/>
+    <spacing value="0"/>
+    <margin value="0"/>
+    <source value="./assets/drawable/map/wall_inner_corner_mid_left.png.png"/>
+</tileset>
+<tileset name="wall_inner_corner_mid_rigth.png">
+    <firstgid value="8"/>
+    <tilewidth value="16"/>
+    <tileheight value="16"/>
+    <numColumns value="1"/>
+    <numRows value="1"/>
+    <spacing value="0"/>
+    <margin value="0"/>
+    <source value="./assets/drawable/map/wall_inner_corner_mid_rigth.png.png"/>
+</tileset>
+<tileset name="wall_inner_corner_t_top_left.png">
+    <firstgid value="8"/>
+    <tilewidth value="16"/>
+    <tileheight value="16"/>
+    <numColumns value="1"/>
+    <numRows value="1"/>
+    <spacing value="0"/>
+    <margin value="0"/>
+    <source value="./assets/drawable/map/wall_inner_corner_t_top_left.png.png"/>
+</tileset>
+<tileset name="wall_inner_corner_t_top_rigth.png">
+    <firstgid value="8"/>
+    <tilewidth value="16"/>
+    <tileheight value="16"/>
+    <numColumns value="1"/>
+    <numRows value="1"/>
+    <spacing value="0"/>
+    <margin value="0"/>
+    <source value="./assets/drawable/map/wall_inner_corner_t_top_rigth.png.png"/>
+</tileset>
+<tileset name="wall_left.png">
+    <firstgid value="8"/>
+    <tilewidth value="16"/>
+    <tileheight value="16"/>
+    <numColumns value="1"/>
+    <numRows value="1"/>
+    <spacing value="0"/>
+    <margin value="0"/>
+    <source value="./assets/drawable/map/wall_left.png.png"/>
+</tileset>
+<tileset name="wall_mid.png">
+    <firstgid value="8"/>
+    <tilewidth value="16"/>
+    <tileheight value="16"/>
+    <numColumns value="1"/>
+    <numRows value="1"/>
+    <spacing value="0"/>
+    <margin value="0"/>
+    <source value="./assets/drawable/map/wall_mid.png.png"/>
+</tileset>
+<tileset name="wall_right.png">
+    <firstgid value="8"/>
+    <tilewidth value="16"/>
+    <tileheight value="16"/>
+    <numColumns value="1"/>
+    <numRows value="1"/>
+    <spacing value="0"/>
+    <margin value="0"/>
+    <source value="./assets/drawable/map/wall_right.png.png"/>
+</tileset>
+<tileset name="wall_side_front_left.png">
+    <firstgid value="8"/>
+    <tilewidth value="16"/>
+    <tileheight value="16"/>
+    <numColumns value="1"/>
+    <numRows value="1"/>
+    <spacing value="0"/>
+    <margin value="0"/>
+    <source value="./assets/drawable/map/wall_side_front_left.png.png"/>
+</tileset>
+<tileset name="wall_side_front_right.png">
+    <firstgid value="8"/>
+    <tilewidth value="16"/>
+    <tileheight value="16"/>
+    <numColumns value="1"/>
+    <numRows value="1"/>
+    <spacing value="0"/>
+    <margin value="0"/>
+    <source value="./assets/drawable/map/wall_side_front_right.png.png"/>
+</tileset>
+<tileset name="wall_side_mid_left.png">
+    <firstgid value="8"/>
+    <tilewidth value="16"/>
+    <tileheight value="16"/>
+    <numColumns value="1"/>
+    <numRows value="1"/>
+    <spacing value="0"/>
+    <margin value="0"/>
+    <source value="./assets/drawable/map/wall_side_mid_left.png.png"/>
+</tileset>
+<tileset name="wall_side_mid_right.png">
+    <firstgid value="8"/>
+    <tilewidth value="16"/>
+    <tileheight value="16"/>
+    <numColumns value="1"/>
+    <numRows value="1"/>
+    <spacing value="0"/>
+    <margin value="0"/>
+    <source value="./assets/drawable/map/wall_side_mid_right.png.png"/>
+</tileset>
+<tileset name="wall_side_top_left.png">
+    <firstgid value="8"/>
+    <tilewidth value="16"/>
+    <tileheight value="16"/>
+    <numColumns value="1"/>
+    <numRows value="1"/>
+    <spacing value="0"/>
+    <margin value="0"/>
+    <source value="./assets/drawable/map/wall_side_top_left.png.png"/>
+</tileset>
+<tileset name="wall_side_top_right.png">
+    <firstgid value="8"/>
+    <tilewidth value="16"/>
+    <tileheight value="16"/>
+    <numColumns value="1"/>
+    <numRows value="1"/>
+    <spacing value="0"/>
+    <margin value="0"/>
+    <source value="./assets/drawable/map/wall_side_top_right.png.png"/>
+</tileset>
+<tileset name="wall_top_left.png">
+    <firstgid value="8"/>
+    <tilewidth value="16"/>
+    <tileheight value="16"/>
+    <numColumns value="1"/>
+    <numRows value="1"/>
+    <spacing value="0"/>
+    <margin value="0"/>
+    <source value="./assets/drawable/map/wall_top_left.png.png"/>
+</tileset>
+<tileset name="wall_top_mid.png">
+    <firstgid value="8"/>
+    <tilewidth value="16"/>
+    <tileheight value="16"/>
+    <numColumns value="1"/>
+    <numRows value="1"/>
+    <spacing value="0"/>
+    <margin value="0"/>
+    <source value="./assets/drawable/map/wall_top_mid.png.png"/>
+</tileset>
+<tileset name="wall_top_right.png">
+    <firstgid value="8"/>
+    <tilewidth value="16"/>
+    <tileheight value="16"/>
+    <numColumns value="1"/>
+    <numRows value="1"/>
+    <spacing value="0"/>
+    <margin value="0"/>
+    <source value="./assets/drawable/map/wall_top_right.png.png"/>
+</tileset>

@@ -1,55 +1,65 @@
 #include "TileLayer.h"
 #include "Game.h"
 #include "Resource.h"
+#include "log.h"
 
-TileLayer::TileLayer(uint32_t tileSize, const std::vector<Tileset> &tilesets) :
-    m_tileSize(tileSize), m_tilesets(tilesets), m_position(0,0), m_velocity(0,0)
-{
-    m_numColumns = (Game::Instance()->GetGameWidth() / m_tileSize);
-    m_numRows = (Game::Instance()->GetGameHeight() / m_tileSize);
-}
+TileLayer::TileLayer(const std::vector<Tileset> &tilesets_) :
+    tilesets(tilesets_), position(0,0), velocity(0,0)
+{}
 
 void TileLayer::Update()
 {
-    m_position += m_velocity;
-    m_velocity.SetX(1);
+    LOG_DBG("[TileLayer][Update] Updating the tile layer");
+
+    position += velocity;
+
+    LOG_DBG("[TileLayer][Update] Updated the tile layer");
 }
 
 void TileLayer::Render()
 {
-    uint32_t x, y, x2, y2;
-    x = m_position.GetX() / m_tileSize;
-    y = m_position.GetY() / m_tileSize;
-    x2 = uint32_t(m_position.GetX()) % m_tileSize;
-    y2 = uint32_t(m_position.GetY()) % m_tileSize;
-    for(size_t i = 0; i < m_numRows; i++) {
-        for(size_t j = 0; j < m_numColumns; j++) {
-            size_t id = m_tileIDs[i][j + x];
+    LOG_DBG("[TileLayer][Render] Rendering the tile layer");
+
+    
+    for(size_t i = 0; i < tileIds.size(); i++) {
+        for(size_t j = 0; j < tileIds[0].size(); j++) {
+            size_t id = tileIds[i][j];
             if(id == 0) {
                 continue;
             }
-            Tileset tileset = GetTilesetByID(id);
-            id--;
-            TextureManager::Instance()->DrawTile(tileset.name, tileset.margin, tileset.spacing, (j * m_tileSize) - x2, (i * m_tileSize) - y2,
-                m_tileSize, m_tileSize, (id - (tileset.firstGridID - 1)) / tileset.numColumns,
-                (id - (tileset.firstGridID - 1)) % tileset.numColumns, Game::Instance()->GetRenderer());
+            Tileset tileset = GetTilesetById(id);
+            id -= tileset.firstGridId;
+            TextureInfo textureInfo = TextureManager::Instance()->GetTxetureInfo(tileset.tileNames[id]);
+            uint32_t tileWidth = textureInfo.width;
+            uint32_t tileHeight = textureInfo.height;
+            TextureManager::Instance()->Draw(tileset.tileNames[id], j * tileWidth, i * tileHeight,
+                0, 0, Game::Instance()->GetRenderer(), SDL_FLIP_NONE);
         }
     }
+
+    LOG_DBG("[TileLayer][Render] Rendered the tile layer");
 }
 
-Tileset TileLayer::GetTilesetByID(uint32_t tileID)
+void TileLayer::Clean()
+{}
+
+Tileset TileLayer::GetTilesetById(uint32_t tileId)
 {
-    for(size_t i = 0; i < m_tilesets.size(); i++) {
-        if( i + 1 <= m_tilesets.size() - 1) {
-            if(tileID >= m_tilesets[i].firstGridID && tileID < m_tilesets[i + 1].firstGridID) {
-                return m_tilesets[i];
+    LOG_DBG("[TileLayer][GetTilesetById] Getting tilesets by the tile id: ", tileId);
+
+    for (size_t i = 0; i < tilesets.size(); i++) {
+        if ( i + 1 <= tilesets.size() - 1) {
+            if (tileId >= tilesets[i].firstGridId && tileId < tilesets[i + 1].firstGridId) {
+                LOG_DBG("[TileLayer][GetTilesetById] Got tilesets by the tile id: ", tileId);
+                return tilesets[i];
             }
-        }
-        else {
-            return m_tilesets[i];
+        } else {
+            LOG_DBG("[TileLayer][GetTilesetById] Got tilesets by the tile id: ", tileId);
+            return tilesets[i];
         }
     }
-    std::cout << "did not find tileset, returning empty tileset\n";
+
     Tileset t = { 0 };
+    LOG_DBG("[TileLayer][GetTilesetById] Did not find the tileset, returning empty tileset");
     return t;
 }

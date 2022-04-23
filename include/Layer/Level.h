@@ -1,5 +1,5 @@
-#ifndef _LEVEL_H_
-#define _LEVEL_H_
+#ifndef LEVEL_H
+#define LEVEL_H
 
 #include <string>
 #include <vector>
@@ -8,45 +8,39 @@
 
 struct Tileset
 {
-    uint32_t firstGridID;
-    uint32_t tileWidth;
-    uint32_t tileHeight;
-    uint32_t spacing;
-    uint32_t margin;
-    uint32_t width;
-    uint32_t height;
-    uint32_t numColumns;
     std::string name;
+    uint32_t firstGridId;
+    std::vector<std::string> tileNames;
 };
 
 class Level
 {
 public:
+    std::vector<Tileset> *GetTilesets()
+    {
+        return &tilesets;
+    }
+
+    std::vector<Layer*> *GetTileLayers() 
+    { 
+        return &tileLayers; 
+    }
+
+    std::vector<Layer*> *GetObjectLayers() 
+    { 
+        return &objectLayers; 
+    }
+
     void Update();
 
     void Render();
 
-    std::vector<Tileset> *GetTilesets() 
-    { 
-        return &m_tilesets; 
-    }
-
-    std::vector<Layer*> *GetLayers() 
-    { 
-        return &m_layers; 
-    }
+    void Clean();
 
 private:
-    friend class LevelParser;
-
-    Level()
-    {}
-
-    ~Level()
-    {}
-
-    std::vector<Tileset> m_tilesets;
-    std::vector<Layer*> m_layers;
+    std::vector<Tileset> tilesets;
+    std::vector<Layer*> tileLayers;
+    std::vector<Layer*> objectLayers;
 };
 
 #endif

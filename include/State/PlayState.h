@@ -1,5 +1,5 @@
-#ifndef _PLAY_STATE_H_
-#define _PLAY_STATE_H_
+#ifndef PLAY_STATE_H
+#define PLAY_STATE_H
 
 #include <string>
 #include <vector>
@@ -11,27 +11,24 @@
 class PlayState : public GameState
 {
 public:
-    virtual ~PlayState();
-
-    virtual void Update();
-
-    virtual void Render();
+    virtual std::string GetStateId() const
+    {
+        return playId;
+    }
 
     virtual bool OnEnter();
 
     virtual bool OnExit();
 
-    virtual std::string GetStateId() const
-    {
-        return s_playId;
-    }
+    virtual void Update();
 
-    bool CheckCollision(SDLGameObject* p1, SDLGameObject* p2);
+    virtual void Render();
+
+    bool CheckCollision(SDLGameObject *object1, SDLGameObject *object2);
 
 private:
-    static const std::string s_playId;
-    Level *m_pLevel;
-    std::vector<GameObject*> m_gameObjects;
+    static const std::string playId;
+    Level *level;
 };
 
 #endif

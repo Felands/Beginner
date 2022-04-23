@@ -1,5 +1,5 @@
-#ifndef _SDL_GAME_OBJECT_H_
-#define _SDL_GAME_OBJECT_H_
+#ifndef SDL_GAME_OBJECT_H
+#define SDL_GAME_OBJECT_H
 
 #include <string>
 
@@ -9,70 +9,41 @@
 class SDLGameObject : public GameObject
 {
 public:
+    virtual void Load(int32_t x, int32_t y, int32_t callBackId, int32_t animeSpeed,
+        std::vector<std::string> textureNames);
+
+    virtual void Update();
+
     virtual void Draw();
 
     virtual void Clean();
 
-    virtual void Update();
-
-    virtual void Load(const LoaderParams* pParams);
-
     Vector2D& GetPosition()
     {
-        return m_position;
+        return position;
     }
 
     Vector2D& GetVelocity()
     {
-        return m_velocity;
+        return velocity;
     }
 
-    uint32_t GetWidth()
+    std::vector<std::string> *GetTextureNames()
     {
-        return m_width;
+        return &textureNames;
     }
 
-    uint32_t GetHeight()
+    int32_t GetCallbackId()
     {
-        return m_height;
-    }
-
-    uint32_t GetCurrentRow()
-    {
-        return m_currentRow;
-    }
-
-    uint32_t GetCurrentFrame()
-    {
-        return m_currentFrame;
-    }
-
-    int32_t GetCallbackID()
-    {
-        return m_callbackID;
-    }
-
-    int32_t GetAnimSpeed()
-    {
-        return m_animSpeed;
-    }
-
-    std::string GetTextureID()
-    {
-        return m_textureID;
+        return callBackId;
     }
 
 protected:
-    Vector2D m_position;
-    Vector2D m_velocity;
-    uint32_t m_width;
-    uint32_t m_height;
-    uint32_t m_currentRow;
-    uint32_t m_currentFrame;
-    uint32_t m_numFrames;
-    int32_t m_callbackID;
-    int32_t m_animSpeed;
-    std::string m_textureID;
+    Vector2D position;
+    Vector2D velocity;
+    int32_t callBackId;
+    int32_t animeSpeed;
+    std::vector<std::string> textureNames;
 };
 
 #endif

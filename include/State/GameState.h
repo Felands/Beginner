@@ -1,9 +1,9 @@
-#ifndef _GAME_STATE_H_
-#define _GAME_STATE_H_
+#ifndef GAME_STATE_H
+#define GAME_STATE_H
 
 #include <string>
 
-enum GameStates
+enum class GameStates
 {
     MENU,
     PLAY,
@@ -24,7 +24,7 @@ public:
     virtual std::string GetStateId() const = 0;
 
 protected:
-    std::vector<std::string> m_textureIDList;
+    std::vector<std::string> textureIdList;
 };
 
 #endif

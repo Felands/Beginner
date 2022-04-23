@@ -1,5 +1,5 @@
-#ifndef _TILE_LAYER_H_
-#define _TILE_LAYER_H_
+#ifndef TILE_LAYER_H
+#define TILE_LAYER_H
 
 #include <vector>
 
@@ -9,32 +9,26 @@
 class TileLayer : public Layer
 {
 public:
-    TileLayer(uint32_t tileSize, const std::vector<Tileset> &tilesets);
+    void SetTileIds(const std::vector<std::vector<uint32_t>> &data) 
+    { 
+        tileIds = data; 
+    }
+
+    TileLayer(const std::vector<Tileset> &tilesets_);
 
     virtual void Update();
 
     virtual void Render();
 
-    void SetTileIDs(const std::vector<std::vector<uint32_t>> &data) 
-    { 
-        m_tileIDs = data; 
-    }
+    virtual void Clean();
 
-    void SetTileSize(uint32_t tileSize) 
-    { 
-        m_tileSize = tileSize; 
-    }
-
-    Tileset GetTilesetByID(uint32_t tileID);
+    Tileset GetTilesetById(uint32_t tileId);
 
 private:
-    uint32_t m_numColumns;
-    uint32_t m_numRows;
-    uint32_t m_tileSize;
-    Vector2D m_position;
-    Vector2D m_velocity;
-    const std::vector<Tileset> &m_tilesets;
-    std::vector<std::vector<uint32_t>> m_tileIDs;
+    Vector2D position;
+    Vector2D velocity;
+    const std::vector<Tileset> &tilesets;
+    std::vector<std::vector<uint32_t>> tileIds;
 };
 
 #endif

@@ -1,34 +1,55 @@
-#ifndef _RESOURCE_H_
-#define _RESOURCE_H_
+#ifndef RESOURCE_H
+#define RESOURCE_H
 
-#include <map>
 #include <string>
+#include <unordered_map>
 
 #include "SDL.h"
+
+struct TextureInfo
+{
+    uint32_t width;
+    uint32_t height;
+    uint32_t numColumns;
+    uint32_t numRows;
+    SDL_Texture *texture;
+};
 
 class TextureManager
 {
 public:
-    static TextureManager *Instance();
+    static TextureManager *Instance()
+    {
+        if (instance == nullptr) {
+            instance = new TextureManager();
+        }
+        return instance;
+    }
 
-	bool Load(std::string fileName, std::string id, SDL_Renderer *pRenderer);
+    TextureInfo GetTxetureInfo(std::string name)
+    {
+        return textureMap[name];
+    }
 
-    void DrawFrame(std::string id, int32_t x, int32_t y, uint32_t width, uint32_t height, uint32_t currentRow,
-	    uint32_t currentFrame, SDL_Renderer *pRenderer, SDL_RendererFlip flip = SDL_FLIP_NONE);
+    bool Load(std::string fileName, std::string name, uint32_t width, uint32_t height, uint32_t numColumns,
+        uint32_t numRows, SDL_Renderer *renderer);
 
-    void ClearFromTextureMap(std::string id);
+    void Draw(std::string name, int32_t xPos, int32_t yPos, uint32_t currentFrame, uint32_t currentRow,
+        SDL_Renderer *renderer, SDL_RendererFlip flip);
 
-	void DrawTile(std::string id, int32_t margin, int32_t spacing, int32_t x, int32_t y, int32_t width, int32_t height,
-        int32_t currentRow, int32_t currentFrame, SDL_Renderer *pRenderer);
+    void ClearFromTextureMap(std::string name);
 
-	void Clean();
+    void Clean();
 
 private:
     TextureManager()
-	{}
+    {}
 
-	std::map<std::string, SDL_Texture*> m_textureMap;
-	static TextureManager *s_pInstance;
+    ~TextureManager()
+    {}
+
+    static TextureManager *instance;
+    std::unordered_map<std::string, TextureInfo> textureMap;
 };
 
 #endif

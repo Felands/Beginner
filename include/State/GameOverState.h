@@ -1,5 +1,5 @@
-#ifndef _GAME_OVER_STATE_H_
-#define _GAME_OVER_STATE_H_
+#ifndef GAME_OVER_STATE_H
+#define GAME_OVER_STATE_H
 
 #include <string>
 #include <vector>
@@ -10,7 +10,10 @@
 class GameOverState : public MenuState
 {
 public:
-    virtual ~GameOverState(); 
+    virtual std::string GetStateId() const
+    {
+        return gameOverId;
+    } 
 
     virtual void Update();
 
@@ -20,21 +23,15 @@ public:
 
     virtual bool OnExit();
 
-    virtual std::string GetStateId() const
-    {
-        return s_gameOverId;
-    }
-
-    virtual void SetCallbacks(const std::vector<Callback>& callbacks);
+    virtual void SetCallbacks(const std::vector<Callback> &callbacks);
 
 private:
-    static void s_GameOverToMain();
+    static void GameOverToMain();
 
-    static void s_RestartPlay();
+    static void RestartPlay();
 
-private:
-    static const std::string s_gameOverId;
-    std::vector<GameObject*> m_gameObjects;
+    static const std::string gameOverId;
+    std::vector<GameObject*> gameObjects;
 };
 
 #endif

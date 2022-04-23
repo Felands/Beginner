@@ -1,28 +1,31 @@
-#ifndef _LEVEL_PARSER_H_
-#define _LEVEL_PARSER_H_
+#ifndef LEVEL_PARSER_H
+#define LEVEL_PARSER_H
 
 #include <vector>
 
 #include "tinyxml.h"
 #include "Level.h"
+#include "ObjectLayer.h"
 
 class LevelParser
 {
 public:
-    Level* ParseLevel(const char* levelFile);
+    Level *ParseLevel(const char *levelFile);
+
+    static const char *level;
 
 private:
-    void ParseTilesets(TiXmlElement* pTilesetRoot,std::vector<Tileset>* pTilesets);
+    void ParseTileLayer(TiXmlElement *tileLayerRoot, std::vector<Layer*> *tileLayers,
+        std::vector<Tileset> *tilesets);
 
-    void ParseTileLayer(TiXmlElement* pTileElement,std::vector<Layer*> *pLayers, const std::vector<Tileset> *pTilesets);
+    void ParseTilesets(TiXmlElement *tilesetsRoot, std::vector<Tileset> *tilesets);
 
-    void ParseTextures(TiXmlElement* pTextureRoot);
+    void ParseMapLayers(TiXmlElement *mapLayersRoot, std::vector<Layer*> *tileLayers,
+        std::vector<Tileset> *tilesets);
 
-    void ParseObjectLayer(TiXmlElement* pObjectElement, std::vector<Layer*> *pLayers);
+    void ParseObjectLayer(TiXmlElement *objectLayerRoot, std::vector<Layer*> *objectLayers);
 
-    uint32_t m_tileSize;
-    uint32_t m_width;
-    uint32_t m_height;
+    void ParseObject(TiXmlElement *objectRoot, ObjectLayer *objectLayers);
 };
 
 #endif

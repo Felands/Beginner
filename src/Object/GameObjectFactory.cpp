@@ -1,33 +1,39 @@
 #include "GameObjectFactory.h"
+#include "MenuButton.h"
+#include "Player.h"
+#include "Enemy.h"
+#include "AnimatedGraphic.h"
 
-GameObjectFactory *GameObjectFactory::s_pInstance = nullptr;
+GameObjectFactory *GameObjectFactory::instance = nullptr;
 
-bool GameObjectFactory::RegisterType(std::string typeID, BaseCreator* pCreator)
+bool GameObjectFactory::RegisterType()
 {
-    std::map<std::string, BaseCreator*>::iterator it = m_creators.find(typeID);
-    if(it != m_creators.end()) {
-        delete pCreator;
+    bool isSuccess = true;
+    isSuccess = isSuccess && RegisterType("MenuButton", new MenuButtonCreator());
+    isSuccess = isSuccess && RegisterType("Player", new PlayerCreator());
+    isSuccess = isSuccess && RegisterType("Enemy", new EnemyCreator());
+    isSuccess = isSuccess && RegisterType("AnimatedGraphic", new AnimatedGraphicCreator());
+    return isSuccess;
+}
+
+bool GameObjectFactory::RegisterType(std::string typeId, BaseCreator *creator)
+{
+    std::map<std::string, BaseCreator*>::iterator it = creators.find(typeId);
+    if(it != creators.end()) {
+        delete creator;
         return false;
     }
-    m_creators[typeID] = pCreator;
+    creators[typeId] = creator;
     return true;
 }
 
-GameObject *GameObjectFactory::Create(std::string typeID)
+GameObject *GameObjectFactory::Create(std::string typeId)
 {
-    std::map<std::string, BaseCreator*>::iterator it = m_creators.find(typeID);
-    if(it == m_creators.end()) {
-        std::cout << "could not find type: " << typeID << "\n";
+    std::map<std::string, BaseCreator*>::iterator it = creators.find(typeId);
+    if(it == creators.end()) {
+        std::cout << "Could not find type: " << typeId << "\n";
         return nullptr;
     }
-    BaseCreator* pCreator = (*it).second;
-    return pCreator->createGameObject();
-}
-
-GameObjectFactory *GameObjectFactory::Instance()
-{
-    if(s_pInstance == nullptr) {
-        s_pInstance = new GameObjectFactory();
-    }
-    return s_pInstance;
+    BaseCreator *creator = (*it).second;
+    return creator->CreateGameObject();
 }

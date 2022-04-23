@@ -2,46 +2,80 @@
 
 #include "Player.h"
 #include "InputHandler.h"
-
-void Player::Update()
-{
-    SDLGameObject::Update();
-    m_velocity /= 2;
-}
+#include "log.h"
+#include "Resource.h"
+#include "Game.h"
 
 void Player::HandleInput()
 {
+    LOG_DBG("[Player][HandleInput] Handling the input");
+
     bool wDown = InputHandler::Instance()->IsKeyDown(SDL_SCANCODE_W);
     bool sDown = InputHandler::Instance()->IsKeyDown(SDL_SCANCODE_S);
     bool aDown = InputHandler::Instance()->IsKeyDown(SDL_SCANCODE_A);
     bool dDown = InputHandler::Instance()->IsKeyDown(SDL_SCANCODE_D);
     if (wDown) {
-        m_position += Vector2D(0, -1);
-        m_velocity += Vector2D(0, -0.1);
-        m_state = PlayerState::RUN;
+        position += Vector2D(0, -1);
+        velocity += Vector2D(0, -0.1);
+        state = PlayerState::RUN;
     }
     if (sDown) {
-        m_position += Vector2D(0, 1);
-        m_velocity += Vector2D(0, 0.1);
-        m_state = PlayerState::RUN;
+        position += Vector2D(0, 1);
+        velocity += Vector2D(0, 0.1);
+        state = PlayerState::RUN;
     }
     if (aDown) {
-        m_position += Vector2D(-1, 0);
-        m_velocity += Vector2D(-0.1, 0);
-        m_state = PlayerState::RUN;
+        position += Vector2D(-1, 0);
+        velocity += Vector2D(-0.1, 0);
+        state = PlayerState::RUN;
     }
     if (dDown) {
-        m_position += Vector2D(1, 0);
-        m_velocity += Vector2D(0.1, 0);
-        m_state = PlayerState::RUN;
+        position += Vector2D(1, 0);
+        velocity += Vector2D(0.1, 0);
+        state = PlayerState::RUN;
     }
-    if (!(wDown || sDown || aDown || dDown) && m_velocity.Length() < 1.0e-4) {
-        m_state = PlayerState::IDLE;
+    if (!(wDown || sDown || aDown || dDown) && velocity.Length() < 1.0e-4) {
+        state = PlayerState::IDLE;
     }
 
     if (InputHandler::Instance()->IsKeyDown(SDL_SCANCODE_J)) {
-        m_state = PlayerState::HIT;
+        state = PlayerState::HIT;
     } else {
-        m_state = PlayerState::IDLE;
+        state = PlayerState::IDLE;
     }
+
+    LOG_DBG("[Player][HandleInput] Handled the input");
+}
+
+void Player::Update()
+{
+    LOG_DBG("[Player][Update] Updating the player");
+
+    HandleInput();
+    SDLGameObject::Update();
+    velocity /= 2;
+    
+    LOG_DBG("[Player][Update] Updated the player");
+}
+
+void Player::Draw()
+{
+    LOG_DBG("[Player][Draw] Drawing the player");
+
+    SDLGameObject::Draw();
+
+    SDL_RendererFlip flip;
+    if (velocity.GetX() >= 0) {
+        flip = SDL_FLIP_NONE;
+    } else {
+        flip = SDL_FLIP_HORIZONTAL;
+    }
+
+    uint32_t ticks = SDL_GetTicks();
+    uint32_t currentColumns = ticks / (1000 / animeSpeed);
+
+    TextureManager::Instance()->Draw(textureNames[(size_t)state], position.GetX(), position.GetY(),
+        currentColumns, 0, Game::Instance()->GetRenderer(), flip);
+
+    LOG_DBG("[Player][Draw] Drew the player");
 }

@@ -1,5 +1,3 @@
-#include <stdint.h>
-
 #include "SDL.h"
 
 #include "Game.h"
@@ -12,11 +10,11 @@ int main(int argc, char **args)
     uint32_t frameStart;
     uint32_t frameTime;
 
-    if (!Game::Instance()->Init("DungeonRush", 100, 100, 640, 580, false)) {
+    if (!Game::Instance()->Init("DungeonRush", 100, 100, 640, 640, false)) {
         return 1;
     }
 
-    while (Game::Instance()->Running()) {
+    while (Game::Instance()->IsGameRunning()) {
         frameStart = SDL_GetTicks();
 
         Game::Instance()->HandleEvents();

@@ -1,5 +1,5 @@
-#ifndef _STATE_PARSER_H_
-#define _STATE_PARSER_H_
+#ifndef STATE_PARSER_H
+#define STATE_PARSER_H
 
 #include <vector>
 
@@ -9,12 +9,14 @@ class GameObject;
 class StateParser
 {
 public:
-    bool ParseState(const char* stateFile, std::string stateID, std::vector<GameObject*> *pObjects,
-        std::vector<std::string> *pTextureIDs);
+    bool ParseState(const char *stateFile, std::string stateId, std::vector<GameObject*> *objects,
+        std::vector<std::string> *textureIds);
+
+    static const char *document;
 
 private:
-    void ParseObjects(TiXmlElement* pStateRoot, std::vector<GameObject*> *pObjects);
-    void ParseTextures(TiXmlElement* pStateRoot, std::vector<std::string> *pTextureIDs);
+    void ParseObjects(TiXmlElement *stateRoot, std::vector<GameObject*> *objects);
+    void ParseTextures(TiXmlElement *stateRoot, std::vector<std::string> *textureIds);
 };
 
 #endif

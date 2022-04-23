@@ -1,5 +1,5 @@
-#ifndef _PLAYER_H_
-#define _PLAYER_H_
+#ifndef PLAYER_H
+#define PLAYER_H
 
 #include "SDLGameObject.h"
 #include "GameObjectFactory.h"
@@ -16,20 +16,22 @@ class Player : public SDLGameObject
 public:
     virtual void Update();
 
-    virtual void HandleInput();
+    virtual void Draw();
 
     PlayerState GetState()
     {
-        return m_state;
+        return state;
     }
 
+    void HandleInput();
+
 private:
-    PlayerState m_state;
+    PlayerState state;
 };
 
 class PlayerCreator : public BaseCreator
 {
-    GameObject* createGameObject() const
+    GameObject* CreateGameObject() const
     {
         return new Player();
     }

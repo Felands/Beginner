@@ -1,14 +1,12 @@
-#ifndef _LAYER_H_
-#define _LAYER_H_
+#ifndef LAYER_H
+#define LAYER_H
 
 class Layer
 {
 public:
     virtual void Render() = 0;
     virtual void Update() = 0;
-
-protected:
-    virtual ~Layer() {}
+    virtual void Clean()  = 0;
 };
 
 #endif

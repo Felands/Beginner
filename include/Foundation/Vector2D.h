@@ -6,82 +6,82 @@
 class Vector2D
 {
 public:
-    Vector2D(): m_x(0), m_y(0)
+    Vector2D(): x(0), y(0)
     {}
 
-    Vector2D(float x, float y): m_x(x), m_y(y)
+    Vector2D(float x_, float y_): x(x_), y(y_)
     {}
 
     float GetX()
     {
-        return m_x;
+        return x;
     }
 
     float GetY()
     {
-        return m_y;
+        return y;
     }
 
-    void SetX(float x)
+    void SetX(float x_)
     {
-        m_x = x;
+        x = x_;
     }
 
-    void SetY(float y)
+    void SetY(float y_)
     {
-        m_y = y;
+        y = y_;
     }
 
     float Length()
     {
-        return sqrt(m_x * m_x + m_y * m_y);
+        return sqrt(x * x + y * y);
     }
 
-    Vector2D operator+(const Vector2D& v2) const
+    Vector2D operator+(const Vector2D &v2) const
     {
-        return Vector2D(m_x + v2.m_x, m_y + v2.m_y);
+        return Vector2D(x + v2.x, y + v2.y);
     }
 
-    friend Vector2D& operator+=(Vector2D& v1, const Vector2D& v2)
+    friend Vector2D& operator+=(Vector2D &v1, const Vector2D &v2)
     {
-        v1.m_x += v2.m_x;
-        v1.m_y += v2.m_y;
+        v1.x += v2.x;
+        v1.y += v2.y;
         return v1;
     }
 
     Vector2D operator*(float scalar)
     {
-        return Vector2D(m_x * scalar, m_y * scalar);
+        return Vector2D(x * scalar, y * scalar);
     }
 
     Vector2D& operator*=(float scalar)
     {
-        m_x *= scalar;
-        m_y *= scalar;
+        x *= scalar;
+        y *= scalar;
         return *this;
     }
 
-    Vector2D operator-(const Vector2D& v2) const
+    Vector2D operator-(const Vector2D &v2) const
     { 
-        return Vector2D(m_x - v2.m_x, m_y - v2.m_y); 
+        return Vector2D(x - v2.x, y - v2.y); 
     }
 
-    friend Vector2D& operator-=(Vector2D& v1, const Vector2D& v2)
+    friend Vector2D &operator-=(Vector2D &v1, const Vector2D &v2)
     {
-        v1.m_x -= v2.m_x;
-        v1.m_y -= v2.m_y;
+        v1.x -= v2.x;
+        v1.y -= v2.y;
         return v1;
     }
 
     Vector2D operator/(float scalar) 
     {
-        return Vector2D(m_x / scalar, m_y / scalar);
+        return Vector2D(x / scalar, y / scalar);
     }
 
-    Vector2D& operator/=(float scalar)
+    Vector2D &operator/=(float scalar)
     {
-        m_x /= scalar;
-        m_y /= scalar;
+        x /= scalar;
+        y /= scalar;
         return *this;
     }
 
@@ -94,8 +94,8 @@ public:
     }
 
 private:
-    float m_x;
-    float m_y;
+    float x;
+    float y;
 };
 
 #endif

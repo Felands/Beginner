@@ -1,5 +1,5 @@
-#ifndef _GAME_STATE_MACHINE_H_
-#define _GAME_STATE_MACHINE_H_
+#ifndef GAME_STATE_MACHINE_H
+#define GAME_STATE_MACHINE_H
 
 #include <vector>
 
@@ -8,18 +8,20 @@
 class GameStateMachine
 {
 public:
-    void PushState(GameState* pState);
-
-    void ChangeState(GameState* pState);
-
-    void PopState();
-
     void Update();
 
     void Render();
 
+    void Clean();
+
+    void PushState(GameState *state);
+
+    void ChangeState(GameState *state);
+
+    void PopState();
+
 private:
-    std::vector<GameState*> m_gameStates;
+    std::vector<GameState*> gameStates;
 };
 
 #endif

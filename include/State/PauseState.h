@@ -1,5 +1,5 @@
-#ifndef _PAUSE_STATE_H_
-#define _PAUSE_STATE_H_
+#ifndef PAUSE_STATE_H
+#define PAUSE_STATE_H
 
 #include <string>
 #include <vector>
@@ -10,29 +10,28 @@
 class PauseState : public MenuState
 {
 public:
-    virtual void Update();
-
-    virtual void Render();
+    virtual std::string GetStateId() const
+    {
+        return pauseId;
+    }
 
     virtual bool OnEnter();
 
     virtual bool OnExit();
 
-    virtual std::string GetStateId() const
-    {
-        return s_pauseId;
-    }
+    virtual void Update();
+
+    virtual void Render();
 
     virtual void SetCallbacks(const std::vector<Callback>& callbacks);
 
 private:
-    static void s_PauseToMain();
+    static void PauseToMain();
 
-    static void s_ResumePlay();
+    static void ResumePlay();
 
-private:
-    static const std::string s_pauseId;
-    std::vector<GameObject*> m_gameObjects;
+    static const std::string pauseId;
+    std::vector<GameObject*> gameObjects;
 };
 
 #endif

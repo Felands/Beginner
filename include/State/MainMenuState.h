@@ -1,5 +1,5 @@
-#ifndef _MAIN_MENU_STATE_H_
-#define _MAIN_MENU_STATE_H_
+#ifndef MAIN_MENU_STATE_H
+#define MAIN_MENU_STATE_H
 
 #include <vector>
 #include <string>
@@ -10,6 +10,11 @@
 class MainMenuState : public MenuState
 {
 public:
+    virtual std::string GetStateId() const
+    {
+        return menuId;
+    }
+
     virtual void Update();
 
     virtual void Render();
@@ -18,17 +23,15 @@ public:
 
     virtual bool OnExit();
 
-    virtual std::string GetStateId() const { return s_menuId; }
-
 private:
-    virtual void SetCallbacks(const std::vector<Callback>& callbacks);
+    virtual void SetCallbacks(const std::vector<Callback> &callbacks);
 
-    static void s_MenuToPlay();
+    static void MenuToPlay();
 
-    static void s_ExitFromMenu();
+    static void ExitFromMenu();
 
-    static const std::string s_menuId;
-    std::vector<GameObject*> m_gameObjects;
+    static const std::string menuId;
+    std::vector<GameObject*> gameObjects;
 };
 
 #endif

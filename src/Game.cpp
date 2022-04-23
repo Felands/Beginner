@@ -1,4 +1,3 @@
-#include <iostream>
 #include <vector>
 
 #include "SDL.h"
@@ -6,98 +5,105 @@
 
 #include "Game.h"
 #include "Resource.h"
-#include "LoaderParams.h"
-#include "GameObject.h"
-#include "Player.h"
-#include "Enemy.h"
 #include "InputHandler.h"
+#include "log.h"
 #include "MainMenuState.h"
-#include "PlayState.h"
-#include "MenuBotton.h"
-#include "AnimatedGraphic.h"
+#include "GameObjectFactory.h"
 
-Game* Game::s_pInstance = nullptr;
+Game *Game::instance = nullptr;
 
-bool Game::Init(const char* title, int xpos, int ypos, int height, int width, bool fullScreen)
+bool Game::Init(const char *title, int32_t xpos, int32_t ypos, uint32_t width_, uint32_t height_, bool isFullScreen)
 {
-    m_gameWidth = width;
-    m_gameHeight = height;
+    LOG_DBG("[Game][Init] Initting the game");
+
+    width = width_;
+    height = height_;
+    isRunning = true;
+
+    // 初始化SDL系统，并创建窗口和渲染器
     if(SDL_Init(SDL_INIT_EVERYTHING) == 0) {
-        std::cout << "SDL init success\n";
-        m_pWindow = SDL_CreateWindow(title, xpos, ypos, height, width,
-            fullScreen ? SDL_WINDOW_FULLSCREEN : SDL_WINDOW_SHOWN);
-        if(m_pWindow != nullptr) {
-            std::cout << "Window init success\n";
-            m_pRenderer = SDL_CreateRenderer(m_pWindow, -1, 0);
-            if (m_pRenderer != nullptr) {
-                std::cout << "Render init success\n";
+        LOG_DBG("[Game][Init] The SDL system is initialized successfully");
+        window = SDL_CreateWindow(title, xpos, ypos, height, width,
+            isFullScreen ? SDL_WINDOW_FULLSCREEN : SDL_WINDOW_SHOWN);
+        if(window != nullptr) {
+            LOG_DBG("[Game][Init] The window is created successfully");
+            renderer = SDL_CreateRenderer(window, -1, 0);
+            if (renderer != nullptr) {
+                LOG_DBG("[Game][Init] The renderer is created successfully");
             } else {
-                std::cout << "Render init fail\n";
+                LOG_ERR("[Game][Init] The renderer creation failed");
                 return false;
             }
         } else {
-            std::cout << "Window init fail\n";
+            LOG_ERR("[Game][Init] The window creation failed");
             return false;
         }
     } else {
-        std::cout << "SDL init fail\n";
+        LOG_ERR("[Game][Init] The SDL system initialization failed");
         return false;
     }
 
+    // 初始化SDL_IMG
     int flag = IMG_INIT_PNG;
     int initted = IMG_Init(flag);
     if ((flag & initted) != false) {
-        std::cout << "IMG init success\n";
+        LOG_DBG("[Game][Init] The IMG is initialized successfully");
     } else {
-        std::cout << "IMG init fail\n";
+        LOG_ERR("[Game][Init] The IMG initialization failed");
         return false;
     }
 
-    TextureManager::Instance()->LoadAllResource();
+    GameObjectFactory::Instance()-> RegisterType();
 
-    GameObjectFactory::Instance()->registerType("MenuButton", new MenuButtonCreator());
-    GameObjectFactory::Instance()->registerType("Player", new PlayerCreator());
-    GameObjectFactory::Instance()->registerType("Enemy", new EnemyCreator());
-    GameObjectFactory::Instance()->registerType("AnimatedGraphic", new AnimatedGraphicCreator());
+    // 进入主菜单界面
+    gameStateMachine = new GameStateMachine();
+    gameStateMachine->ChangeState(new MainMenuState());
 
-
-    m_pGameStateMachine = new GameStateMachine();
-    m_pGameStateMachine->ChangeState(new MainMenuState());
-
+    LOG_DBG("[Game][Init] Initted the game");
     return true;
-}
-
-void Game::Render()
-{
-    SDL_RenderClear(m_pRenderer);
-    m_pGameStateMachine->Render();
-    SDL_RenderPresent(m_pRenderer);
 }
 
 void Game::HandleEvents()
 {
+    LOG_DBG("[Game][HandleEvents] Handling events of the game");
+
     InputHandler::Instance()->Update();
 
-    if(InputHandler::Instance()->IsKeyDown(SDL_SCANCODE_RETURN)) {
-        m_pGameStateMachine->ChangeState(new PlayState());
-    }
+    LOG_DBG("[Game][HandleEvents] Handled events of the game");
 }
 
 void Game::Update()
 {
-    m_pGameStateMachine->Update();
+    LOG_DBG("[Game][Update] Updating the game");
+
+    gameStateMachine->Update();
+
+    LOG_DBG("[Game][Update] Updated the game");
+}
+
+void Game::Render()
+{
+    LOG_DBG("[Game][Render] Rendering the game");
+
+    SDL_RenderClear(renderer);
+    gameStateMachine->Render();
+    SDL_RenderPresent(renderer);
+
+    LOG_DBG("[Game][Render] Rendered the game");
 }
 
 void Game::Clean()
 {
-    std::cout << "Cleaning game\n";
-    for(std::vector<GameObject*>::size_type i = 0; i != m_gameObjects.size(); ++i) {
-        m_gameObjects[i]->Clean();
-    }
+    LOG_DBG("[Game][Clean] Cleaning the game");
+
+    gameStateMachine->Clean();
     TextureManager::Instance()->Clean();
     InputHandler::Instance()->Clean();
-    SDL_DestroyWindow(m_pWindow);
-    SDL_DestroyRenderer(m_pRenderer);
+    SDL_DestroyWindow(window);
+    SDL_DestroyRenderer(renderer);
     IMG_Quit();
     SDL_Quit();
+    delete instance;
+
+    LOG_DBG("[Game][Clean] Cleaned the game");
 }

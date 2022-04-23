@@ -9,7 +9,7 @@ class Enemy : public SDLGameObject
 
 class EnemyCreator : public BaseCreator
 {
-    GameObject* createGameObject() const
+    GameObject* CreateGameObject() const
     {
         return new Enemy();
     }

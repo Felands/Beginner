@@ -3,59 +3,75 @@
 
 #include "GameOverState.h"
 #include "Game.h"
+#include "Resource.h"
+#include "InputHandler.h"
 #include "MainMenuState.h"
 #include "PlayState.h"
 #include "StateParser.h"
-#include "Resource.h"
+#include "MenuButton.h"
 
-const std::string GameOverState::s_gameOverId = "GAMEOVER";
+const std::string GameOverState::gameOverId = "GAMEOVER";
 
-GameOverState::~GameOverState()
-{}
-
-void GameOverState::s_GameOverToMain()
+void GameOverState::GameOverToMain()
 {
     Game::Instance()->GetStateMachine()->ChangeState(new MainMenuState());
 }
 
-void GameOverState::s_RestartPlay()
+void GameOverState::RestartPlay()
 {
     Game::Instance()->GetStateMachine()->ChangeState(new PlayState());
 }
 
 bool GameOverState::OnEnter()
 {
-    // parse the state
     StateParser stateParser;
-    stateParser.ParseState("test.xml", s_gameOverId, &m_gameObjects, &m_textureIDList);
-    m_callbacks.push_back(0);
-    m_callbacks.push_back(s_GameOverToMain);
-    m_callbacks.push_back(s_RestartPlay);
-    // set the callbacks for menu items
-    SetCallbacks(m_callbacks);
-    std::cout << "entering PauseState\n";
+    stateParser.ParseState(StateParser::document, gameOverId, &gameObjects, &textureIdList);
+
+    callbacks.push_back(0);
+    callbacks.push_back(GameOverToMain);
+    callbacks.push_back(RestartPlay);
+    SetCallbacks(callbacks);
+
+    std::cout << "Entering PauseState.\n";
     return true;
 }
 
 void GameOverState::Update()
-{}
+{
+    for(size_t i = 0; i < gameObjects.size(); i++) {
+        gameObjects[i]->Update();
+    }
+}
 
 void GameOverState::Render()
-{}
+{
+    for(size_t i = 0; i < gameObjects.size(); i++) {
+        gameObjects[i]->Draw();
+    }
+}
 
 bool GameOverState::OnExit()
 {
-    for(int i = 0; i < m_gameObjects.size(); i++) {
-        m_gameObjects[i]->Clean();
-    }
-    m_gameObjects.clear();
+    InputHandler::Instance()->Reset();
 
-    // clear the texture manager
-    for(int i = 0; i < m_textureIDList.size(); i++) {
-        TextureManager::Instance()->ClearFromTextureMap(m_textureIDList[i]);
+    for(int i = 0; i < gameObjects.size(); i++) {
+        gameObjects[i]->Clean();
+    }
+
+    for(int i = 0; i < textureIdList.size(); i++) {
+        TextureManager::Instance()->ClearFromTextureMap(textureIdList[i]);
     }
 
     std::cout << "Exiting PauseState\n";
-
     return true;
+}
+
+void GameOverState::SetCallbacks(const std::vector<Callback> &callbacks)
+{
+    for(int i = 0; i < gameObjects.size(); i++) {
+        if(dynamic_cast<MenuButton*>(gameObjects[i])) {
+            MenuButton *button = dynamic_cast<MenuButton*>(gameObjects[i]);
+            button->SetCallback(callbacks[button->GetCallbackId()]);
+        }
+    }
 }
