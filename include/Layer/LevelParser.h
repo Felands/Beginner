@@ -26,6 +26,12 @@ private:
     void ParseObjectLayer(TiXmlElement *objectLayerRoot, std::vector<Layer*> *objectLayers);
 
     void ParseObject(TiXmlElement *objectRoot, ObjectLayer *objectLayers);
+
+    void ParseSound(TiXmlElement *soundRoot);
+
+    void ParseMusic(TiXmlElement *MusicRoot);
+
+    void ParseSfx(TiXmlElement *SfxRoot);
 };
 
 #endif

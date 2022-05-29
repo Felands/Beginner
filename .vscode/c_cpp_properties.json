@@ -10,7 +10,8 @@
                 "${workspaceFolder}/include/State/",
                 "${workspaceFolder}/include/TinyXml/",
                 "${workspaceFolder}/include/Layer/",
-                "${workspaceFolder}/include/Compress/"
+                "${workspaceFolder}/include/Compress/",
+                "${workspaceFolder}/include/SDL2/mixer"
             ],
             "defines": [
                 "_DEBUG",

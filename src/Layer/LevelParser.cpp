@@ -9,6 +9,7 @@
 #include "zlib.h"
 #include "GameObjectFactory.h"
 #include "log.h"
+#include "SoundManager.h"
 
 const char *LevelParser::level = "./assets/map.xml";
 
@@ -38,6 +39,8 @@ Level *LevelParser::ParseLevel(const char *levelFile)
             ParseTileLayer(e, level->GetTileLayers(), level->GetTilesets());
         } else if (e->Value() == std::string("objectlayer")) {
             ParseObjectLayer(e, level->GetObjectLayers());
+        } else if (e->Value() == std::string("sound")) {
+            ParseSound(e);
         }
     }
 
@@ -207,4 +210,54 @@ void LevelParser::ParseObject(TiXmlElement *objectRoot, ObjectLayer *objectLayer
     objectLayer->GetGameObjects()->push_back(gameObject);
 
     LOG_DBG("[LevelParser][ParseObject] Parsed the object ", objectRoot->Attribute("name"));
+}
+
+void LevelParser::ParseSound(TiXmlElement* soundRoot)
+{
+    LOG_DBG("[LevelParse][ParseSound] Parsing sound resource");
+
+    for (TiXmlElement *e = soundRoot->FirstChildElement(); e != nullptr; e = e->NextSiblingElement()) {
+        if (e->Value() == std::string("musics")) {
+            for (TiXmlElement *music = e->FirstChildElement(); music != nullptr;
+                music = music->NextSiblingElement()) {
+                    ParseMusic(music);
+            }
+        } else if (e->Value() == std::string("sfxs")) {
+            for (TiXmlElement *sfx = e->FirstChildElement(); sfx != nullptr; sfx = sfx->NextSiblingElement()) {
+                ParseSfx(sfx);
+            }
+        }
+    }
+
+    LOG_DBG("[LevelParse][ParseSound] Parsed sound resource");
+}
+
+void LevelParser::ParseMusic(TiXmlElement* musicRoot)
+{
+    LOG_DBG("[LevelParse][ParseMusic] Parsing the music ", musicRoot->Attribute("name"));
+
+    std::string source;
+    for (TiXmlElement *e = musicRoot->FirstChildElement(); e != nullptr; e = e->NextSiblingElement()) {
+        if (e->Value() == std::string("source")) {
+            source = e->Attribute("value");
+        }
+    }
+    SoundManager::Instance()->Load(source, musicRoot->Attribute("name"), SoundType::SOUND_MUSIC);
+
+    LOG_DBG("[LevelParse][ParseMusic] Parsed the music ", musicRoot->Attribute("name"));
+}
+
+void LevelParser::ParseSfx(TiXmlElement* sfxRoot)
+{
+    LOG_DBG("[LevelParse][ParseSfx] Parsing the sfx ", sfxRoot->Attribute("name"));
+
+    std::string source;
+    for (TiXmlElement *e = sfxRoot->FirstChildElement(); e != nullptr; e = e->NextSiblingElement()) {
+        if (e->Value() == std::string("source")) {
+            source = e->Attribute("value");
+        }
+    }
+    SoundManager::Instance()->Load(source, sfxRoot->Attribute("name"), SoundType::SOUND_SFX);
+
+    LOG_DBG("[LevelParse][ParseSfx] Parsed the sfx ", sfxRoot->Attribute("name"));
 }

@@ -5,6 +5,7 @@
 #include "log.h"
 #include "Resource.h"
 #include "Game.h"
+#include "SoundManager.h"
 
 void Player::HandleInput()
 {
@@ -54,6 +55,9 @@ void Player::Update()
     HandleInput();
     SDLGameObject::Update();
     velocity /= 2;
+    if (state == PlayerState::HIT) {
+        SoundManager::Instance()->PlaySound("arrow_hit", 1);
+    }
     
     LOG_DBG("[Player][Update] Updated the player");
 }

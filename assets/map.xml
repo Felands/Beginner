@@ -441,4 +441,16 @@
             </properties>
         </object>
     </objectlayer>
+    <sound>
+        <musics>
+            <music name="bg1">
+                <source value="./assets/audio/bg1.ogg"/>
+            </music>
+        </musics>
+        <sfxs>
+            <sfx name="arrow_hit">
+                <source value="./assets/audio/arrow_hit.wav"/>
+            </sfx>
+        </sfxs>
+    </sound>
 </level>

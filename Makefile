@@ -1,7 +1,7 @@
 CC = g++
 
 OBJECT = ./bin/main.o ./bin/Game.o \
-         ./bin/Resource.o ./bin/InputHandler.o ./bin/base64.o \
+         ./bin/Resource.o ./bin/SoundManager.o ./bin/InputHandler.o ./bin/base64.o \
 		 ./bin/Level.o ./bin/LevelParser.o ./bin/ObjectLayer.o ./bin/TileLayer.o \
 		 ./bin/AnimatedGraphic.o ./bin/Enemy.o ./bin/Player.o ./bin/GameObjectFactory.o \
 		 ./bin/SDLGameObject.o ./bin/MenuButton.o \
@@ -11,7 +11,9 @@ OBJECT = ./bin/main.o ./bin/Game.o \
      
 LIBRARY = ./lib/SDL2/SDL2.lib ./lib/SDL2/SDL2main.lib ./lib/SDL2/SDL2.dll \
           ./lib/SDL2/SDL2_image.lib ./lib/SDL2/SDL2_image.dll ./lib/SDL2/libpng16-16.dll \
-		  ./lib/SDL2/mixer/SDL2_mixer.dll ./lib/SDL2/mixer/libogg-0.dll \
+		  ./lib/SDL2/mixer/SDL2_mixer.dll ./lib/SDL2/mixer/libogg-0.dll ./lib/SDL2/mixer/libFLAC-8.dll \
+		  ./lib/SDL2/mixer/libmodplug-1.dll ./lib/SDL2/mixer/libmpg123-0.dll ./lib/SDL2/mixer/libopus-0.dll \
+		  ./lib/SDL2/mixer/libopusfile-0.dll ./lib/SDL2/mixer/libvorbis-0.dll ./lib/SDL2/mixer/libvorbisfile-3.dll \
 		  ./lib/zlib/zlib1.dll
 
 INCLUDE = -I ./include/ -I ./include/SDL2/ -I ./include/Foundation/ -I ./include/Object/ -I ./include/State/ \
@@ -19,7 +21,7 @@ INCLUDE = -I ./include/ -I ./include/SDL2/ -I ./include/Foundation/ -I ./include
 
 HEADFILE = ./include/Game.h \
            ./include/Foundation/InputHandler.h ./include/Foundation/Resource.h ./include/Foundation/Vector2D.h \
-		   ./include/Foundation/log.h \
+		   ./include/Foundation/log.h ./include/Foundation/SoundManager.h \
 		   ./include/Object/GameObjectFactory.h ./include/Object/GameObject.h ./include/Object/SDLGameObject.h \
 		   ./include/Object/MenuButton.h ./include/Object/Player.h ./include/Object/Enemy.h \
 		   ./include/Object/AnimatedGraphic.h \
@@ -49,6 +51,9 @@ beginner : $(OBJECT)
 
 ./bin/base64.o : $(HEADFILE) ./src/Foundation/base64.cpp
 	$(CC) $(INCLUDE) -o ./bin/base64.o -c ./src/Foundation/base64.cpp
+
+./bin/SoundManager.o : $(HEADFILE) ./src/Foundation/SoundManager.cpp
+	$(CC) $(INCLUDE) -o ./bin/SoundManager.o -c ./src/Foundation/SoundManager.cpp
 
 
 ./bin/Level.o : $(HEADFILE) ./src/Layer/Level.cpp

@@ -8,6 +8,7 @@
 #include "PauseState.h"
 #include "GameOverState.h"
 #include "log.h"
+#include "SoundManager.h"
 
 const std::string PlayState::playId = "PLAY";
 
@@ -17,6 +18,7 @@ bool PlayState::OnEnter()
 
     LevelParser levelParser;
     level = levelParser.ParseLevel(LevelParser::level);
+    SoundManager::Instance()->PlayMusic("bg1", 1);
 
     LOG_DBG("[PlayState][OnEnter] Entered the play state");
     return true;
