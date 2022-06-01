@@ -83,3 +83,14 @@ void Player::Draw()
 
     LOG_DBG("[Player][Draw] Drew the player");
 }
+
+void Player::Ressurect()
+{
+    Game::Instance()->SetPlayerLives(Game::Instance()->GetPlayerLives() - 1);
+    position.SetX(10);
+    position.SetY(200);
+    dying = false;
+    dyingCounter = 0;
+    invulnerable = true;
+    state = PlayerState::IDLE;
+}
