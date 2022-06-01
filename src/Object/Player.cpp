@@ -94,3 +94,27 @@ void Player::Ressurect()
     invulnerable = true;
     state = PlayerState::IDLE;
 }
+
+void Player::HandleAnimation()
+{
+    // if the player is invulnerable we can flash its alpha to let people know
+    if (invulnerable) {
+        // invulnerability is finished, set values back
+        if (invulnerableCounter == invulnerableTime) {
+            invulnerable = false;
+            invulnerableCounter = 0;
+            alpha = 255;
+        } else { // otherwise, flash the alpha on and off
+            if (alpha == 255) {
+                alpha = 0;
+            } else {
+                alpha = 255;
+            }
+            invulnerableCounter++;
+        }
+    }
+
+    if (!dead) {
+        // do nothing
+    }
+}
