@@ -6,7 +6,7 @@
 #include "GameObject.h"
 #include "Vector2D.h"
 
-class SDLGameObject : public GameObject
+class ShooterObject : public GameObject
 {
 public:
     virtual void Load(int32_t x, int32_t y, int32_t callBackId, int32_t animeSpeed,
@@ -17,6 +17,9 @@ public:
     virtual void Draw();
 
     virtual void Clean();
+
+    virtual ~ShooterObject()
+    {}
 
     Vector2D& GetPosition()
     {
@@ -38,12 +41,30 @@ public:
         return callBackId;
     }
 
+    virtual void Collision()
+    {}
+
+    virtual std::string Type()
+    {
+        return "SDLGameObject";
+    }
+
 protected:
-    Vector2D position;
-    Vector2D velocity;
-    int32_t callBackId;
-    int32_t animeSpeed;
-    std::vector<std::string> textureNames;
+    // how fast will this object fire bullets? with a counter
+    int bulletFiringSpeed;
+    int bulletCounter;
+
+    // how long will the death animation takes? with a counter
+    int dyingTime;
+    int dyingCounter;
+    // has the explosion sound played?
+    bool playedDeathSound;
+
+    ShooterObject();
+
+    // draw the animation for the object being destroyed
+    void DoDyingAnimation();
 };
+
 
 #endif
