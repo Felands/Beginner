@@ -53,6 +53,16 @@ public:
         isRunning = false;
     }
 
+    void SetPlayerLives(uint32_t playerLives)
+    {
+        this->playerLives = playerLives;
+    }
+
+    uint32_t GetPlayerLives()
+    {
+        return playerLives;
+    }
+
     bool Init(const char *title, int32_t xPos, int32_t yPos, uint32_t width_, uint32_t height_, bool isFullScreen);
 
     void HandleEvents();
@@ -74,6 +84,7 @@ private:
     bool isRunning;
     uint32_t width;
     uint32_t height;
+    uint32_t playerLives;
     float scrollSpeed;
     GameStateMachine *gameStateMachine;
     SDL_Window *window;
