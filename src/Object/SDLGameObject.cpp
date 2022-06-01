@@ -41,3 +41,13 @@ std::string SDLGameObject::Type()
 {
     return std::string("SDLGameObject");
 }
+
+void SDLGameObject::DoDyingAnimation()
+{
+    Scroll(Game::Instance()->GetScrollSpeed());
+    if(dyingCounter == dyingTime)
+    {
+        dead = true;
+    }
+    dyingCounter++;
+}
