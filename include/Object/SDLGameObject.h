@@ -18,6 +18,10 @@ public:
 
     virtual void Clean();
 
+    virtual void Collision();
+    
+    virtual std::string Type();
+
     Vector2D& GetPosition()
     {
         return position;

@@ -33,3 +33,11 @@ void SDLGameObject::Draw()
 
 void SDLGameObject::Clean()
 {}
+
+void SDLGameObject::Collision()
+{}
+    
+std::string SDLGameObject::Type()
+{
+    return std::string("");
+}
