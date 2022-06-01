@@ -28,7 +28,7 @@ public:
 private:
     PlayerState state;
     // player can be invulnerable for a time
-    int32_t invulnerable;
+    bool invulnerable;
     int32_t invulnerableTime;
     int32_t invulnerableCounter;
 

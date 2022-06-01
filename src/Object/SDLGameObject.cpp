@@ -45,9 +45,9 @@ std::string SDLGameObject::Type()
 void SDLGameObject::DoDyingAnimation()
 {
     Scroll(Game::Instance()->GetScrollSpeed());
-    if(dyingCounter == dyingTime)
-    {
+    if (dyingCounter == dyingTime) {
         dead = true;
+        dyingCounter = 0;
     }
     dyingCounter++;
 }
