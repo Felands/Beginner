@@ -6,7 +6,7 @@
 #include "GameObject.h"
 #include "Vector2D.h"
 
-class ShooterObject : public GameObject
+class SDLGameObject : public GameObject
 {
 public:
     virtual void Load(int32_t x, int32_t y, int32_t callBackId, int32_t animeSpeed,
@@ -18,7 +18,7 @@ public:
 
     virtual void Clean();
 
-    virtual ~ShooterObject()
+    virtual ~SDLGameObject()
     {}
 
     Vector2D& GetPosition()
@@ -60,7 +60,7 @@ protected:
     // has the explosion sound played?
     bool playedDeathSound;
 
-    ShooterObject();
+    SDLGameObject();
 
     // draw the animation for the object being destroyed
     void DoDyingAnimation();

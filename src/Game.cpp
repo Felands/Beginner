@@ -19,6 +19,7 @@ bool Game::Init(const char *title, int32_t xpos, int32_t ypos, uint32_t width_, 
     width = width_;
     height = height_;
     isRunning = true;
+    scrollSpeed = 0;
 
     // 初始化SDL系统，并创建窗口和渲染器
     if(SDL_Init(SDL_INIT_EVERYTHING) == 0) {

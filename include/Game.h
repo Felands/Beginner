@@ -28,6 +28,11 @@ public:
         return height; 
     }
 
+    float GetScrollSpeed() const
+    {
+        return scrollSpeed;
+    }
+
     GameStateMachine *GetStateMachine() const
     {
         return gameStateMachine;
@@ -69,6 +74,7 @@ private:
     bool isRunning;
     uint32_t width;
     uint32_t height;
+    float scrollSpeed;
     GameStateMachine *gameStateMachine;
     SDL_Window *window;
     SDL_Renderer *renderer;

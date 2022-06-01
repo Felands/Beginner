@@ -33,3 +33,13 @@ void SDLGameObject::Draw()
 
 void SDLGameObject::Clean()
 {}
+
+void SDLGameObject::DoDyingAnimation()
+{
+    Scroll(Game::Instance()->GetScrollSpeed());
+    if(dyingCounter == dyingTime)
+    {
+        dead = true;
+    }
+    dyingCounter++;
+}
