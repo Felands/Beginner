@@ -62,6 +62,8 @@ protected:
     Vector2D acceleration;
 
     // animation variables
+    int32_t callBackId;
+    int32_t animeSpeed;
     std::vector<std::string> textureNames;
 
     // common boolean variables

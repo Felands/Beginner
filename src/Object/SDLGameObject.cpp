@@ -39,5 +39,5 @@ void SDLGameObject::Collision()
     
 std::string SDLGameObject::Type()
 {
-    return std::string("");
+    return std::string("SDLGameObject");
 }

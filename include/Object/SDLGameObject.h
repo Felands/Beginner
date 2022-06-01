@@ -22,6 +22,9 @@ public:
     
     virtual std::string Type();
 
+    virtual ~SDLGameObject()
+    {}
+
     Vector2D& GetPosition()
     {
         return position;
@@ -43,11 +46,22 @@ public:
     }
 
 protected:
-    Vector2D position;
-    Vector2D velocity;
-    int32_t callBackId;
-    int32_t animeSpeed;
-    std::vector<std::string> textureNames;
+    // how fast will this object fire bullets? with a counter
+    int bulletFiringSpeed;
+    int bulletCounter;
+
+    // how long will the death animation takes? with a counter
+    int dyingTime;
+    int dyingCounter;
+    // has the explosion sound played?
+    bool playedDeathSound;
+
+    SDLGameObject()
+    {}
+
+    // draw the animation for the object being destroyed
+    void DoDyingAnimation();
 };
+
 
 #endif
