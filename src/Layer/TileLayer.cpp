@@ -33,7 +33,7 @@ void TileLayer::Render()
             uint32_t tileWidth = textureInfo.width;
             uint32_t tileHeight = textureInfo.height;
             TextureManager::Instance()->Draw(tileset.tileNames[id], j * tileWidth, i * tileHeight,
-                0, 0, Game::Instance()->GetRenderer(), SDL_FLIP_NONE);
+                0, 0, Game::Instance()->GetRenderer(), SDL_FLIP_NONE, 255);
         }
     }
 

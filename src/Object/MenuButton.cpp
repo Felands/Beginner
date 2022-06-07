@@ -40,7 +40,7 @@ void MenuButton::Draw()
     SDLGameObject::Draw();
 
     TextureManager::Instance()->Draw(textureNames[(size_t)state], position.GetX(), position.GetY(),
-        0, 0, Game::Instance()->GetRenderer(), SDL_FLIP_NONE);
+        0, 0, Game::Instance()->GetRenderer(), SDL_FLIP_NONE, 255);
 
     LOG_DBG("[MenuButton][Draw] Drew the menu button");
 }

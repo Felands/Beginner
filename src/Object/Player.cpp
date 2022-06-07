@@ -79,7 +79,7 @@ void Player::Draw()
     uint32_t currentColumns = ticks / (1000 / animeSpeed);
 
     TextureManager::Instance()->Draw(textureNames[(size_t)state], position.GetX(), position.GetY(),
-        currentColumns, 0, Game::Instance()->GetRenderer(), flip);
+        currentColumns, 0, Game::Instance()->GetRenderer(), flip, alpha);
 
     LOG_DBG("[Player][Draw] Drew the player");
 }

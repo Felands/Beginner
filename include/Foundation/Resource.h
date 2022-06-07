@@ -35,7 +35,7 @@ public:
         uint32_t numRows, SDL_Renderer *renderer);
 
     void Draw(std::string name, int32_t xPos, int32_t yPos, uint32_t currentFrame, uint32_t currentRow,
-        SDL_Renderer *renderer, SDL_RendererFlip flip);
+        SDL_Renderer *renderer, SDL_RendererFlip flip, uint32_t alpha);
 
     void ClearFromTextureMap(std::string name);
 
