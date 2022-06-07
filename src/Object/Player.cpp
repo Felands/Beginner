@@ -52,13 +52,36 @@ void Player::Update()
 {
     LOG_DBG("[Player][Update] Updating the player");
 
-    HandleInput();
-    SDLGameObject::Update();
-    velocity /= 2;
-    if (state == PlayerState::HIT) {
-        SoundManager::Instance()->PlaySound("arrow_hit", 1);
+    // if the level is complete then fly off the screen
+    if (Game::Instance()->GetLevelComplete()) {
+        if (position.GetX() >= Game::Instance()->GetGameScreenWidth()) {
+            Game::Instance()->SetCurrentLevel(Game::Instance()->GetCurrentLevel() + 1);
+        } else {
+            velocity.SetY(0);
+            velocity.SetX(3);
+            SDLGameObject::Update();
+            HandleAnimation();
+        }
+    } else {
+        if (!dying) {
+            velocity.SetX(0);
+            velocity.SetY(0);
+
+            HandleInput();
+            SDLGameObject::Update();
+            HandleAnimation();
+
+            if (state == PlayerState::HIT) {
+                SoundManager::Instance()->PlaySound("arrow_hit", 1);
+            }
+        } else {
+            if (dyingCounter == dyingTime) {
+                Ressurect();
+            }
+            dyingCounter++;
+        }
     }
-    
+
     LOG_DBG("[Player][Update] Updated the player");
 }
 

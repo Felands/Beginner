@@ -21,6 +21,8 @@ bool Game::Init(const char *title, int32_t xpos, int32_t ypos, uint32_t width_, 
     isRunning = true;
     scrollSpeed = 0;
     playerLives = 3;
+    levelComplete = false;
+    currentLevel = 1;
 
     // 初始化SDL系统，并创建窗口和渲染器
     if(SDL_Init(SDL_INIT_EVERYTHING) == 0) {
@@ -108,4 +110,11 @@ void Game::Clean()
     delete instance;
 
     LOG_DBG("[Game][Clean] Cleaned the game");
+}
+
+void Game::SetCurrentLevel(uint32_t currentLevel)
+{
+    this->currentLevel = currentLevel;
+    // gameStateMachine->ChangeState(new BetweenLevelState());
+    levelComplete = false;
 }
