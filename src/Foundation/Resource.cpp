@@ -42,7 +42,7 @@ bool TextureManager::Load(std::string fileName, std::string name, uint32_t width
 }
 
 void TextureManager::Draw(std::string name, int32_t xPos, int32_t yPos,uint32_t currentColumn,
-    uint32_t currentRow, SDL_Renderer *renderer, SDL_RendererFlip flip)
+    uint32_t currentRow, SDL_Renderer *renderer, SDL_RendererFlip flip, uint32_t alpha)
 {
     LOG_DBG("[TextureManager][DrawFrame] Drawing the frame of ", name);
 
@@ -60,7 +60,7 @@ void TextureManager::Draw(std::string name, int32_t xPos, int32_t yPos,uint32_t 
     destRect.y = yPos;
     destRect.w = textureMap[name].width;
     destRect.h = textureMap[name].height;
-
+    SDL_SetTextureAlphaMod(textureMap[name].texture, alpha);
     SDL_RenderCopyEx(renderer, textureMap[name].texture, &srcRect, &destRect, 0, 0, flip);
 
     LOG_DBG("[TextureManager][DrawFrame] Drew the frame of ", name);
