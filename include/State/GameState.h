@@ -2,6 +2,7 @@
 #define GAME_STATE_H
 
 #include <string>
+#include <vector>
 
 enum class GameStates
 {

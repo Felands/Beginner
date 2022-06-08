@@ -6,7 +6,7 @@ OBJECT = ./bin/main.o ./bin/Game.o \
 		 ./bin/AnimatedGraphic.o ./bin/Enemy.o ./bin/Player.o ./bin/GameObjectFactory.o \
 		 ./bin/SDLGameObject.o ./bin/MenuButton.o \
 		 ./bin/GameStateMachine.o ./bin/MainMenuState.o ./bin/StateParser.o ./bin/GameOverState.o \
-		 ./bin/PauseState.o ./bin/PlayState.o \
+		 ./bin/PauseState.o ./bin/PlayState.o ./bin/BetweenLevelState.o \
 		 ./bin/tinystr.o ./bin/tinyxml.o ./bin/tinyxmlerror.o ./bin/tinyxmlparser.o
      
 LIBRARY = ./lib/SDL2/SDL2.lib ./lib/SDL2/SDL2main.lib ./lib/SDL2/SDL2.dll \
@@ -27,7 +27,7 @@ HEADFILE = ./include/Game.h \
 		   ./include/Object/AnimatedGraphic.h \
 		   ./include/State/GameState.h ./include/State/GameStateMachine.h ./include/State/MenuState.h \
 		   ./include/State/MainMenuState.h ./include/State/StateParser.h ./include/State/GameOverState.h \
-		   ./include/State/PauseState.h ./include/State/PlayState.h \
+		   ./include/State/PauseState.h ./include/State/PlayState.h ./include/State/BetweenLevelState.h \
 		   ./include/TinyXml/tinystr.h ./include/TinyXml/tinyxml.h \
 		   ./include/Layer/Layer.h ./include/Layer/Level.h ./include/Layer/LevelParser.h \
 		   ./include/Layer/ObjectLayer.h ./include/Layer/TileLayer.h
@@ -105,6 +105,9 @@ beginner : $(OBJECT)
 
 ./bin/PlayState.o : $(HEADFILE) ./src/State/PlayState.cpp
 	$(CC) $(INCLUDE) -o ./bin/PlayState.o -c ./src/State/PlayState.cpp
+
+./bin/BetweenLevelState.o : $(HEADFILE) ./src/State/BetweenLevelState.cpp
+	$(CC) $(INCLUDE) -o ./bin/BetweenLevelState.o -c ./src/State/BetweenLevelState.cpp
 
 
 ./bin/tinystr.o : $(HEADFILE) ./src/TinyXml/tinystr.cpp

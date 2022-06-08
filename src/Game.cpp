@@ -9,6 +9,7 @@
 #include "log.h"
 #include "MainMenuState.h"
 #include "GameObjectFactory.h"
+#include "BetweenLevelState.h"
 
 Game *Game::instance = nullptr;
 
