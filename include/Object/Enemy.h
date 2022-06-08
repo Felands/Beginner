@@ -5,7 +5,20 @@
 #include "GameObjectFactory.h"
 
 class Enemy : public SDLGameObject
-{};
+{
+public:
+    virtual std::string type()
+    {
+        return"Enemy";
+    }
+
+    Enemy() : SDLGameObject() {}
+
+    virtual ~Enemy() {}
+
+protected:
+    int32_t health;
+};
 
 class EnemyCreator : public BaseCreator
 {
