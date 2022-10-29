@@ -63,5 +63,4 @@ protected:
     void DoDyingAnimation();
 };
 
-
 #endif
