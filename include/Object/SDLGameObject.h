@@ -19,6 +19,8 @@ public:
     virtual void Clean();
 
     virtual void Collision();
+
+    virtual bool CheckCollideTile(Vector2D newPos);
     
     virtual std::string Type();
 

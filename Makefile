@@ -2,7 +2,7 @@ CC = g++
 
 OBJECT = ./bin/main.o ./bin/Game.o \
          ./bin/Resource.o ./bin/SoundManager.o ./bin/InputHandler.o ./bin/base64.o ./bin/BulletHandler.o \
-		 ./bin/CollisionManager.o \
+		 ./bin/CollisionManager.o ./bin/Camera.o \
 		 ./bin/Level.o ./bin/LevelParser.o ./bin/ObjectLayer.o ./bin/TileLayer.o \
 		 ./bin/AnimatedGraphic.o ./bin/Enemy.o ./bin/Player.o ./bin/GameObjectFactory.o \
 		 ./bin/SDLGameObject.o ./bin/MenuButton.o \
@@ -23,7 +23,7 @@ INCLUDE = -I ./include/ -I ./include/SDL2/ -I ./include/Foundation/ -I ./include
 HEADFILE = ./include/Game.h \
            ./include/Foundation/InputHandler.h ./include/Foundation/Resource.h ./include/Foundation/Vector2D.h \
 		   ./include/Foundation/log.h ./include/Foundation/SoundManager.h ./include/Foundation/BulletHandler.h \
-		   ./include/Foundation/CollisionManager.h ./include/Foundation/Collision.h \
+		   ./include/Foundation/CollisionManager.h ./include/Foundation/Collision.h ./include/Foundation/Camera.h \
 		   ./include/Object/GameObjectFactory.h ./include/Object/GameObject.h ./include/Object/SDLGameObject.h \
 		   ./include/Object/MenuButton.h ./include/Object/Player.h ./include/Object/Enemy.h \
 		   ./include/Object/AnimatedGraphic.h ./include/Object/Bullet.h \
@@ -62,6 +62,9 @@ beginner : $(OBJECT)
 
 ./bin/CollisionManager.o : $(HEADFILE) ./src/Foundation/CollisionManager.cpp
 	$(CC) $(INCLUDE) -o ./bin/CollisionManager.o -c ./src/Foundation/CollisionManager.cpp
+
+./bin/Camera.o : $(HEADFILE) ./src/Foundation/Camera.cpp
+	$(CC) $(INCLUDE) -o ./bin/Camera.o -c ./src/Foundation/Camera.cpp
 
 
 ./bin/Level.o : $(HEADFILE) ./src/Layer/Level.cpp

@@ -4,6 +4,7 @@
 #include <vector>
 #include <string>
 
+#include "Layer.h"
 #include "Vector2D.h"
 
 class GameObject
@@ -50,6 +51,8 @@ public:
         this->updating = updating;
     }
 
+    void SetCollisionLayers(std::vector<Layer*>* layers) { collisionLayers = layers; }
+
 protected:
     // constructor with default initialisation list
     GameObject() : position(0,0), velocity(0,0), acceleration(0,0), updating(false), dead(false), dying(false),
@@ -76,6 +79,8 @@ protected:
 
     // blending
     uint32_t alpha;
+
+    std::vector<Layer*>* collisionLayers;
 };
 
 #endif

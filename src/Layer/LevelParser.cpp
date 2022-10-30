@@ -224,6 +224,7 @@ void LevelParser::ParseObject(TiXmlElement *objectRoot, ObjectLayer *objectLayer
         level->SetPlayer(dynamic_cast<Player*>(gameObject));
     }
     objectLayer->GetGameObjects()->push_back(gameObject);
+    gameObject->SetCollisionLayers(level->GetCollisionLayers());
 
     LOG_DBG("[LevelParser][ParseObject] Parsed the object ", objectRoot->Attribute("name"));
 }
