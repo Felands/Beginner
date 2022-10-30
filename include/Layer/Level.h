@@ -5,6 +5,7 @@
 #include <vector>
 
 #include "Layer.h"
+#include "Player.h"
 
 struct Tileset
 {
@@ -31,16 +32,27 @@ public:
         return &objectLayers; 
     }
 
+    std::vector<Layer*> *GetCollisionLayers() 
+    { 
+        return &collisionLayers; 
+    }
+
     void Update();
 
     void Render();
 
     void Clean();
 
+    Player* GetPlayer() { return player; }
+
+    void SetPlayer(Player* player) { this->player = player; }
+
 private:
     std::vector<Tileset> tilesets;
     std::vector<Layer*> tileLayers;
     std::vector<Layer*> objectLayers;
+    std::vector<Layer*> collisionLayers;
+    Player* player; 
 };
 
 #endif

@@ -16,16 +16,16 @@ public:
 
 private:
     void ParseTileLayer(TiXmlElement *tileLayerRoot, std::vector<Layer*> *tileLayers,
-        std::vector<Tileset> *tilesets);
+        std::vector<Tileset> *tilesets, std::vector<Layer*> *collisionLayers);
 
     void ParseTilesets(TiXmlElement *tilesetsRoot, std::vector<Tileset> *tilesets);
 
     void ParseMapLayers(TiXmlElement *mapLayersRoot, std::vector<Layer*> *tileLayers,
-        std::vector<Tileset> *tilesets);
+        std::vector<Tileset> *tilesets, std::vector<Layer*> *collisionLayers);
 
-    void ParseObjectLayer(TiXmlElement *objectLayerRoot, std::vector<Layer*> *objectLayers);
+    void ParseObjectLayer(TiXmlElement *objectLayerRoot, Level* level);
 
-    void ParseObject(TiXmlElement *objectRoot, ObjectLayer *objectLayers);
+    void ParseObject(TiXmlElement *objectRoot, ObjectLayer *objectLayers, Level* level);
 
     void ParseSound(TiXmlElement *soundRoot);
 

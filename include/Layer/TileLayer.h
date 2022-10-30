@@ -24,6 +24,21 @@ public:
 
     Tileset GetTilesetById(uint32_t tileId);
 
+    std::vector<std::vector<uint32_t>> GetTileIds()
+    {
+        return tileIds;
+    }
+
+    Vector2D GetPosition()
+    {
+        return position;
+    }
+
+    Vector2D GetVelocity()
+    {
+        return velocity;
+    }
+
 private:
     Vector2D position;
     Vector2D velocity;

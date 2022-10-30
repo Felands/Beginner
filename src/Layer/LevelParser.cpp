@@ -36,9 +36,9 @@ Level *LevelParser::ParseLevel(const char *levelFile)
     Level *level = new Level();
     for (TiXmlElement *e = root->FirstChildElement(); e != nullptr; e = e->NextSiblingElement()) {
         if (e->Value() == std::string("tilelayer")) {
-            ParseTileLayer(e, level->GetTileLayers(), level->GetTilesets());
+            ParseTileLayer(e, level->GetTileLayers(), level->GetTilesets(), level->GetCollisionLayers());
         } else if (e->Value() == std::string("objectlayer")) {
-            ParseObjectLayer(e, level->GetObjectLayers());
+            ParseObjectLayer(e, level);
         } else if (e->Value() == std::string("sound")) {
             ParseSound(e);
         }
@@ -49,7 +49,7 @@ Level *LevelParser::ParseLevel(const char *levelFile)
 }
 
 void LevelParser::ParseTileLayer(TiXmlElement *tileLayerRoot, std::vector<Layer*> *tileLayers,
-    std::vector<Tileset> *tilesets)
+    std::vector<Tileset> *tilesets, std::vector<Layer*> *collisionLayers)
 {
     LOG_DBG("[LevelParser][ParseTileLayer] Parsing the tile layer ", tileLayerRoot->Attribute("name"));
 
@@ -57,7 +57,7 @@ void LevelParser::ParseTileLayer(TiXmlElement *tileLayerRoot, std::vector<Layer*
         if(e->Value() == std::string("tilesets")) {
             ParseTilesets(e, tilesets);
         } else if (e->Value() == std::string("layers")) {
-            ParseMapLayers(e, tileLayers, tilesets);
+            ParseMapLayers(e, tileLayers, tilesets, collisionLayers);
         }
     }
 
@@ -108,10 +108,11 @@ void LevelParser::ParseTilesets(TiXmlElement *tilesetsRoot, std::vector<Tileset>
 }
 
 void LevelParser::ParseMapLayers(TiXmlElement *mapLayersRoot, std::vector<Layer*> *tileLayers,
-    std::vector<Tileset> *tilesets)
+    std::vector<Tileset> *tilesets, std::vector<Layer*> *collisionLayers)
 {
     LOG_DBG("[LevelParser][ParseMap] Parsing the map");
 
+    bool collidable = false;
     for (TiXmlElement *layerRoot = mapLayersRoot->FirstChildElement(); layerRoot != nullptr;
         layerRoot = layerRoot->NextSiblingElement()) {
         std::string text = layerRoot->FirstChildElement()->FirstChild()->ToText()->Value();
@@ -139,28 +140,39 @@ void LevelParser::ParseMapLayers(TiXmlElement *mapLayersRoot, std::vector<Layer*
             }
         }
 
+        uint32_t collidable;
+        layerRoot->Attribute("collidable", (int*)&collidable);
         TileLayer *tileLayer = new TileLayer(*tilesets);
         tileLayer->SetTileIds(map);
+        if(collidable) {
+            collisionLayers->push_back(tileLayer);
+        }
         tileLayers->push_back(tileLayer);
     }
 
     LOG_DBG("[LevelParser][ParseMap] Parsed the map");
 }
 
-void LevelParser::ParseObjectLayer(TiXmlElement *objectLayerRoot, std::vector<Layer*> *objectLayers)
+void LevelParser::ParseObjectLayer(TiXmlElement *objectLayerRoot, Level* level)
 {
     LOG_DBG("[LevelParser][ParseObjectLayer] Parsing the object layer ", objectLayerRoot->Attribute("name"));
 
     ObjectLayer *objectLayer = new ObjectLayer();
     for (TiXmlElement *e = objectLayerRoot->FirstChildElement(); e != nullptr; e = e->NextSiblingElement()) {
-        ParseObject(e, objectLayer);
+        ParseObject(e, objectLayer, level);
     }
-    objectLayers->push_back(objectLayer);
+    level->GetObjectLayers()->push_back(objectLayer);
+
+    int32_t collidable;
+    objectLayerRoot->Attribute("collidable", (int*)&collidable);
+    if (collidable) {
+        level->GetCollisionLayers()->push_back(objectLayer);
+    }
 
     LOG_DBG("[LevelParser][ParseObjectLayer] Parsed the object layer", objectLayerRoot->Attribute("name"));
 }
 
-void LevelParser::ParseObject(TiXmlElement *objectRoot, ObjectLayer *objectLayer)
+void LevelParser::ParseObject(TiXmlElement *objectRoot, ObjectLayer *objectLayer, Level* level)
 {
     LOG_DBG("[LevelParser][ParseObject] Parsing the object ", objectRoot->Attribute("name"));
 
@@ -207,6 +219,10 @@ void LevelParser::ParseObject(TiXmlElement *objectRoot, ObjectLayer *objectLayer
 
     GameObject *gameObject = GameObjectFactory::Instance()->Create(objectRoot->Attribute("type"));
     gameObject->Load(x, y, callbackId, animSpeed, textureNames);
+    if(gameObject->Type() == "Player")
+    {
+        level->SetPlayer(dynamic_cast<Player*>(gameObject));
+    }
     objectLayer->GetGameObjects()->push_back(gameObject);
 
     LOG_DBG("[LevelParser][ParseObject] Parsed the object ", objectRoot->Attribute("name"));
