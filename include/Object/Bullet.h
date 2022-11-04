@@ -16,10 +16,10 @@ public:
 
     virtual std::string Type() { return "PlayerBullet"; }
 
-    virtual void Load(int32_t x, int32_t y, int32_t callBackId, int32_t animeSpeed,
-        std::vector<std::string> textureNames, Vector2D heading)
+    virtual void Load(int32_t x, int32_t y, std::vector<ObjectAnimeInfo> objectAnimeInfos,
+        Vector2D heading)
     {
-        SDLGameObject::Load(x, y, callBackId, animeSpeed, textureNames);
+        SDLGameObject::Load(x, y, objectAnimeInfos);
         this->heading = heading;
     }
 

@@ -1,19 +1,27 @@
+#include <stdint.h>
+
 #include "SDL.h"
 
 #include "Game.h"
 
-const int FPS = 60;
-const int DELAY_TIME = 1000.0f / FPS;
+const uint32_t FPS = 30;  
+const uint32_t DELAY_TIME = 1000.0f / FPS;
+const char* WINDOW_TITLE = "DungeonRush";
+const uint32_t WINDOW_X_POS = 100;
+const uint32_t WINDOW_Y_POS = 100;
+const uint32_t WINDOW_WIDTH = 640;
+const uint32_t WINDOW_HEIGHT = 640;
+const int32_t OK = 0;
+const int32_t ERR = 1;
 
 int main(int argc, char **args)
 {
-    uint32_t frameStart;
-    uint32_t frameTime;
-
-    if (!Game::Instance()->Init("DungeonRush", 100, 100, 640, 640, false)) {
-        return 1;
+    if (!Game::Instance()->Init(WINDOW_TITLE, WINDOW_X_POS, WINDOW_Y_POS, WINDOW_WIDTH, WINDOW_HEIGHT, false)) {
+        return ERR;
     }
 
+    uint32_t frameStart;
+    uint32_t frameTime;
     while (Game::Instance()->IsGameRunning()) {
         frameStart = SDL_GetTicks();
 
@@ -29,5 +37,5 @@ int main(int argc, char **args)
 
     Game::Instance()->Clean();
 
-    return 0;
+    return OK;
 }

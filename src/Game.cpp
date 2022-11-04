@@ -58,6 +58,7 @@ bool Game::Init(const char *title, int32_t xpos, int32_t ypos, uint32_t width_, 
         return false;
     }
 
+    // object创建器初始化
     GameObjectFactory::Instance()-> RegisterType();
 
     // 进入主菜单界面

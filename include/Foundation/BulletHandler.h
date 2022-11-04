@@ -17,10 +17,10 @@ public:
         return instance;
     }
 
-    void AddPlayerBullet(int32_t x, int32_t y, int32_t callBackId, int32_t animeSpeed, std::vector<std::string> textureNames,
+    void AddPlayerBullet(int32_t x, int32_t y, std::vector<ObjectAnimeInfo> objectAnimeInfos,
         Vector2D heading);
 
-    void AddEnemyBullet(int32_t x, int32_t y, int32_t callBackId, int32_t animeSpeed, std::vector<std::string> textureNames,
+    void AddEnemyBullet(int32_t x, int32_t y, std::vector<ObjectAnimeInfo> objectAnimeInfos,
         Vector2D heading);
 
     void Update();

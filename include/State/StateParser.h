@@ -5,6 +5,8 @@
 
 #include "tinyxml.h"
 
+#include "GameObject.h"
+
 class GameObject;
 class StateParser
 {
@@ -17,6 +19,8 @@ public:
 private:
     void ParseObjects(TiXmlElement *stateRoot, std::vector<GameObject*> *objects);
     void ParseTextures(TiXmlElement *stateRoot, std::vector<std::string> *textureIds);
+    void ParseObjectTextures(TiXmlElement *texturesRoot,
+        std::vector<ObjectAnimeInfo>* objectAnimeInfos);
 };
 
 #endif

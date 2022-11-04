@@ -3,19 +3,19 @@
 #include "Bullet.h"
 #include "Game.h"
 
-void BulletHandler::AddPlayerBullet(int32_t x, int32_t y, int32_t callBackId, int32_t animeSpeed, std::vector<std::string> textureNames,
+void BulletHandler::AddPlayerBullet(int32_t x, int32_t y, std::vector<ObjectAnimeInfo> objectAnimeInfos,
     Vector2D heading)
 {
     PlayerBullet* playerBullet = new PlayerBullet();
-    playerBullet->Load(x, y, callBackId, animeSpeed, textureNames, heading);
+    playerBullet->Load(x, y, objectAnimeInfos, heading);
     playerBullets.push_back(playerBullet);
 }
 
-void BulletHandler::AddEnemyBullet(int32_t x, int32_t y, int32_t callBackId, int32_t animeSpeed, std::vector<std::string> textureNames,
+void BulletHandler::AddEnemyBullet(int32_t x, int32_t y, std::vector<ObjectAnimeInfo> objectAnimeInfos,
     Vector2D heading)
 {
     EnemyBullet* enemyBullet = new EnemyBullet();
-    enemyBullet->Load(x, y, callBackId, animeSpeed, textureNames, heading);
+    enemyBullet->Load(x, y, objectAnimeInfos, heading);
     enemyBullets.push_back(enemyBullet);
 }
 

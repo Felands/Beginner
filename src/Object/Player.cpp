@@ -99,9 +99,9 @@ void Player::Draw()
     }
 
     uint32_t ticks = SDL_GetTicks();
-    uint32_t currentColumns = ticks / (1000 / animeSpeed);
+    uint32_t currentColumns = ticks / (1000 / GetAnimeSpeed());
 
-    TextureManager::Instance()->Draw(textureNames[(size_t)state], position.GetX(), position.GetY(),
+    TextureManager::Instance()->Draw(GetTextureName(), position.GetX(), position.GetY(),
         currentColumns, 0, Game::Instance()->GetRenderer(), flip, alpha);
 
     LOG_DBG("[Player][Draw] Drew the player");

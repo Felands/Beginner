@@ -4,16 +4,13 @@
 #include "log.h"
 #include "TileLayer.h"
 
-void SDLGameObject::Load(int32_t x, int32_t y, int32_t callBackId_, int32_t animeSpeed_,
-    std::vector<std::string> textureNames_)
+void SDLGameObject::Load(int32_t x, int32_t y, std::vector<ObjectAnimeInfo> objectAnimeInfos)
 {
     position.SetX(x);
     position.SetY(y);
     velocity.SetX(0);
     velocity.SetY(0);
-    callBackId = callBackId_;
-    animeSpeed = animeSpeed_;
-    textureNames = textureNames_;
+    this->objectAnimeInfos = objectAnimeInfos;
 }
 
 void SDLGameObject::Update()

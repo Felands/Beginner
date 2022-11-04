@@ -91,10 +91,8 @@ void StateParser::ParseObjects(TiXmlElement *objectsRoot, std::vector<GameObject
         objectRoot = objectRoot->NextSiblingElement()) {
         int32_t x;
         int32_t y;
-        uint32_t callbackId;
-        int32_t animeSpeed;
-        std::vector<std::string> textureNames;
         std::string type;
+        std::vector<ObjectAnimeInfo> objectAnimeInfos;
         for (TiXmlElement* e = objectRoot->FirstChildElement(); e != nullptr; e = e->NextSiblingElement()) {
             if (e->Value() == std::string("type")) {
                 type = e->Attribute("value");
@@ -102,22 +100,39 @@ void StateParser::ParseObjects(TiXmlElement *objectsRoot, std::vector<GameObject
                 e->Attribute("value", &x);
             } else if (e->Value() == std::string("y")) {
                 e->Attribute("value", &y);
-            } else if (e->Value() == std::string("callbackId")) {
-                e->Attribute("value", (int*)&callbackId);
-            } else if (e->Value() == std::string("animeSpeed")) {
-                e->Attribute("value", (int*)&animeSpeed);
-            } else if (e->Value() == std::string("textureNames")) {
-                for (TiXmlElement* textureName = e->FirstChildElement(); textureName != nullptr;
-                    textureName = textureName->NextSiblingElement()) {
-                    textureNames.push_back(textureName->Attribute("value"));
-                }
+            } else if (e->Value() == std::string("textures")) {
+                ParseObjectTextures(e, &objectAnimeInfos);
             }
         }
 
         GameObject* gameObject = GameObjectFactory::Instance()->Create(type);
-        gameObject->Load(x, y, callbackId, animeSpeed, textureNames);
+        gameObject->Load(x, y, objectAnimeInfos);
         objects->push_back(gameObject);
     }
 
     LOG_DBG("[StateParser][ParseObjects] Parsed the objects");
+}
+
+void StateParser::ParseObjectTextures(TiXmlElement *texturesRoot,
+    std::vector<ObjectAnimeInfo>* objectAnimeInfos)
+{
+    LOG_DBG("[StateParser][ParseObjectTextures] Parsing object textures");
+    
+    for (TiXmlElement* textureRoot = texturesRoot->FirstChildElement(); textureRoot != nullptr;
+        textureRoot = textureRoot->NextSiblingElement()) {
+        ObjectAnimeInfo objectAnimeInfo;
+        for (TiXmlElement* e = textureRoot->FirstChildElement(); e != nullptr;
+            e = e->NextSiblingElement()) {
+            if (e->Value() == std::string("name")) {
+                objectAnimeInfo.textureName = e->Attribute("value");
+            } else if (e->Value() == std::string("callbackId")) {
+                e->Attribute("value", &objectAnimeInfo.callBackId);
+            } else if (e->Value() == std::string("animeSpeed")) {
+                e->Attribute("value", &objectAnimeInfo.animeSpeed);
+            }
+        }
+        objectAnimeInfos->push_back(objectAnimeInfo);
+    }
+
+    LOG_DBG("[StateParser][ParseObjectTextures] Parsed object textures");
 }

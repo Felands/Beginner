@@ -15,19 +15,17 @@ public:
     static const char *level;
 
 private:
-    void ParseTileLayer(TiXmlElement *tileLayerRoot, std::vector<Layer*> *tileLayers,
-        std::vector<Tileset> *tilesets, std::vector<Layer*> *collisionLayers);
-
     void ParseTilesets(TiXmlElement *tilesetsRoot, std::vector<Tileset> *tilesets);
 
-    void ParseMapLayers(TiXmlElement *mapLayersRoot, std::vector<Layer*> *tileLayers,
-        std::vector<Tileset> *tilesets, std::vector<Layer*> *collisionLayers);
+    void ParseLayers(TiXmlElement *layersRoot, Level* level);
 
-    void ParseObjectLayer(TiXmlElement *objectLayerRoot, Level* level);
+    void ParseTileLayers(TiXmlElement *tileLayersRoot, Level* level);
 
-    void ParseObject(TiXmlElement *objectRoot, ObjectLayer *objectLayers, Level* level);
+    void ParseObjectLayers(TiXmlElement *objectLayersRoot, Level* level);
 
-    void ParseSound(TiXmlElement *soundRoot);
+    void ParseObject(TiXmlElement *objectRoot, ObjectLayer *objectLayer, Level* level);
+
+    void ParseSounds(TiXmlElement *soundRoot);
 
     void ParseMusic(TiXmlElement *MusicRoot);
 

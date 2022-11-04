@@ -35,33 +35,17 @@ Level *LevelParser::ParseLevel(const char *levelFile)
 
     Level *level = new Level();
     for (TiXmlElement *e = root->FirstChildElement(); e != nullptr; e = e->NextSiblingElement()) {
-        if (e->Value() == std::string("tilelayer")) {
-            ParseTileLayer(e, level->GetTileLayers(), level->GetTilesets(), level->GetCollisionLayers());
-        } else if (e->Value() == std::string("objectlayer")) {
-            ParseObjectLayer(e, level);
-        } else if (e->Value() == std::string("sound")) {
-            ParseSound(e);
+        if (e->Value() == std::string("tilesets")) {
+            ParseTilesets(e, level->GetTilesets());
+        } else if (e->Value() == std::string("layers")) {
+            ParseLayers(e, level);
+        } else if (e->Value() == std::string("sounds")) {
+            ParseSounds(e);
         }
     }
 
     LOG_DBG("[LevelParser][ParseLevel] Parsed level from ", levelFile);
     return level;
-}
-
-void LevelParser::ParseTileLayer(TiXmlElement *tileLayerRoot, std::vector<Layer*> *tileLayers,
-    std::vector<Tileset> *tilesets, std::vector<Layer*> *collisionLayers)
-{
-    LOG_DBG("[LevelParser][ParseTileLayer] Parsing the tile layer ", tileLayerRoot->Attribute("name"));
-
-    for (TiXmlElement *e = tileLayerRoot->FirstChildElement(); e != nullptr; e = e->NextSiblingElement()) {
-        if(e->Value() == std::string("tilesets")) {
-            ParseTilesets(e, tilesets);
-        } else if (e->Value() == std::string("layers")) {
-            ParseMapLayers(e, tileLayers, tilesets, collisionLayers);
-        }
-    }
-
-    LOG_DBG("[LevelParser][ParseTileLayer] Parsed a tile layer", tileLayerRoot->Attribute("name"));
 }
 
 void LevelParser::ParseTilesets(TiXmlElement *tilesetsRoot, std::vector<Tileset> *tilesets)
@@ -107,22 +91,35 @@ void LevelParser::ParseTilesets(TiXmlElement *tilesetsRoot, std::vector<Tileset>
     LOG_DBG("[LevelParser][ParseTilesets] Parsed tilesets ");
 }
 
-void LevelParser::ParseMapLayers(TiXmlElement *mapLayersRoot, std::vector<Layer*> *tileLayers,
-    std::vector<Tileset> *tilesets, std::vector<Layer*> *collisionLayers)
+void LevelParser::ParseLayers(TiXmlElement *layersRoot, Level* level)
 {
-    LOG_DBG("[LevelParser][ParseMap] Parsing the map");
+    LOG_DBG("[LevelParser][ParseLayers] Parsing layers");
 
-    bool collidable = false;
-    for (TiXmlElement *layerRoot = mapLayersRoot->FirstChildElement(); layerRoot != nullptr;
-        layerRoot = layerRoot->NextSiblingElement()) {
-        std::string text = layerRoot->FirstChildElement()->FirstChild()->ToText()->Value();
+    for (TiXmlElement *e = layersRoot->FirstChildElement(); e != nullptr; e = e->NextSiblingElement()) {
+        if(e->Value() == std::string("tilelayers")) {
+            ParseTileLayers(e, level);
+        } else if (e->Value() == std::string("objectlayers")) {
+            ParseObjectLayers(e, level);
+        }
+    }
+
+    LOG_DBG("[LevelParser][ParseLayers] Parsed layers");
+}
+
+void LevelParser::ParseTileLayers(TiXmlElement *tileLayersRoot, Level* level)
+{
+    LOG_DBG("[LevelParser][ParseTileLayers] Parsing tile layers");
+
+    for (TiXmlElement *tileLayerRoot = tileLayersRoot->FirstChildElement(); tileLayerRoot != nullptr;
+        tileLayerRoot = tileLayerRoot->NextSiblingElement()) {
+        std::string text = tileLayerRoot->FirstChildElement()->FirstChild()->ToText()->Value();
         std::string decodedIds = base64_decode(text);
 
         // uncompress zlib compression
         uint32_t width;
-        layerRoot->Attribute("width", (int*)&width);
+        tileLayerRoot->Attribute("width", (int*)&width);
         uint32_t height;
-        layerRoot->Attribute("height", (int*)&height);
+        tileLayerRoot->Attribute("height", (int*)&height);
         uLongf numGids = width * height * sizeof(int);
         std::vector<unsigned> gids(numGids);
         uncompress((Bytef*)&gids[0], &numGids,(const Bytef*)decodedIds.c_str(), decodedIds.size());
@@ -141,75 +138,66 @@ void LevelParser::ParseMapLayers(TiXmlElement *mapLayersRoot, std::vector<Layer*
         }
 
         uint32_t collidable;
-        layerRoot->Attribute("collidable", (int*)&collidable);
-        TileLayer *tileLayer = new TileLayer(*tilesets);
+        tileLayerRoot->Attribute("collidable", (int*)&collidable);
+        TileLayer *tileLayer = new TileLayer(*level->GetTilesets());
         tileLayer->SetTileIds(map);
         if(collidable) {
-            collisionLayers->push_back(tileLayer);
+            level->GetCollisionLayers()->push_back(tileLayer);
         }
-        tileLayers->push_back(tileLayer);
+        level->GetTileLayers()->push_back(tileLayer);
     }
 
-    LOG_DBG("[LevelParser][ParseMap] Parsed the map");
+    LOG_DBG("[LevelParser][ParseTileLayers] Parsed tile layers");
 }
 
-void LevelParser::ParseObjectLayer(TiXmlElement *objectLayerRoot, Level* level)
+void LevelParser::ParseObjectLayers(TiXmlElement *objectLayersRoot, Level* level)
 {
-    LOG_DBG("[LevelParser][ParseObjectLayer] Parsing the object layer ", objectLayerRoot->Attribute("name"));
+    LOG_DBG("[LevelParser][ParseObjectLayers] Parsing object layers");
 
-    ObjectLayer *objectLayer = new ObjectLayer();
-    for (TiXmlElement *e = objectLayerRoot->FirstChildElement(); e != nullptr; e = e->NextSiblingElement()) {
-        ParseObject(e, objectLayer, level);
+    for (TiXmlElement* objectLayerRoot = objectLayersRoot->FirstChildElement(); objectLayerRoot != nullptr;
+        objectLayerRoot = objectLayerRoot->NextSiblingElement()) {
+        ObjectLayer *objectLayer = new ObjectLayer();
+        for (TiXmlElement *objectRoot = objectLayerRoot->FirstChildElement(); objectRoot != nullptr;
+            objectRoot = objectRoot->NextSiblingElement()) {
+            ParseObject(objectRoot, objectLayer, level);
+        }
+        level->GetObjectLayers()->push_back(objectLayer);
+
+        int32_t collidable;
+        objectLayersRoot->Attribute("collidable", (int*)&collidable);
+        if (collidable) {
+            level->GetCollisionLayers()->push_back(objectLayer);
+        }
     }
-    level->GetObjectLayers()->push_back(objectLayer);
 
-    int32_t collidable;
-    objectLayerRoot->Attribute("collidable", (int*)&collidable);
-    if (collidable) {
-        level->GetCollisionLayers()->push_back(objectLayer);
-    }
-
-    LOG_DBG("[LevelParser][ParseObjectLayer] Parsed the object layer", objectLayerRoot->Attribute("name"));
+    LOG_DBG("[LevelParser][ParseObjectLayers] Parsed object layers");
 }
 
 void LevelParser::ParseObject(TiXmlElement *objectRoot, ObjectLayer *objectLayer, Level* level)
 {
     LOG_DBG("[LevelParser][ParseObject] Parsing the object ", objectRoot->Attribute("name"));
 
-    uint32_t width;
-    uint32_t height;
-    uint32_t numColumns;
-    uint32_t numRows;
     uint32_t callbackId;
     uint32_t animSpeed;
     std::string textureName;
-    std::vector<std::string> textureNames;
-    std::string source;
+    ObjectAnimeInfo objectAnimeInfo = { 0 };
+    std::vector<ObjectAnimeInfo> ObjectAnimeInfos;
     for (TiXmlElement *properties = objectRoot->FirstChildElement(); properties != nullptr;
         properties = properties->NextSiblingElement()) {
         for (TiXmlElement *property = properties->FirstChildElement(); property != nullptr;
             property = property->NextSiblingElement()) {
-            if (property->Attribute("name") == std::string("source")) {
-                source = property->Attribute("value");
-            } else if (property->Attribute("name") == std::string("numColumns")) {
-                property->Attribute("value", (int*)&numColumns);
-            } else if (property->Attribute("name") == std::string("height")) {
-                property->Attribute("value", (int*)&height);
-            } else if (property->Attribute("name") == std::string("textureName")) {
+            if (property->Attribute("name") == std::string("textureName")) {
                 textureName = property->Attribute("value");
-                textureNames.push_back(textureName);
-            } else if (property->Attribute("name") == std::string("width")) {
-                property->Attribute("value", (int*)&width);
+                objectAnimeInfo.textureName = textureName;
             } else if (property->Attribute("name") == std::string("callbackId")) {
                 property->Attribute("value", (int*)&callbackId);
+                objectAnimeInfo.callBackId = callbackId;
             } else if (property->Attribute("name") == std::string("animSpeed")) {
                 property->Attribute("value", (int*)&animSpeed);
-            } else if (property->Attribute("name") == std::string("numRows")) {
-                property->Attribute("value", (int*)&numRows);
+                objectAnimeInfo.animeSpeed = animSpeed;
             }
         }
-        TextureManager::Instance()->Load(source, textureName, width, height, numColumns, numRows,
-            Game::Instance()->GetRenderer());
+        ObjectAnimeInfos.push_back(objectAnimeInfo);
     }
 
     int32_t x;
@@ -218,9 +206,8 @@ void LevelParser::ParseObject(TiXmlElement *objectRoot, ObjectLayer *objectLayer
     objectRoot->Attribute("y", (int*)&y);
 
     GameObject *gameObject = GameObjectFactory::Instance()->Create(objectRoot->Attribute("type"));
-    gameObject->Load(x, y, callbackId, animSpeed, textureNames);
-    if(gameObject->Type() == "Player")
-    {
+    gameObject->Load(x, y, ObjectAnimeInfos);
+    if(gameObject->Type() == "Player") {
         level->SetPlayer(dynamic_cast<Player*>(gameObject));
     }
     objectLayer->GetGameObjects()->push_back(gameObject);
@@ -229,9 +216,9 @@ void LevelParser::ParseObject(TiXmlElement *objectRoot, ObjectLayer *objectLayer
     LOG_DBG("[LevelParser][ParseObject] Parsed the object ", objectRoot->Attribute("name"));
 }
 
-void LevelParser::ParseSound(TiXmlElement* soundRoot)
+void LevelParser::ParseSounds(TiXmlElement* soundRoot)
 {
-    LOG_DBG("[LevelParse][ParseSound] Parsing sound resource");
+    LOG_DBG("[LevelParse][ParseSounds] Parsing sound resource");
 
     for (TiXmlElement *e = soundRoot->FirstChildElement(); e != nullptr; e = e->NextSiblingElement()) {
         if (e->Value() == std::string("musics")) {
@@ -246,7 +233,7 @@ void LevelParser::ParseSound(TiXmlElement* soundRoot)
         }
     }
 
-    LOG_DBG("[LevelParse][ParseSound] Parsed sound resource");
+    LOG_DBG("[LevelParse][ParseSounds] Parsed sound resource");
 }
 
 void LevelParser::ParseMusic(TiXmlElement* musicRoot)

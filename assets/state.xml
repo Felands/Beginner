@@ -50,31 +50,64 @@
                 <numColumns value="1"/>
                 <numRows value="1"/>
             </texture>
+            <texture>
+                <name value="panel_1"/>
+                <source value="./assets/drawable/button/panel/panel_1.png"/>
+                <width value="603"/>
+                <height value="402"/>
+                <numColumns value="1"/>
+                <numRows value="1"/>
+            </texture>
         </TEXTURES>
         <OBJECTS>
             <object name="login_button">
                 <type value="MenuButton"/>
                 <x value="100"/>
                 <y value="300"/>
-                <textureNames>
-                    <textureName value="login_button_out"/>
-                    <textureName value="login_button_over"/>
-                    <textureName value="login_button_click"/>
-                </textureNames>
-                <callbackId value="1"/>
-                <animeSpeed value="10"/>
+                <textures>
+                    <texture>
+                        <name value="login_button_out"/>
+                        <callbackId value="1"/>
+                        <animeSpeed value="10"/>
+                    </texture>
+                    <texture>
+                        <name value="login_button_over"/>
+                        <callbackId value="1"/>
+                        <animeSpeed value="10"/>
+                    </texture>
+                    <texture>
+                        <name value="login_button_click"/>
+                        <callbackId value="1"/>
+                        <animeSpeed value="10"/>
+                    </texture>
+                </textures>
             </object>
             <object name="exit_button">
                 <type value="MenuButton"/>
                 <x value="100"/>
                 <y value="100"/>
+                <textures>
+                    <texture>
+                        <name value="exit_button_out"/>
+                        <callbackId value="2"/>
+                        <animeSpeed value="10"/>
+                    </texture>
+                    <texture>
+                        <name value="exit_button_over"/>
+                        <callbackId value="2"/>
+                        <animeSpeed value="10"/>
+                    </texture>
+                    <texture>
+                        <name value="exit_button_click"/>
+                        <callbackId value="2"/>
+                        <animeSpeed value="10"/>
+                    </texture>
+                </textures>
                 <textureNames>
-                    <textureName value="exit_button_out"/>
-                    <textureName value="exit_button_over"/>
-                    <textureName value="exit_button_click"/>
+                    <textureName value=""/>
+                    <textureName value=""/>
+                    <textureName value=""/>
                 </textureNames>
-                <callbackId value="2"/>
-                <animeSpeed value="10"/>
             </object>
         </OBJECTS>
     </MENU>

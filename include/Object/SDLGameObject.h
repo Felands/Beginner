@@ -9,8 +9,7 @@
 class SDLGameObject : public GameObject
 {
 public:
-    virtual void Load(int32_t x, int32_t y, int32_t callBackId, int32_t animeSpeed,
-        std::vector<std::string> textureNames);
+    virtual void Load(int32_t x, int32_t y, std::vector<ObjectAnimeInfo> objectAnimeInfos);
 
     virtual void Update();
 
@@ -27,6 +26,21 @@ public:
     virtual ~SDLGameObject()
     {}
 
+    virtual int32_t GetCallbackId()
+    {
+        return objectAnimeInfos[0].callBackId;
+    }
+
+    virtual int32_t GetAnimeSpeed()
+    {
+        return objectAnimeInfos[0].animeSpeed;
+    }
+
+    virtual std::string GetTextureName()
+    {
+        return objectAnimeInfos[0].textureName;
+    }
+
     Vector2D& GetPosition()
     {
         return position;
@@ -35,16 +49,6 @@ public:
     Vector2D& GetVelocity()
     {
         return velocity;
-    }
-
-    std::vector<std::string> *GetTextureNames()
-    {
-        return &textureNames;
-    }
-
-    int32_t GetCallbackId()
-    {
-        return callBackId;
     }
 
 protected:

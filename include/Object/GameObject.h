@@ -7,13 +7,16 @@
 #include "Layer.h"
 #include "Vector2D.h"
 
+struct ObjectAnimeInfo {
+    int32_t callBackId;
+    int32_t animeSpeed;
+    std::string textureName;
+};
+
 class GameObject
 {
 public:
-    virtual ~GameObject() {}
-
-    virtual void Load(int32_t x, int32_t y, int32_t callBackId, int32_t animeSpeed,
-        std::vector<std::string> textureNames) = 0;
+    virtual void Load(int32_t x, int32_t y, std::vector<ObjectAnimeInfo> objectAnimeInfos) = 0;
     virtual void Update() = 0;
     virtual void Draw() = 0;
     virtual void Clean() = 0;
@@ -53,31 +56,30 @@ public:
 
     void SetCollisionLayers(std::vector<Layer*>* layers) { collisionLayers = layers; }
 
+    virtual ~GameObject()
+    {}
+
 protected:
     // constructor with default initialisation list
     GameObject() : position(0,0), velocity(0,0), acceleration(0,0), updating(false), dead(false), dying(false),
         angle(0), alpha(255)
     {}
 
-    // movement variables
+    // movement
     Vector2D position;
     Vector2D velocity;
     Vector2D acceleration;
 
-    // animation variables
-    int32_t callBackId;
-    int32_t animeSpeed;
-    std::vector<std::string> textureNames;
+    // animation
+    std::vector<ObjectAnimeInfo> objectAnimeInfos;
 
-    // common boolean variables
+    // common state
     bool updating;
     bool dead;
     bool dying;
 
-    // rotation
-    double angle;
-
     // blending
+    double angle;
     uint32_t alpha;
 
     std::vector<Layer*>* collisionLayers;

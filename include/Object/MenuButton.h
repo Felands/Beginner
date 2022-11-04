@@ -28,6 +28,21 @@ public:
 
     virtual void Draw();
 
+    virtual int32_t GetCallbackId()
+    {
+        return objectAnimeInfos[(size_t)state].callBackId;
+    }
+
+    virtual int32_t GetAnimeSpeed()
+    {
+        return objectAnimeInfos[(size_t)state].animeSpeed;
+    }
+
+    virtual std::string GetTextureName()
+    {
+        return objectAnimeInfos[(size_t)state].textureName;
+    }
+
 private:
     void (*callback)();
     bool isReleased = true;

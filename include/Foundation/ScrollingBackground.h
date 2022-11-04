@@ -4,11 +4,11 @@
 class ScrollingBackground
 {
 public:
-    void Load(std::unique_ptr<LoaderParams> const &pParams);
+    /*void Load(std::unique_ptr<LoaderParams> const &pParams);
 
     void Draw();
 
-    void Update();
+    void Update();*/
 
 private:
     uint32_t count;

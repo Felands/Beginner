@@ -1,7 +1,7 @@
 #include "ScrollingBackground.h"
 #include "SDL.h"
 #include "SDLGameObject.h"
-
+/*
 void ScrollingBackground::Load(std::unique_ptr<LoaderParams> const &pParams)
 {
     SDLGameObject::Load(std::move(pParams));
@@ -68,4 +68,4 @@ void ScrollingBackground::Update()
         count = 0;
     }
     count++;
-}
+}*/
