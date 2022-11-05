@@ -24,6 +24,11 @@ public:
 
     virtual void Render();
 
+    Level* GetLevel()
+    {
+        return level;
+    }
+
     bool CheckCollision(SDLGameObject *object1, SDLGameObject *object2);
 
 private:

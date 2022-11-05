@@ -33,7 +33,13 @@ Level *LevelParser::ParseLevel(const char *levelFile)
         return nullptr;
     }
 
+    uint32_t width;
+    uint32_t height;
+    root->Attribute("width", (int*)&width);
+    root->Attribute("height", (int*)&height);
     Level *level = new Level();
+    level->SetHeight(height);
+    level->SetWidth(width);
     for (TiXmlElement *e = root->FirstChildElement(); e != nullptr; e = e->NextSiblingElement()) {
         if (e->Value() == std::string("tilesets")) {
             ParseTilesets(e, level->GetTilesets());
@@ -141,6 +147,12 @@ void LevelParser::ParseTileLayers(TiXmlElement *tileLayersRoot, Level* level)
         tileLayerRoot->Attribute("collidable", (int*)&collidable);
         TileLayer *tileLayer = new TileLayer(*level->GetTilesets());
         tileLayer->SetTileIds(map);
+        uint32_t tileWidth;
+        uint32_t tileHeight;
+        tileLayerRoot->Attribute("tileWidth", (int*)&tileWidth);
+        tileLayerRoot->Attribute("tileHeight", (int*)&tileHeight);
+        tileLayer->SetTileHeight(tileHeight);
+        tileLayer->SetTileWidth(tileWidth);
         if(collidable) {
             level->GetCollisionLayers()->push_back(tileLayer);
         }
@@ -207,7 +219,7 @@ void LevelParser::ParseObject(TiXmlElement *objectRoot, ObjectLayer *objectLayer
 
     GameObject *gameObject = GameObjectFactory::Instance()->Create(objectRoot->Attribute("type"));
     gameObject->Load(x, y, ObjectAnimeInfos);
-    if(gameObject->Type() == "Player") {
+    if(gameObject->Type() == std::string("Player")) {
         level->SetPlayer(dynamic_cast<Player*>(gameObject));
     }
     objectLayer->GetGameObjects()->push_back(gameObject);

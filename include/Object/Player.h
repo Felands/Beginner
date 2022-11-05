@@ -35,6 +35,11 @@ public:
         return objectAnimeInfos[(size_t)state].textureName;
     }
 
+    virtual std::string Type()
+    {
+        return std::string("Player");
+    }
+
     PlayerState GetState()
     {
         return state;

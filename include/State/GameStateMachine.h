@@ -20,6 +20,11 @@ public:
 
     void PopState();
 
+    GameState* GetCurrentState()
+    {
+        return gameStates.back();
+    }
+
 private:
     std::vector<GameState*> gameStates;
 };

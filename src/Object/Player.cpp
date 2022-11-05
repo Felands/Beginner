@@ -6,6 +6,7 @@
 #include "Resource.h"
 #include "Game.h"
 #include "SoundManager.h"
+#include "Camera.h"
 
 void Player::HandleInput()
 {
@@ -17,25 +18,21 @@ void Player::HandleInput()
     bool dDown = InputHandler::Instance()->IsKeyDown(SDL_SCANCODE_D);
     if (wDown) {
         position += Vector2D(0, -1);
-        velocity += Vector2D(0, -0.1);
         state = PlayerState::RUN;
     }
     if (sDown) {
         position += Vector2D(0, 1);
-        velocity += Vector2D(0, 0.1);
         state = PlayerState::RUN;
     }
     if (aDown) {
         position += Vector2D(-1, 0);
-        velocity += Vector2D(-0.1, 0);
         state = PlayerState::RUN;
     }
     if (dDown) {
         position += Vector2D(1, 0);
-        velocity += Vector2D(0.1, 0);
         state = PlayerState::RUN;
     }
-    if (!(wDown || sDown || aDown || dDown) && velocity.Length() < 1.0e-4) {
+    if (!(wDown || sDown || aDown || dDown)) {
         state = PlayerState::IDLE;
     }
 
@@ -101,8 +98,9 @@ void Player::Draw()
     uint32_t ticks = SDL_GetTicks();
     uint32_t currentColumns = ticks / (1000 / GetAnimeSpeed());
 
-    TextureManager::Instance()->Draw(GetTextureName(), position.GetX(), position.GetY(),
-        currentColumns, 0, Game::Instance()->GetRenderer(), flip, alpha);
+    Vector2D cameraPosition = Camera::Instance()->GetPosition();
+    TextureManager::Instance()->Draw(GetTextureName(), position.GetX() - cameraPosition.GetX(),
+        position.GetY() - cameraPosition.GetY(), currentColumns, 0, Game::Instance()->GetRenderer(), flip, alpha);
 
     LOG_DBG("[Player][Draw] Drew the player");
 }

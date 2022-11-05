@@ -1,6 +1,7 @@
 #ifndef CAMERA_H
 #define CAMERA_H
 
+#include "GameObject.h"
 #include "Vector2D.h"
 
 class Camera
@@ -8,30 +9,39 @@ class Camera
 public:
     static Camera* Instance()
     {
-        if(instance == 0) {
+        if(instance == nullptr) {
             instance = new Camera();
         }
         return instance;
     }
 
-    void Update(Vector2D velocity);
+    void SetTarget(GameObject* target)
+    {
+        this->target = target;
+    }
 
-    void SetTarget(Vector2D* target) { this->target = target; }
+    void SetPosition(const Vector2D& position)
+    {
+        this->position = position;
+    }
 
-    void SetPosition(const Vector2D& position) { this->position = position; }
+    const Vector2D GetPosition() const
+    {
+        return position;
+    }
 
-    const Vector2D GetPosition() const;
+    void Update();
 
 private:
-    Camera();
+    Camera() : position(0, 0), velocity(0, 0)
+    {}
 
-    ~Camera();
+    ~Camera()
+    {}
 
-    // the camera's target
-    Vector2D* target;
-
-    // the camera's position
+    GameObject* target;
     Vector2D position;
+    Vector2D velocity;
 
     static Camera* instance;
 };

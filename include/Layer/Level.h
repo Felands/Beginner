@@ -37,6 +37,26 @@ public:
         return &collisionLayers; 
     }
 
+    uint32_t GetWidth()
+    {
+        return width;
+    }
+
+    void SetWidth(uint32_t width)
+    {
+        this->width = width;
+    }
+
+    uint32_t GetHeight()
+    {
+        return height;
+    }
+
+    void SetHeight(uint32_t height)
+    {
+        this->height = height;
+    }
+
     void Update();
 
     void Render();
@@ -48,6 +68,8 @@ public:
     void SetPlayer(Player* player) { this->player = player; }
 
 private:
+    uint32_t width;
+    uint32_t height;
     std::vector<Tileset> tilesets;
     std::vector<Layer*> tileLayers;
     std::vector<Layer*> objectLayers;

@@ -29,19 +29,19 @@ public:
         return tileIds;
     }
 
-    Vector2D GetPosition()
+    void SetTileWidth(uint32_t tileWidth)
     {
-        return position;
+        this->tileWidth = tileWidth;
     }
 
-    Vector2D GetVelocity()
+    void SetTileHeight(uint32_t tileHeight)
     {
-        return velocity;
+        this->tileHeight = tileHeight;
     }
 
 private:
-    Vector2D position;
-    Vector2D velocity;
+    uint32_t tileWidth;
+    uint32_t tileHeight;
     const std::vector<Tileset> &tilesets;
     std::vector<std::vector<uint32_t>> tileIds;
 };

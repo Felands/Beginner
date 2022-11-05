@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<level version="1.0" orientation="orthogonal">
+<level version="1.0" orientation="orthogonal" width="640" height="640">
     <tilesets>
         <tileset name="map_floor" firstgid="1">
                 <tile id="0">
@@ -416,17 +416,17 @@
     </tilesets>
     <layers>
         <tilelayers>
-            <tilelayer id="10" name="floor" width="40" height="40" collidable="0">
+            <tilelayer id="10" name="floor" width="40" height="40" tileWidth="16" tileHeight="16" collidable="0">
                 <data encoding="base64" compression="zlib">
                     eJztzrEJAAAIwDD9/2mvEDqkkL0z7Tas/gcAAAAAAF/qHUlyBfA=
                 </data>
             </tilelayer>
-            <tilelayer id="11" name="wall" width="40" height="40" collidable="1">
+            <tilelayer id="11" name="wall" width="40" height="40" tileWidth="16" tileHeight="16" collidable="1">
                 <data encoding="base64" compression="zlib">
                     eJztmFsKwjAQAPcAgtRHFfQAvur9j+cKChL3wzJW/JiBoSEp2flOFxGzxkOxN7XVzEW6TOeNx5f1tTj/hu29z5nD43tOV+k+3jkVe1PTzryku6j7/gX7GPYx7GPYx7CPYR/DPoZ9DPsY9jHsY9jHsI9hH8M+hn0M+xj3vnX8/q3+U/t0E+Pf2onDiH+36Q1wRxIG
                 </data>
             </tilelayer>
-            <tilelayer id="12" name="architecture" width="40" height="40" collidable="1">
+            <tilelayer id="12" name="architecture" width="40" height="40" tileWidth="16" tileHeight="16" collidable="1">
                 <data encoding="base64" compression="zlib">
                     eJzt17ENACEMBEE6wfTfJOkHFkJI8A5mwos2vdYA7hp/B3xkLfE6YiGSrb+OWKjUAgAAUI3/uy+SrdLnrNQCnJtqDgGB
                 </data>
@@ -434,7 +434,7 @@
         </tilelayers>
         <objectlayers>
             <objectlayer collidable="1">
-                <object name="elf_female" type="Player" x="32" y="32">
+                <object name="elf_female" type="Player" x="200" y="160">
                     <properties>
                         <property name="textureName" value="elf_female_idle"/>
                         <property name="callbackId" value="0"/>

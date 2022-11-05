@@ -9,6 +9,7 @@
 #include "GameOverState.h"
 #include "log.h"
 #include "SoundManager.h"
+#include "Camera.h"
 
 const std::string PlayState::playId = "PLAY";
 
@@ -18,7 +19,8 @@ bool PlayState::OnEnter()
 
     LevelParser levelParser;
     level = levelParser.ParseLevel(LevelParser::level);
-    SoundManager::Instance()->PlayMusic("bg1", 1);
+    Camera::Instance()->SetTarget(level->GetPlayer());
+    // SoundManager::Instance()->PlayMusic("bg1", 1);
 
     LOG_DBG("[PlayState][OnEnter] Entered the play state");
     return true;
@@ -55,6 +57,7 @@ void PlayState::Update()
     LOG_DBG("[PlayState][Update] Updating the play state");
 
     level->Update();
+    Camera::Instance()->Update();
 
     /*if (CheckCollision(dynamic_cast<SDLGameObject*>(gameObjects[0]),
         dynamic_cast<SDLGameObject*>(gameObjects[1]))) {

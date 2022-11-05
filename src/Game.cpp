@@ -13,7 +13,7 @@
 
 Game *Game::instance = nullptr;
 
-bool Game::Init(const char *title, int32_t xpos, int32_t ypos, uint32_t width_, uint32_t height_, bool isFullScreen)
+bool Game::Init(const char *title, int32_t xpos, int32_t ypos, uint32_t height_, uint32_t width_, bool isFullScreen)
 {
     LOG_DBG("[Game][Init] Initting the game");
 
@@ -28,7 +28,7 @@ bool Game::Init(const char *title, int32_t xpos, int32_t ypos, uint32_t width_, 
     // 初始化SDL系统，并创建窗口和渲染器
     if(SDL_Init(SDL_INIT_EVERYTHING) == 0) {
         LOG_DBG("[Game][Init] The SDL system is initialized successfully");
-        window = SDL_CreateWindow(title, xpos, ypos, height, width,
+        window = SDL_CreateWindow(title, xpos, ypos, width, height,
             isFullScreen ? SDL_WINDOW_FULLSCREEN : SDL_WINDOW_SHOWN);
         if(window != nullptr) {
             LOG_DBG("[Game][Init] The window is created successfully");

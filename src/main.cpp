@@ -9,14 +9,14 @@ const uint32_t DELAY_TIME = 1000.0f / FPS;
 const char* WINDOW_TITLE = "DungeonRush";
 const uint32_t WINDOW_X_POS = 100;
 const uint32_t WINDOW_Y_POS = 100;
-const uint32_t WINDOW_WIDTH = 640;
-const uint32_t WINDOW_HEIGHT = 640;
+const uint32_t WINDOW_HEIGHT = 320;
+const uint32_t WINDOW_WIDTH = 400;
 const int32_t OK = 0;
 const int32_t ERR = 1;
 
 int main(int argc, char **args)
 {
-    if (!Game::Instance()->Init(WINDOW_TITLE, WINDOW_X_POS, WINDOW_Y_POS, WINDOW_WIDTH, WINDOW_HEIGHT, false)) {
+    if (!Game::Instance()->Init(WINDOW_TITLE, WINDOW_X_POS, WINDOW_Y_POS, WINDOW_HEIGHT, WINDOW_WIDTH, false)) {
         return ERR;
     }
 
