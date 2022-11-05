@@ -4,31 +4,39 @@
 
 #include "Player.h"
 
-void CollisionManager::CheckPlayerTileCollision(Player* player, const std::vector<TileLayer*> &collisionLayers)
+bool CollisionManager::CheckPlayerTileCollision(Player* player, const std::vector<Layer*> &collisionLayers)
 {
-    // iterate through collision layers
-    for(std::vector<TileLayer*>::const_iterator it = collisionLayers.begin(); it != collisionLayers.end(); ++it)
+    for(std::vector<Layer*>::const_iterator it = collisionLayers.begin(); it != collisionLayers.end(); ++it)
     {
-        /*TileLayer* tileLayer = (*it);
-        std::vector<std::vector<uint32_t>> tiles = tileLayer->GetTileIds();
-        Vector2D layerPos = tileLayer->GetPosition();
-        int x, y, tileColumn, tileRow, tileid = 0;
-        // calculate position on tile map
-        x = layerPos.GetX() / tileLayer->GetTileSize();
-        y = layerPos.GetY() / tileLayer->GetTileSize();
-        // if moving forward or upwards
-        if(player->GetVelocity().GetX() >= 0 || player->GetVelocity().GetY() >= 0) {
-            tileColumn = ((player->GetPosition().GetX() + player->GetWidth()) / tileLayer->GetTileSize());
-            tileRow = ((player->GetPosition().GetY() + player->GetHeight()) / tileLayer->GetTileSize());
-            tileid = tiles[tileRow + y][tileColumn + x];
-        } else if(player->GetVelocity().GetX() < 0 || player->GetVelocity().GetY() < 0) {
-            tileColumn = player->GetPosition().GetX() / tileLayer->GetTileSize();
-            tileRow = player->GetPosition().GetY() / tileLayer->GetTileSize();
-            tileid = tiles[tileRow + y][tileColumn + x];
+        TileLayer* tileLayer;
+        if (dynamic_cast<TileLayer*>(*it)) {
+            tileLayer = dynamic_cast<TileLayer*>(*it);
+        } else {
+            continue;
         }
+        std::vector<std::vector<uint32_t>> tileIds = tileLayer->GetTileIds();
 
-        if(tileid != 0) {
-            player->Collision();
-        }*/
+        uint32_t xPosition = player->GetPosition().GetX() + player->GetWidth() / 4;
+        uint32_t yPosition = player->GetPosition().GetY() + player->GetHeight() / 4;
+        uint32_t tileWidth = tileLayer->GetTileWidth();
+        uint32_t tileHeight = tileLayer->GetTileHeight();
+        uint32_t tileColumn;
+        uint32_t tileRow;
+        if(player->GetVelocity().GetX() >= 0) {
+            tileColumn = (xPosition + player->GetWidth() / 2) / tileWidth;
+        } else {
+            tileColumn = xPosition / tileWidth;
+        }
+        if(player->GetVelocity().GetY() >= 0) {
+            tileRow = (yPosition + player->GetHeight() / 2) / tileHeight;
+        } else {
+            tileRow = yPosition / tileHeight;
+        }
+        uint32_t tileId = tileIds[tileRow][tileColumn];
+
+        if(tileId != 0) {
+            return true;
+        }
     }
+    return false;
 }

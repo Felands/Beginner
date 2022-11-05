@@ -7,6 +7,12 @@
 #include "Game.h"
 #include "SoundManager.h"
 #include "Camera.h"
+#include "CollisionManager.h"
+
+bool Player::CheckCollision()
+{
+    return CollisionManager::CheckPlayerTileCollision(this, *collisionLayers);
+}
 
 void Player::HandleInput()
 {
@@ -17,23 +23,31 @@ void Player::HandleInput()
     bool aDown = InputHandler::Instance()->IsKeyDown(SDL_SCANCODE_A);
     bool dDown = InputHandler::Instance()->IsKeyDown(SDL_SCANCODE_D);
     if (wDown) {
-        position += Vector2D(0, -1);
+        velocity.SetY(-1);
         state = PlayerState::RUN;
     }
     if (sDown) {
-        position += Vector2D(0, 1);
+        velocity.SetY(1);
         state = PlayerState::RUN;
     }
+    position.SetY(position.GetY() + velocity.GetY());
+    if (CheckCollision()) {
+        position.SetY(position.GetY() - velocity.GetY());
+    }
     if (aDown) {
-        position += Vector2D(-1, 0);
+        velocity.SetX(-1);
         state = PlayerState::RUN;
     }
     if (dDown) {
-        position += Vector2D(1, 0);
+        velocity.SetX(1);
         state = PlayerState::RUN;
     }
     if (!(wDown || sDown || aDown || dDown)) {
         state = PlayerState::IDLE;
+    }
+    position.SetX(position.GetX() + velocity.GetX());
+    if (CheckCollision()) {
+        position.SetX(position.GetX() - velocity.GetX());
     }
 
     if (InputHandler::Instance()->IsKeyDown(SDL_SCANCODE_J)) {
@@ -50,7 +64,7 @@ void Player::Update()
     LOG_DBG("[Player][Update] Updating the player");
 
     // if the level is complete then fly off the screen
-    if (Game::Instance()->GetLevelComplete()) {
+    /* if (Game::Instance()->GetLevelComplete()) {
         if (position.GetX() >= Game::Instance()->GetGameScreenWidth()) {
             Game::Instance()->SetCurrentLevel(Game::Instance()->GetCurrentLevel() + 1);
         } else {
@@ -60,24 +74,24 @@ void Player::Update()
             HandleAnimation();
         }
     } else {
-        if (!dying) {
-            velocity.SetX(0);
-            velocity.SetY(0);
+        if (!dying) { */
+    velocity.SetX(0);
+    velocity.SetY(0);
 
-            HandleInput();
-            SDLGameObject::Update();
-            HandleAnimation();
+    HandleInput();
+    SDLGameObject::Update();
+    HandleAnimation();
 
-            if (state == PlayerState::HIT) {
-                SoundManager::Instance()->PlaySound("arrow_hit", 1);
-            }
-        } else {
+    if (state == PlayerState::HIT) {
+        SoundManager::Instance()->PlaySound("arrow_hit", 1);
+    }
+        /* } else {
             if (dyingCounter == dyingTime) {
                 Ressurect();
             }
             dyingCounter++;
         }
-    }
+    } */
 
     LOG_DBG("[Player][Update] Updated the player");
 }

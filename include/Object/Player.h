@@ -3,6 +3,7 @@
 
 #include "SDLGameObject.h"
 #include "GameObjectFactory.h"
+#include "Resource.h"
 
 enum class PlayerState
 {
@@ -40,9 +41,25 @@ public:
         return std::string("Player");
     }
 
+    bool CheckCollision();
+
     PlayerState GetState()
     {
         return state;
+    }
+
+    uint32_t GetWidth()
+    {
+        std::string textureName = GetTextureName();
+        TextureInfo textureInfo = TextureManager::Instance()->GetTxetureInfo(textureName);
+        return textureInfo.width;
+    }
+
+    uint32_t GetHeight()
+    {
+        std::string textureName = GetTextureName();
+        TextureInfo textureInfo = TextureManager::Instance()->GetTxetureInfo(textureName);
+        return textureInfo.height;
     }
 
 private:

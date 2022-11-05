@@ -17,8 +17,6 @@ void SDLGameObject::Update()
 {
     LOG_DBG("[SDLGameObject][Update] Updating the SDL game object");
 
-    position += velocity;
-
     LOG_DBG("[SDLGameObject][Update] Updating the SDL game object");
 }
 

@@ -12,7 +12,7 @@ public:
     void CheckPlayerEnemyBulletCollision(Player* player);
     void CheckPlayerEnemyCollision(Player* player, const std::vector<GameObject*> &objects);
     void CheckEnemyPlayerBulletCollision(const std::vector<GameObject*> &objects);
-    void CheckPlayerTileCollision(Player* player, const std::vector<TileLayer*> &collisionLayers);
+    static bool CheckPlayerTileCollision(Player* player, const std::vector<Layer*> &collisionLayers);
 };
 
 #endif

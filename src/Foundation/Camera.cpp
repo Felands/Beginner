@@ -14,7 +14,8 @@ void Camera::Update()
     if (target == nullptr) {
         return;
     }
-
+    velocity.SetX(0);
+    velocity.SetY(0);
     int32_t distanceX = target->GetPosition().GetX() - position.GetX() - Game::Instance()->GetGameScreenWidth() / 2;
     int32_t distanceY = target->GetPosition().GetY() - position.GetY() - Game::Instance()->GetGameScreenHeight() / 2;
     Vector2D velocity(distanceX / 10, distanceY / 10);

@@ -39,6 +39,16 @@ public:
         this->tileHeight = tileHeight;
     }
 
+    uint32_t GetTileWidth()
+    {
+        return tileWidth;
+    }
+
+    uint32_t GetTileHeight()
+    {
+        return tileHeight;
+    }
+
 private:
     uint32_t tileWidth;
     uint32_t tileHeight;

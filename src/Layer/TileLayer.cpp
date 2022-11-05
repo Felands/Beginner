@@ -33,7 +33,8 @@ void TileLayer::Render()
     }
     int32_t startX = startJ * tileWidth - position.GetX();
     int32_t startY = startI * tileHeight - position.GetY();
-    if (endI > 39) {LOG_ERR("i=");}
+    /* LOG_ERR("position.x", position.GetX(), "position.y", position.GetY(), "startX", startX,
+        "startY", startY); */
     for(size_t i = startI; i <= endI; i++) {
         for(size_t j = startJ; j <= endJ; j++) {
             size_t id = tileIds[i][j];
