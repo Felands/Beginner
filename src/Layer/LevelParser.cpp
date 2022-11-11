@@ -9,7 +9,6 @@
 #include "zlib.h"
 #include "GameObjectFactory.h"
 #include "log.h"
-#include "SoundManager.h"
 
 const char *LevelParser::level = "./assets/map.xml";
 
@@ -88,7 +87,7 @@ void LevelParser::ParseTilesets(TiXmlElement *tilesetsRoot, std::vector<Tileset>
                     e->Attribute("value", (int*)&numRows);
                 }
             }
-            TextureManager::Instance()->Load(source, name, width, height, numColumns, numRows,
+            Resource::Instance()->LoadOneTexture(source, name, width, height, numColumns, numRows,
                 Game::Instance()->GetRenderer());
         }
         tilesets->push_back(tileset);
@@ -258,7 +257,7 @@ void LevelParser::ParseMusic(TiXmlElement* musicRoot)
             source = e->Attribute("value");
         }
     }
-    SoundManager::Instance()->Load(source, musicRoot->Attribute("name"), SoundType::SOUND_MUSIC);
+    Resource::Instance()->LoadOneSound(source, musicRoot->Attribute("name"), SoundType::SOUND_MUSIC);
 
     LOG_DBG("[LevelParse][ParseMusic] Parsed the music ", musicRoot->Attribute("name"));
 }
@@ -273,7 +272,7 @@ void LevelParser::ParseSfx(TiXmlElement* sfxRoot)
             source = e->Attribute("value");
         }
     }
-    SoundManager::Instance()->Load(source, sfxRoot->Attribute("name"), SoundType::SOUND_SFX);
+    Resource::Instance()->LoadOneSound(source, sfxRoot->Attribute("name"), SoundType::SOUND_SFX);
 
     LOG_DBG("[LevelParse][ParseSfx] Parsed the sfx ", sfxRoot->Attribute("name"));
 }

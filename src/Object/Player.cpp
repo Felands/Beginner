@@ -5,7 +5,6 @@
 #include "log.h"
 #include "Resource.h"
 #include "Game.h"
-#include "SoundManager.h"
 #include "Camera.h"
 #include "CollisionManager.h"
 
@@ -83,7 +82,7 @@ void Player::Update()
     HandleAnimation();
 
     if (state == PlayerState::HIT) {
-        SoundManager::Instance()->PlaySound("arrow_hit", 1);
+        Resource::Instance()->Play("arrow_hit", 1);
     }
         /* } else {
             if (dyingCounter == dyingTime) {
@@ -113,7 +112,7 @@ void Player::Draw()
     uint32_t currentColumns = ticks / (1000 / GetAnimeSpeed());
 
     Vector2D cameraPosition = Camera::Instance()->GetPosition();
-    TextureManager::Instance()->Draw(GetTextureName(), position.GetX() - cameraPosition.GetX(),
+    Resource::Instance()->Draw(GetTextureName(), position.GetX() - cameraPosition.GetX(),
         position.GetY() - cameraPosition.GetY(), currentColumns, 0, Game::Instance()->GetRenderer(), flip, alpha);
 
     LOG_DBG("[Player][Draw] Drew the player");

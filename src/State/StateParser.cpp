@@ -76,7 +76,7 @@ void StateParser::ParseTextures(TiXmlElement *textureRoot, std::vector<std::stri
             }
         }
 
-        TextureManager::Instance()->Load(source, name, width, height, numColumns, numRows,
+        Resource::Instance()->LoadOneTexture(source, name, width, height, numColumns, numRows,
             Game::Instance()->GetRenderer());
     }
 

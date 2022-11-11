@@ -5,6 +5,18 @@
 #include <unordered_map>
 
 #include "SDL.h"
+#include "SDL_mixer.h"
+
+enum class SoundType
+{
+    SOUND_MUSIC,
+    SOUND_SFX
+};
+
+struct SoundInfo {
+    SoundType type;
+    void* mixTrunk;
+};
 
 struct TextureInfo
 {
@@ -15,41 +27,56 @@ struct TextureInfo
     SDL_Texture *texture;
 };
 
-class TextureManager
+struct ResourceMap {
+    std::unordered_map<std::string, TextureInfo> textureMap;
+    std::unordered_map<std::string, SoundInfo> soundMap;
+};
+
+class Resource
 {
 public:
-    static TextureManager *Instance()
+    static Resource* Instance()
     {
         if (instance == nullptr) {
-            instance = new TextureManager();
+            instance = new Resource();
         }
         return instance;
     }
 
     TextureInfo GetTxetureInfo(std::string name)
     {
-        return textureMap[name];
+        return resourceMap.textureMap[name];
     }
 
-    bool Load(std::string fileName, std::string name, uint32_t width, uint32_t height, uint32_t numColumns,
+    bool LoadOneSound(std::string source, std::string name, SoundType type);
+    
+    bool LoadOneTexture(std::string fileName, std::string name, uint32_t width, uint32_t height, uint32_t numColumns,
         uint32_t numRows, SDL_Renderer *renderer);
 
     void Draw(std::string name, int32_t xPos, int32_t yPos, uint32_t currentFrame, uint32_t currentRow,
         SDL_Renderer *renderer, SDL_RendererFlip flip, uint32_t alpha);
 
-    void ClearFromTextureMap(std::string name);
+    void Play(std::string name, uint32_t loop);
+
+    void ClearOneSound(std::string name);
+
+    void ClearOneTexture(std::string name);
 
     void Clean();
 
 private:
-    TextureManager()
-    {}
+    Resource()
+    {
+        Mix_OpenAudio(22050, AUDIO_S16, 2, 4096);
+    }
 
-    ~TextureManager()
-    {}
+    ~Resource()
+    {
+        Mix_CloseAudio();
+    }
 
-    static TextureManager *instance;
-    std::unordered_map<std::string, TextureInfo> textureMap;
+    static Resource* instance;
+    ResourceMap resourceMap;
 };
 
 #endif

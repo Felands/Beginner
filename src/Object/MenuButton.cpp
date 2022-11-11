@@ -7,7 +7,7 @@
 
 void MenuButton::Update()
 {
-    TextureInfo textureInfo = TextureManager::Instance()->GetTxetureInfo(GetTextureName());
+    TextureInfo textureInfo = Resource::Instance()->GetTxetureInfo(GetTextureName());
     uint32_t width = textureInfo.width;
     uint32_t height = textureInfo.height;
     Vector2D mousePos = InputHandler::Instance()->GetMousePosition();
@@ -39,7 +39,7 @@ void MenuButton::Draw()
 
     SDLGameObject::Draw();
 
-    TextureManager::Instance()->Draw(GetTextureName(), position.GetX(), position.GetY(),
+    Resource::Instance()->Draw(GetTextureName(), position.GetX(), position.GetY(),
         0, 0, Game::Instance()->GetRenderer(), SDL_FLIP_NONE, 255);
 
     LOG_DBG("[MenuButton][Draw] Drew the menu button");

@@ -51,14 +51,14 @@ public:
     uint32_t GetWidth()
     {
         std::string textureName = GetTextureName();
-        TextureInfo textureInfo = TextureManager::Instance()->GetTxetureInfo(textureName);
+        TextureInfo textureInfo = Resource::Instance()->GetTxetureInfo(textureName);
         return textureInfo.width;
     }
 
     uint32_t GetHeight()
     {
         std::string textureName = GetTextureName();
-        TextureInfo textureInfo = TextureManager::Instance()->GetTxetureInfo(textureName);
+        TextureInfo textureInfo = Resource::Instance()->GetTxetureInfo(textureName);
         return textureInfo.height;
     }
 

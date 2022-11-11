@@ -457,12 +457,21 @@
     <sounds>
         <musics>
             <music name="bg1">
-                <source value="./assets/audio/bg1.ogg"/>
+                <source value="./assets/audio/music/bg1.ogg"/>
+            </music>
+            <music name="bg2">
+                <source value="./assets/audio/music/bg2.ogg"/>
+            </music>
+            <music name="bg3">
+                <source value="./assets/audio/music/bg3.ogg"/>
+            </music>
+            <music name="main_title">
+                <source value="./assets/audio/music/main_title.ogg"/>
             </music>
         </musics>
         <sfxs>
             <sfx name="arrow_hit">
-                <source value="./assets/audio/arrow_hit.wav"/>
+                <source value="./assets/audio/sfx/arrow_hit.wav"/>
             </sfx>
         </sfxs>
     </sounds>

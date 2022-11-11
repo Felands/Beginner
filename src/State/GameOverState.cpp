@@ -59,7 +59,7 @@ bool GameOverState::OnExit()
     }
 
     for(int i = 0; i < textureIdList.size(); i++) {
-        TextureManager::Instance()->ClearFromTextureMap(textureIdList[i]);
+        Resource::Instance()->ClearOneTexture(textureIdList[i]);
     }
 
     std::cout << "Exiting PauseState\n";

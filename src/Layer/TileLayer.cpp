@@ -43,7 +43,7 @@ void TileLayer::Render()
             }
             Tileset tileset = GetTilesetById(id);
             id -= tileset.firstGridId;
-            TextureManager::Instance()->Draw(tileset.tileNames[id], startX + (j - startJ) * tileWidth,
+            Resource::Instance()->Draw(tileset.tileNames[id], startX + (j - startJ) * tileWidth,
                 startY + (i - startI) * tileHeight, 0, 0, Game::Instance()->GetRenderer(), SDL_FLIP_NONE, 255);
         }
     }

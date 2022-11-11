@@ -8,7 +8,6 @@
 #include "PauseState.h"
 #include "GameOverState.h"
 #include "log.h"
-#include "SoundManager.h"
 #include "Camera.h"
 
 const std::string PlayState::playId = "PLAY";
@@ -20,7 +19,6 @@ bool PlayState::OnEnter()
     LevelParser levelParser;
     level = levelParser.ParseLevel(LevelParser::level);
     Camera::Instance()->SetTarget(level->GetPlayer());
-    // SoundManager::Instance()->PlayMusic("bg1", 1);
 
     LOG_DBG("[PlayState][OnEnter] Entered the play state");
     return true;
@@ -33,7 +31,7 @@ bool PlayState::OnExit()
     InputHandler::Instance()->Reset();
 
     for(int i = 0; i < textureIdList.size(); i++) {
-        TextureManager::Instance()->ClearFromTextureMap(textureIdList[i]);
+        Resource::Instance()->ClearOneTexture(textureIdList[i]);
     }
 
     level->Clean();

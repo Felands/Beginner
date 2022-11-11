@@ -1,7 +1,7 @@
 CC = g++
 
 OBJECT = ./bin/main.o ./bin/Game.o \
-         ./bin/Resource.o ./bin/SoundManager.o ./bin/InputHandler.o ./bin/base64.o ./bin/BulletHandler.o \
+         ./bin/Resource.o ./bin/InputHandler.o ./bin/base64.o ./bin/BulletHandler.o \
 		 ./bin/CollisionManager.o ./bin/Camera.o \
 		 ./bin/Level.o ./bin/LevelParser.o ./bin/ObjectLayer.o ./bin/TileLayer.o \
 		 ./bin/AnimatedGraphic.o ./bin/Enemy.o ./bin/Player.o ./bin/GameObjectFactory.o \
@@ -22,7 +22,7 @@ INCLUDE = -I ./include/ -I ./include/SDL2/ -I ./include/Foundation/ -I ./include
 
 HEADFILE = ./include/Game.h \
            ./include/Foundation/InputHandler.h ./include/Foundation/Resource.h ./include/Foundation/Vector2D.h \
-		   ./include/Foundation/log.h ./include/Foundation/SoundManager.h ./include/Foundation/BulletHandler.h \
+		   ./include/Foundation/log.h ./include/Foundation/BulletHandler.h \
 		   ./include/Foundation/CollisionManager.h ./include/Foundation/Collision.h ./include/Foundation/Camera.h \
 		   ./include/Object/GameObjectFactory.h ./include/Object/GameObject.h ./include/Object/SDLGameObject.h \
 		   ./include/Object/MenuButton.h ./include/Object/Player.h ./include/Object/Enemy.h \
@@ -53,9 +53,6 @@ beginner : $(OBJECT)
 
 ./bin/base64.o : $(HEADFILE) ./src/Foundation/base64.cpp
 	$(CC) $(INCLUDE) -o ./bin/base64.o -c ./src/Foundation/base64.cpp
-
-./bin/SoundManager.o : $(HEADFILE) ./src/Foundation/SoundManager.cpp
-	$(CC) $(INCLUDE) -o ./bin/SoundManager.o -c ./src/Foundation/SoundManager.cpp
 
 ./bin/BulletHandler.o : $(HEADFILE) ./src/Foundation/BulletHandler.cpp
 	$(CC) $(INCLUDE) -o ./bin/BulletHandler.o -c ./src/Foundation/BulletHandler.cpp

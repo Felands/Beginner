@@ -45,6 +45,8 @@ bool MainMenuState::OnEnter()
     callbacks.push_back(ExitFromMenu);
     SetCallbacks(callbacks);
 
+    Resource::Instance()->Play("main_title", 1);
+
     LOG_DBG("[MainMenuState][OnEnter] Entered the main menu state");
     return true;
 }
@@ -61,8 +63,10 @@ bool MainMenuState::OnExit()
     }
 
     for(int i = 0; i < textureIdList.size(); i++) {
-        TextureManager::Instance()->ClearFromTextureMap(textureIdList[i]);
+        Resource::Instance()->ClearOneTexture(textureIdList[i]);
     }
+
+    //Mix_FadeOutMusic(800);
 
     LOG_DBG("[MainMenuState][OnExit] Exited the main menu state");
     return true;

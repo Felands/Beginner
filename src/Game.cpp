@@ -103,7 +103,7 @@ void Game::Clean()
     LOG_DBG("[Game][Clean] Cleaning the game");
 
     gameStateMachine->Clean();
-    TextureManager::Instance()->Clean();
+    Resource::Instance()->Clean();
     InputHandler::Instance()->Clean();
     SDL_DestroyWindow(window);
     SDL_DestroyRenderer(renderer);
