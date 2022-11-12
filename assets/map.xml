@@ -1,419 +1,442 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <level version="1.0" orientation="orthogonal" width="640" height="640">
-    <tilesets>
-        <tileset name="map_floor" firstgid="1">
+    <materials>
+        <tilesets>
+            <tileset name="map_floor" firstgid="1">
+                    <tile id="0">
+                        <name value="floor_1"/>
+                        <source value="./assets/drawable/map/floor/floor_1.png"/>
+                        <width value="16"/>
+                        <height value="16"/>
+                        <numColumns value="1"/>
+                        <numRows value="1"/>
+                    </tile>
+                    <tile id="1">
+                        <name value="floor_2"/>
+                        <source value="./assets/drawable/map/floor/floor_2.png"/>
+                        <width value="16"/>
+                        <height value="16"/>
+                        <numColumns value="1"/>
+                        <numRows value="1"/>
+                    </tile>
+                    <tile id="2">
+                        <name value="floor_3"/>
+                        <source value="./assets/drawable/map/floor/floor_3.png"/>
+                        <width value="16"/>
+                        <height value="16"/>
+                        <numColumns value="1"/>
+                        <numRows value="1"/>
+                    </tile>
+                    <tile id="3">
+                        <name value="floor_4"/>
+                        <source value="./assets/drawable/map/floor/floor_4.png"/>
+                        <width value="16"/>
+                        <height value="16"/>
+                        <numColumns value="1"/>
+                        <numRows value="1"/>
+                    </tile>
+                    <tile id="4">
+                        <name value="floor_5"/>
+                        <source value="./assets/drawable/map/floor/floor_5.png"/>
+                        <width value="16"/>
+                        <height value="16"/>
+                        <numColumns value="1"/>
+                        <numRows value="1"/>
+                    </tile>
+                    <tile id="5">
+                        <name value="floor_6"/>
+                        <source value="./assets/drawable/map/floor/floor_6.png"/>
+                        <width value="16"/>
+                        <height value="16"/>
+                        <numColumns value="1"/>
+                        <numRows value="1"/>
+                    </tile>
+                    <tile id="6">
+                        <name value="floor_7"/>
+                        <source value="./assets/drawable/map/floor/floor_7.png"/>
+                        <width value="16"/>
+                        <height value="16"/>
+                        <numColumns value="1"/>
+                        <numRows value="1"/>
+                    </tile>
+                    <tile id="7">
+                        <name value="floor_8"/>
+                        <source value="./assets/drawable/map/floor/floor_8.png"/>
+                        <width value="16"/>
+                        <height value="16"/>
+                        <numColumns value="1"/>
+                        <numRows value="1"/>
+                    </tile>
+                    <tile id="8">
+                        <name value="floor_exit"/>
+                        <source value="./assets/drawable/map/floor/floor_exit.png"/>
+                        <width value="16"/>
+                        <height value="16"/>
+                        <numColumns value="1"/>
+                        <numRows value="1"/>
+                    </tile>
+                    <tile id="9">
+                        <name value="floor_ladder"/>
+                        <source value="./assets/drawable/map/floor/floor_ladder.png"/>
+                        <width value="16"/>
+                        <height value="16"/>
+                        <numColumns value="1"/>
+                        <numRows value="1"/>
+                    </tile>
+            </tileset>
+            <tileset name="map_wall_main" firstgid="11">
                 <tile id="0">
-                    <name value="floor_1"/>
-                    <source value="./assets/drawable/map/floor/floor_1.png"/>
+                    <name value="wall_top_left"/>
+                    <source value="./assets/drawable/map/wall/main/wall_top_left.png"/>
                     <width value="16"/>
                     <height value="16"/>
                     <numColumns value="1"/>
                     <numRows value="1"/>
                 </tile>
                 <tile id="1">
-                    <name value="floor_2"/>
-                    <source value="./assets/drawable/map/floor/floor_2.png"/>
+                    <name value="wall_top_mid"/>
+                    <source value="./assets/drawable/map/wall/main/wall_top_mid.png"/>
                     <width value="16"/>
                     <height value="16"/>
                     <numColumns value="1"/>
                     <numRows value="1"/>
                 </tile>
                 <tile id="2">
-                    <name value="floor_3"/>
-                    <source value="./assets/drawable/map/floor/floor_3.png"/>
+                    <name value="wall_top_right"/>
+                    <source value="./assets/drawable/map/wall/main/wall_top_right.png"/>
                     <width value="16"/>
                     <height value="16"/>
                     <numColumns value="1"/>
                     <numRows value="1"/>
                 </tile>
                 <tile id="3">
-                    <name value="floor_4"/>
-                    <source value="./assets/drawable/map/floor/floor_4.png"/>
+                    <name value="wall_left"/>
+                    <source value="./assets/drawable/map/wall/main/wall_left.png"/>
                     <width value="16"/>
                     <height value="16"/>
                     <numColumns value="1"/>
                     <numRows value="1"/>
                 </tile>
                 <tile id="4">
-                    <name value="floor_5"/>
-                    <source value="./assets/drawable/map/floor/floor_5.png"/>
+                    <name value="wall_mid"/>
+                    <source value="./assets/drawable/map/wall/main/wall_mid.png"/>
                     <width value="16"/>
                     <height value="16"/>
                     <numColumns value="1"/>
                     <numRows value="1"/>
                 </tile>
                 <tile id="5">
-                    <name value="floor_6"/>
-                    <source value="./assets/drawable/map/floor/floor_6.png"/>
+                    <name value="wall_right"/>
+                    <source value="./assets/drawable/map/wall/main/wall_right.png"/>
+                    <width value="16"/>
+                    <height value="16"/>
+                    <numColumns value="1"/>
+                    <numRows value="1"/>
+                </tile>
+            </tileset>
+            <tileset name="map_wall_corner" firstgid="17">
+                <tile id="0">
+                    <name value="wall_corner_top_left"/>
+                    <source value="./assets/drawable/map/wall/corner/wall_corner_top_left.png"/>
+                    <width value="16"/>
+                    <height value="16"/>
+                    <numColumns value="1"/>
+                    <numRows value="1"/>
+                </tile>
+                <tile id="1">
+                    <name value="wall_corner_top_right"/>
+                    <source value="./assets/drawable/map/wall/corner/wall_corner_top_right.png"/>
+                    <width value="16"/>
+                    <height value="16"/>
+                    <numColumns value="1"/>
+                    <numRows value="1"/>
+                </tile>
+                <tile id="2">
+                    <name value="wall_corner_left"/>
+                    <source value="./assets/drawable/map/wall/corner/wall_corner_left.png"/>
+                    <width value="16"/>
+                    <height value="16"/>
+                    <numColumns value="1"/>
+                    <numRows value="1"/>
+                </tile>
+                <tile id="3">
+                    <name value="wall_corner_right"/>
+                    <source value="./assets/drawable/map/wall/corner/wall_corner_right.png"/>
+                    <width value="16"/>
+                    <height value="16"/>
+                    <numColumns value="1"/>
+                    <numRows value="1"/>
+                </tile>
+                <tile id="4">
+                    <name value="wall_corner_bottom_left"/>
+                    <source value="./assets/drawable/map/wall/corner/wall_corner_bottom_left.png"/>
+                    <width value="16"/>
+                    <height value="16"/>
+                    <numColumns value="1"/>
+                    <numRows value="1"/>
+                </tile>
+                <tile id="5">
+                    <name value="wall_corner_bottom_right"/>
+                    <source value="./assets/drawable/map/wall/corner/wall_corner_bottom_right.png"/>
                     <width value="16"/>
                     <height value="16"/>
                     <numColumns value="1"/>
                     <numRows value="1"/>
                 </tile>
                 <tile id="6">
-                    <name value="floor_7"/>
-                    <source value="./assets/drawable/map/floor/floor_7.png"/>
+                    <name value="wall_corner_front_left"/>
+                    <source value="./assets/drawable/map/wall/corner/wall_corner_front_left.png"/>
                     <width value="16"/>
                     <height value="16"/>
                     <numColumns value="1"/>
                     <numRows value="1"/>
                 </tile>
                 <tile id="7">
-                    <name value="floor_8"/>
-                    <source value="./assets/drawable/map/floor/floor_8.png"/>
+                    <name value="wall_corner_front_right"/>
+                    <source value="./assets/drawable/map/wall/corner/wall_corner_front_right.png"/>
                     <width value="16"/>
                     <height value="16"/>
                     <numColumns value="1"/>
                     <numRows value="1"/>
                 </tile>
-                <tile id="8">
-                    <name value="floor_exit"/>
-                    <source value="./assets/drawable/map/floor/floor_exit.png"/>
+            </tileset>
+            <tileset name="map_wall_side" firstgid="25">
+                <tile id="0">
+                    <name value="wall_side_top_left"/>
+                    <source value="./assets/drawable/map/wall/side/wall_side_top_left.png"/>
                     <width value="16"/>
                     <height value="16"/>
                     <numColumns value="1"/>
                     <numRows value="1"/>
                 </tile>
-                <tile id="9">
-                    <name value="floor_ladder"/>
-                    <source value="./assets/drawable/map/floor/floor_ladder.png"/>
+                <tile id="1">
+                    <name value="wall_side_top_right"/>
+                    <source value="./assets/drawable/map/wall/side/wall_side_top_right.png"/>
                     <width value="16"/>
                     <height value="16"/>
                     <numColumns value="1"/>
                     <numRows value="1"/>
                 </tile>
-        </tileset>
-        <tileset name="map_wall_main" firstgid="11">
-            <tile id="0">
-                <name value="wall_top_left"/>
-                <source value="./assets/drawable/map/wall/main/wall_top_left.png"/>
-                <width value="16"/>
-                <height value="16"/>
-                <numColumns value="1"/>
-                <numRows value="1"/>
-            </tile>
-            <tile id="1">
-                <name value="wall_top_mid"/>
-                <source value="./assets/drawable/map/wall/main/wall_top_mid.png"/>
-                <width value="16"/>
-                <height value="16"/>
-                <numColumns value="1"/>
-                <numRows value="1"/>
-            </tile>
-            <tile id="2">
-                <name value="wall_top_right"/>
-                <source value="./assets/drawable/map/wall/main/wall_top_right.png"/>
-                <width value="16"/>
-                <height value="16"/>
-                <numColumns value="1"/>
-                <numRows value="1"/>
-            </tile>
-            <tile id="3">
-                <name value="wall_left"/>
-                <source value="./assets/drawable/map/wall/main/wall_left.png"/>
-                <width value="16"/>
-                <height value="16"/>
-                <numColumns value="1"/>
-                <numRows value="1"/>
-            </tile>
-            <tile id="4">
-                <name value="wall_mid"/>
-                <source value="./assets/drawable/map/wall/main/wall_mid.png"/>
-                <width value="16"/>
-                <height value="16"/>
-                <numColumns value="1"/>
-                <numRows value="1"/>
-            </tile>
-            <tile id="5">
-                <name value="wall_right"/>
-                <source value="./assets/drawable/map/wall/main/wall_right.png"/>
-                <width value="16"/>
-                <height value="16"/>
-                <numColumns value="1"/>
-                <numRows value="1"/>
-            </tile>
-        </tileset>
-        <tileset name="map_wall_corner" firstgid="17">
-            <tile id="0">
-                <name value="wall_corner_top_left"/>
-                <source value="./assets/drawable/map/wall/corner/wall_corner_top_left.png"/>
-                <width value="16"/>
-                <height value="16"/>
-                <numColumns value="1"/>
-                <numRows value="1"/>
-            </tile>
-            <tile id="1">
-                <name value="wall_corner_top_right"/>
-                <source value="./assets/drawable/map/wall/corner/wall_corner_top_right.png"/>
-                <width value="16"/>
-                <height value="16"/>
-                <numColumns value="1"/>
-                <numRows value="1"/>
-            </tile>
-            <tile id="2">
-                <name value="wall_corner_left"/>
-                <source value="./assets/drawable/map/wall/corner/wall_corner_left.png"/>
-                <width value="16"/>
-                <height value="16"/>
-                <numColumns value="1"/>
-                <numRows value="1"/>
-            </tile>
-            <tile id="3">
-                <name value="wall_corner_right"/>
-                <source value="./assets/drawable/map/wall/corner/wall_corner_right.png"/>
-                <width value="16"/>
-                <height value="16"/>
-                <numColumns value="1"/>
-                <numRows value="1"/>
-            </tile>
-            <tile id="4">
-                <name value="wall_corner_bottom_left"/>
-                <source value="./assets/drawable/map/wall/corner/wall_corner_bottom_left.png"/>
-                <width value="16"/>
-                <height value="16"/>
-                <numColumns value="1"/>
-                <numRows value="1"/>
-            </tile>
-            <tile id="5">
-                <name value="wall_corner_bottom_right"/>
-                <source value="./assets/drawable/map/wall/corner/wall_corner_bottom_right.png"/>
-                <width value="16"/>
-                <height value="16"/>
-                <numColumns value="1"/>
-                <numRows value="1"/>
-            </tile>
-            <tile id="6">
-                <name value="wall_corner_front_left"/>
-                <source value="./assets/drawable/map/wall/corner/wall_corner_front_left.png"/>
-                <width value="16"/>
-                <height value="16"/>
-                <numColumns value="1"/>
-                <numRows value="1"/>
-            </tile>
-            <tile id="7">
-                <name value="wall_corner_front_right"/>
-                <source value="./assets/drawable/map/wall/corner/wall_corner_front_right.png"/>
-                <width value="16"/>
-                <height value="16"/>
-                <numColumns value="1"/>
-                <numRows value="1"/>
-            </tile>
-        </tileset>
-        <tileset name="map_wall_side" firstgid="25">
-            <tile id="0">
-                <name value="wall_side_top_left"/>
-                <source value="./assets/drawable/map/wall/side/wall_side_top_left.png"/>
-                <width value="16"/>
-                <height value="16"/>
-                <numColumns value="1"/>
-                <numRows value="1"/>
-            </tile>
-            <tile id="1">
-                <name value="wall_side_top_right"/>
-                <source value="./assets/drawable/map/wall/side/wall_side_top_right.png"/>
-                <width value="16"/>
-                <height value="16"/>
-                <numColumns value="1"/>
-                <numRows value="1"/>
-            </tile>
-            <tile id="2">
-                <name value="wall_side_mid_left"/>
-                <source value="./assets/drawable/map/wall/side/wall_side_mid_left.png"/>
-                <width value="16"/>
-                <height value="16"/>
-                <numColumns value="1"/>
-                <numRows value="1"/>
-            </tile>
-            <tile id="3">
-                <name value="wall_side_mid_right"/>
-                <source value="./assets/drawable/map/wall/side/wall_side_mid_right.png"/>
-                <width value="16"/>
-                <height value="16"/>
-                <numColumns value="1"/>
-                <numRows value="1"/>
-            </tile>
-            <tile id="4">
-                <name value="wall_side_front_left"/>
-                <source value="./assets/drawable/map/wall/side/wall_side_front_left.png"/>
-                <width value="16"/>
-                <height value="16"/>
-                <numColumns value="1"/>
-                <numRows value="1"/>
-            </tile>
-            <tile id="5">
-                <name value="wall_side_front_right"/>
-                <source value="./assets/drawable/map/wall/side/wall_side_front_right.png"/>
-                <width value="16"/>
-                <height value="16"/>
-                <numColumns value="1"/>
-                <numRows value="1"/>
-            </tile>
-        </tileset>
-        <tileset name="map_column" firstgid="31">
-            <tile id="0">
-                <name value="column_base"/>
-                <source value="./assets/drawable/map/column/column_base.png"/>
-                <width value="16"/>
-                <height value="16"/>
-                <numColumns value="1"/>
-                <numRows value="1"/>
-            </tile>
-            <tile id="1">
-                <name value="column_mid"/>
-                <source value="./assets/drawable/map/column/column_mid.png"/>
-                <width value="16"/>
-                <height value="16"/>
-                <numColumns value="1"/>
-                <numRows value="1"/>
-            </tile>
-            <tile id="2">
-                <name value="column_top"/>
-                <source value="./assets/drawable/map/column/column_top.png"/>
-                <width value="16"/>
-                <height value="16"/>
-                <numColumns value="1"/>
-                <numRows value="1"/>
-            </tile>
-        </tileset>
-        <tileset name="map_door" firstgid="34">
-            <tile id="0">
-                <name value="doors_all"/>
-                <source value="./assets/drawable/map/door/doors_all.png"/>
-                <width value="16"/>
-                <height value="16"/>
-                <numColumns value="1"/>
-                <numRows value="1"/>
-            </tile>
-            <tile id="1">
-                <name value="doors_frame_left"/>
-                <source value="./assets/drawable/map/door/doors_frame_left.png"/>
-                <width value="16"/>
-                <height value="16"/>
-                <numColumns value="1"/>
-                <numRows value="1"/>
-            </tile>
-            <tile id="2">
-                <name value="doors_frame_righ"/>
-                <source value="./assets/drawable/map/door/doors_frame_righ.png"/>
-                <width value="16"/>
-                <height value="16"/>
-                <numColumns value="1"/>
-                <numRows value="1"/>
-            </tile>
-            <tile id="3">
-                <name value="doors_frame_top"/>
-                <source value="./assets/drawable/map/door/doors_frame_top.png"/>
-                <width value="16"/>
-                <height value="16"/>
-                <numColumns value="1"/>
-                <numRows value="1"/>
-            </tile>
-            <tile id="4">
-                <name value="doors_leaf_closed"/>
-                <source value="./assets/drawable/map/door/doors_leaf_closed.png"/>
-                <width value="16"/>
-                <height value="16"/>
-                <numColumns value="1"/>
-                <numRows value="1"/>
-            </tile>
-            <tile id="5">
-                <name value="doors_leaf_open"/>
-                <source value="./assets/drawable/map/door/doors_leaf_open.png"/>
-                <width value="16"/>
-                <height value="16"/>
-                <numColumns value="1"/>
-                <numRows value="1"/>
-            </tile>
-        </tileset>
-        <tileset name="map_wall_column" firstgid="40">
-            <tile id="0">
-                <name value="wall_column_top"/>
-                <source value="./assets/drawable/map/wall/column/wall_column_top.png"/>
-                <width value="16"/>
-                <height value="16"/>
-                <numColumns value="1"/>
-                <numRows value="1"/>
-            </tile>
-            <tile id="1">
-                <name value="wall_column_mid"/>
-                <source value="./assets/drawable/map/wall/column/wall_column_mid.png"/>
-                <width value="16"/>
-                <height value="16"/>
-                <numColumns value="1"/>
-                <numRows value="1"/>
-            </tile>
-            <tile id="2">
-                <name value="wall_column_base"/>
-                <source value="./assets/drawable/map/wall/column/wall_column_base.png"/>
-                <width value="16"/>
-                <height value="16"/>
-                <numColumns value="1"/>
-                <numRows value="1"/>
-            </tile>
-        </tileset>
-        <tileset name="map_wall_goo" firstgid="43">
-            <tile id="0">
-                <name value="wall_goo"/>
-                <source value="./assets/drawable/map/wall/goo/wall_goo.png"/>
-                <width value="16"/>
-                <height value="16"/>
-                <numColumns value="1"/>
-                <numRows value="1"/>
-            </tile>
-            <tile id="1">
-                <name value="wall_goo_base"/>
-                <source value="./assets/drawable/map/wall/goo/wall_goo_base.png"/>
-                <width value="16"/>
-                <height value="16"/>
-                <numColumns value="1"/>
-                <numRows value="1"/>
-            </tile>
-        </tileset>
-        <tileset name="map_wall_hole" firstgid="45">
-            <tile id="0">
-                <name value="wall_hole_1"/>
-                <source value="./assets/drawable/map/wall/hole/wall_hole_1.png"/>
-                <width value="16"/>
-                <height value="16"/>
-                <numColumns value="1"/>
-                <numRows value="1"/>
-            </tile>
-            <tile id="1">
-                <name value="wall_hole_2"/>
-                <source value="./assets/drawable/map/wall/hole/wall_hole_2.png"/>
-                <width value="16"/>
-                <height value="16"/>
-                <numColumns value="1"/>
-                <numRows value="1"/>
-            </tile>
-        </tileset>
-        <tileset name="elf_female" firstgid="47">
-            <tile id="0">
-                <name value="elf_female_idle"/>
-                <source value="./assets/drawable/character/role/elf_female/elf_female_idle.png"/>
-                <width value="16"/>
-                <height value="17"/>
-                <numColumns value="4"/>
-                <numRows value="1"/>
-            </tile>
-            <tile id="1">
-                <name value="elf_female_run"/>
-                <source value="./assets/drawable/character/role/elf_female/elf_female_run.png"/>
-                <width value="16"/>
-                <height value="16"/>
-                <numColumns value="4"/>
-                <numRows value="1"/>
-            </tile>
-            <tile id="2">
-                <name value="elf_female_hit"/>
-                <source value="./assets/drawable/character/role/elf_female/elf_female_hit.png"/>
-                <width value="16"/>
-                <height value="18"/>
-                <numColumns value="1"/>
-                <numRows value="1"/>
-            </tile>
-        </tileset>
-    </tilesets>
+                <tile id="2">
+                    <name value="wall_side_mid_left"/>
+                    <source value="./assets/drawable/map/wall/side/wall_side_mid_left.png"/>
+                    <width value="16"/>
+                    <height value="16"/>
+                    <numColumns value="1"/>
+                    <numRows value="1"/>
+                </tile>
+                <tile id="3">
+                    <name value="wall_side_mid_right"/>
+                    <source value="./assets/drawable/map/wall/side/wall_side_mid_right.png"/>
+                    <width value="16"/>
+                    <height value="16"/>
+                    <numColumns value="1"/>
+                    <numRows value="1"/>
+                </tile>
+                <tile id="4">
+                    <name value="wall_side_front_left"/>
+                    <source value="./assets/drawable/map/wall/side/wall_side_front_left.png"/>
+                    <width value="16"/>
+                    <height value="16"/>
+                    <numColumns value="1"/>
+                    <numRows value="1"/>
+                </tile>
+                <tile id="5">
+                    <name value="wall_side_front_right"/>
+                    <source value="./assets/drawable/map/wall/side/wall_side_front_right.png"/>
+                    <width value="16"/>
+                    <height value="16"/>
+                    <numColumns value="1"/>
+                    <numRows value="1"/>
+                </tile>
+            </tileset>
+            <tileset name="map_column" firstgid="31">
+                <tile id="0">
+                    <name value="column_base"/>
+                    <source value="./assets/drawable/map/column/column_base.png"/>
+                    <width value="16"/>
+                    <height value="16"/>
+                    <numColumns value="1"/>
+                    <numRows value="1"/>
+                </tile>
+                <tile id="1">
+                    <name value="column_mid"/>
+                    <source value="./assets/drawable/map/column/column_mid.png"/>
+                    <width value="16"/>
+                    <height value="16"/>
+                    <numColumns value="1"/>
+                    <numRows value="1"/>
+                </tile>
+                <tile id="2">
+                    <name value="column_top"/>
+                    <source value="./assets/drawable/map/column/column_top.png"/>
+                    <width value="16"/>
+                    <height value="16"/>
+                    <numColumns value="1"/>
+                    <numRows value="1"/>
+                </tile>
+            </tileset>
+            <tileset name="map_door" firstgid="34">
+                <tile id="0">
+                    <name value="doors_all"/>
+                    <source value="./assets/drawable/map/door/doors_all.png"/>
+                    <width value="16"/>
+                    <height value="16"/>
+                    <numColumns value="1"/>
+                    <numRows value="1"/>
+                </tile>
+                <tile id="1">
+                    <name value="doors_frame_left"/>
+                    <source value="./assets/drawable/map/door/doors_frame_left.png"/>
+                    <width value="16"/>
+                    <height value="16"/>
+                    <numColumns value="1"/>
+                    <numRows value="1"/>
+                </tile>
+                <tile id="2">
+                    <name value="doors_frame_righ"/>
+                    <source value="./assets/drawable/map/door/doors_frame_righ.png"/>
+                    <width value="16"/>
+                    <height value="16"/>
+                    <numColumns value="1"/>
+                    <numRows value="1"/>
+                </tile>
+                <tile id="3">
+                    <name value="doors_frame_top"/>
+                    <source value="./assets/drawable/map/door/doors_frame_top.png"/>
+                    <width value="16"/>
+                    <height value="16"/>
+                    <numColumns value="1"/>
+                    <numRows value="1"/>
+                </tile>
+                <tile id="4">
+                    <name value="doors_leaf_closed"/>
+                    <source value="./assets/drawable/map/door/doors_leaf_closed.png"/>
+                    <width value="16"/>
+                    <height value="16"/>
+                    <numColumns value="1"/>
+                    <numRows value="1"/>
+                </tile>
+                <tile id="5">
+                    <name value="doors_leaf_open"/>
+                    <source value="./assets/drawable/map/door/doors_leaf_open.png"/>
+                    <width value="16"/>
+                    <height value="16"/>
+                    <numColumns value="1"/>
+                    <numRows value="1"/>
+                </tile>
+            </tileset>
+            <tileset name="map_wall_column" firstgid="40">
+                <tile id="0">
+                    <name value="wall_column_top"/>
+                    <source value="./assets/drawable/map/wall/column/wall_column_top.png"/>
+                    <width value="16"/>
+                    <height value="16"/>
+                    <numColumns value="1"/>
+                    <numRows value="1"/>
+                </tile>
+                <tile id="1">
+                    <name value="wall_column_mid"/>
+                    <source value="./assets/drawable/map/wall/column/wall_column_mid.png"/>
+                    <width value="16"/>
+                    <height value="16"/>
+                    <numColumns value="1"/>
+                    <numRows value="1"/>
+                </tile>
+                <tile id="2">
+                    <name value="wall_column_base"/>
+                    <source value="./assets/drawable/map/wall/column/wall_column_base.png"/>
+                    <width value="16"/>
+                    <height value="16"/>
+                    <numColumns value="1"/>
+                    <numRows value="1"/>
+                </tile>
+            </tileset>
+            <tileset name="map_wall_goo" firstgid="43">
+                <tile id="0">
+                    <name value="wall_goo"/>
+                    <source value="./assets/drawable/map/wall/goo/wall_goo.png"/>
+                    <width value="16"/>
+                    <height value="16"/>
+                    <numColumns value="1"/>
+                    <numRows value="1"/>
+                </tile>
+                <tile id="1">
+                    <name value="wall_goo_base"/>
+                    <source value="./assets/drawable/map/wall/goo/wall_goo_base.png"/>
+                    <width value="16"/>
+                    <height value="16"/>
+                    <numColumns value="1"/>
+                    <numRows value="1"/>
+                </tile>
+            </tileset>
+            <tileset name="map_wall_hole" firstgid="45">
+                <tile id="0">
+                    <name value="wall_hole_1"/>
+                    <source value="./assets/drawable/map/wall/hole/wall_hole_1.png"/>
+                    <width value="16"/>
+                    <height value="16"/>
+                    <numColumns value="1"/>
+                    <numRows value="1"/>
+                </tile>
+                <tile id="1">
+                    <name value="wall_hole_2"/>
+                    <source value="./assets/drawable/map/wall/hole/wall_hole_2.png"/>
+                    <width value="16"/>
+                    <height value="16"/>
+                    <numColumns value="1"/>
+                    <numRows value="1"/>
+                </tile>
+            </tileset>
+            <tileset name="elf_female" firstgid="47">
+                <tile id="0">
+                    <name value="elf_female_idle"/>
+                    <source value="./assets/drawable/character/role/elf_female/elf_female_idle.png"/>
+                    <width value="16"/>
+                    <height value="17"/>
+                    <numColumns value="4"/>
+                    <numRows value="1"/>
+                </tile>
+                <tile id="1">
+                    <name value="elf_female_run"/>
+                    <source value="./assets/drawable/character/role/elf_female/elf_female_run.png"/>
+                    <width value="16"/>
+                    <height value="16"/>
+                    <numColumns value="4"/>
+                    <numRows value="1"/>
+                </tile>
+                <tile id="2">
+                    <name value="elf_female_hit"/>
+                    <source value="./assets/drawable/character/role/elf_female/elf_female_hit.png"/>
+                    <width value="16"/>
+                    <height value="18"/>
+                    <numColumns value="1"/>
+                    <numRows value="1"/>
+                </tile>
+            </tileset>
+        </tilesets>
+        <sounds>
+            <musics>
+                <music name="bg1">
+                    <source value="./assets/audio/music/bg1.ogg"/>
+                </music>
+                <music name="bg2">
+                    <source value="./assets/audio/music/bg2.ogg"/>
+                </music>
+                <music name="bg3">
+                    <source value="./assets/audio/music/bg3.ogg"/>
+                </music>
+                <music name="main_title">
+                    <source value="./assets/audio/music/main_title.ogg"/>
+                </music>
+            </musics>
+            <sfxs>
+                <sfx name="arrow_hit">
+                    <source value="./assets/audio/sfx/arrow_hit.wav"/>
+                </sfx>
+            </sfxs>
+        </sounds>
+    </materials>
     <layers>
         <tilelayers>
             <tilelayer id="10" name="floor" width="40" height="40" tileWidth="16" tileHeight="16" collidable="0">
@@ -454,25 +477,4 @@
             </objectlayer>
         </objectlayers>
     </layers>
-    <sounds>
-        <musics>
-            <music name="bg1">
-                <source value="./assets/audio/music/bg1.ogg"/>
-            </music>
-            <music name="bg2">
-                <source value="./assets/audio/music/bg2.ogg"/>
-            </music>
-            <music name="bg3">
-                <source value="./assets/audio/music/bg3.ogg"/>
-            </music>
-            <music name="main_title">
-                <source value="./assets/audio/music/main_title.ogg"/>
-            </music>
-        </musics>
-        <sfxs>
-            <sfx name="arrow_hit">
-                <source value="./assets/audio/sfx/arrow_hit.wav"/>
-            </sfx>
-        </sfxs>
-    </sounds>
 </level>

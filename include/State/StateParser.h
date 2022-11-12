@@ -11,14 +11,21 @@ class GameObject;
 class StateParser
 {
 public:
-    bool ParseState(const char *stateFile, std::string stateId, std::vector<GameObject*> *objects,
-        std::vector<std::string> *textureIds);
+    void ParseState(std::string stateId, std::vector<GameObject*> *objects);
 
     static const char *document;
 
 private:
+    void ParseOtherState(std::string source, std::vector<GameObject*>* objects);
+    void ParseMaterials(TiXmlElement* materialsRoot);
+    void ParseSounds(TiXmlElement* soundsRoot);
+    void ParseMusic(TiXmlElement* musicsRoot);
+    void ParseSfx(TiXmlElement* sfxsRoot);
+    void ParseTextures(TiXmlElement* texturesRoot);
+    void ParseTexture(TiXmlElement* textureRoot);
+    void ParseTile(TiXmlElement* tileRoot);
     void ParseObjects(TiXmlElement *stateRoot, std::vector<GameObject*> *objects);
-    void ParseTextures(TiXmlElement *stateRoot, std::vector<std::string> *textureIds);
+    void ParseObject(TiXmlElement* objectRoot, std::vector<GameObject*>* objects);
     void ParseObjectTextures(TiXmlElement *texturesRoot,
         std::vector<ObjectAnimeInfo>* objectAnimeInfos);
 };

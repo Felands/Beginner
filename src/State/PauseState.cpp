@@ -14,7 +14,7 @@ const std::string PauseState::pauseId = "PAUSE";
 bool PauseState::OnEnter()
 {
     StateParser stateParser;
-    stateParser.ParseState(StateParser::document, pauseId, &gameObjects, &textureIdList);  
+    stateParser.ParseState(pauseId, &gameObjects);  
 
     callbacks.push_back(0);
     callbacks.push_back(PauseToMain);
@@ -32,10 +32,7 @@ bool PauseState::OnExit()
     for(int i = 0; i < gameObjects.size(); i++) {
         gameObjects[i]->Clean();
     }
-
-    for(int i = 0; i < textureIdList.size(); i++) {
-        Resource::Instance()->ClearOneTexture(textureIdList[i]);
-    }
+    Resource::Instance()->Clean();
 
     std::cout << "Exiting PauseState\n";
     return true;

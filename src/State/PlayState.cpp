@@ -30,9 +30,7 @@ bool PlayState::OnExit()
 
     InputHandler::Instance()->Reset();
 
-    for(int i = 0; i < textureIdList.size(); i++) {
-        Resource::Instance()->ClearOneTexture(textureIdList[i]);
-    }
+    Resource::Instance()->Clean();
 
     level->Clean();
     delete level;

@@ -9,7 +9,7 @@ Resource* Resource::instance = nullptr;
 
 bool Resource::LoadOneSound(std::string source, std::string name, SoundType type)
 {
-    LOG_DBG("[Resource][LoadOneSound] Loading the sound ", name, " from ", source, ", the type is ", type);
+    LOG_DBG("[Resource][LoadOneSound] Loading the sound ", name, " from ", source);
 
     void* mixTrunk = nullptr;
     if (type == SoundType::SOUND_MUSIC) {
@@ -28,7 +28,7 @@ bool Resource::LoadOneSound(std::string source, std::string name, SoundType type
         .mixTrunk = mixTrunk
     };
 
-    LOG_DBG("[Resource][LoadOneSound] Loaded the sound ", name, " from ", source, ", the type is ", type);
+    LOG_DBG("[Resource][LoadOneSound] Loaded the sound ", name, " from ", source);
     return true;
 }
     

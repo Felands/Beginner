@@ -3,7 +3,7 @@
 
 #include <iostream>
 
-//#define DEBUG
+#define DEBUG
 
 inline void LOG_DBG()
 {

@@ -4,6 +4,8 @@
 #include <string>
 #include <vector>
 
+#include "GameObject.h"
+
 enum class GameStates
 {
     MENU,
@@ -25,7 +27,7 @@ public:
     virtual std::string GetStateId() const = 0;
 
 protected:
-    std::vector<std::string> textureIdList;
+    std::vector<GameObject*> gameObjects;
 };
 
 #endif

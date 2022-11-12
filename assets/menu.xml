@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<menu version="1.0" orientation="orthogonal">
+    <materials>
+        <sounds>
+            <musics>
+                <music name="main_title">
+                    <source value="./assets/audio/music/main_title.ogg"/>
+                </music>
+            </musics>
+            <sfxs>
+            </sfxs>
+        </sounds>
+        <textures>
+            <texture name="login_button" firstgid="1">
+                <tile id="0">
+                    <name value="login_button_out"/>
+                    <source value="./assets/drawable/button/login_button/login_button_out.png"/>
+                    <width value="324"/>
+                    <height value="53"/>
+                    <numColumns value="1"/>
+                    <numRows value="1"/>
+                </tile>
+                <tile id="1">
+                    <name value="login_button_over"/>
+                    <source value="./assets/drawable/button/login_button/login_button_over.png"/>
+                    <width value="324"/>
+                    <height value="53"/>
+                    <numColumns value="1"/>
+                    <numRows value="1"/>
+                </tile>
+                <tile id="2">
+                    <name value="login_button_click"/>
+                    <source value="./assets/drawable/button/login_button/login_button_click.png"/>
+                    <width value="324"/>
+                    <height value="53"/>
+                    <numColumns value="1"/>
+                    <numRows value="1"/>
+                </tile>
+            </texture>
+            <texture name="map_wall_main" firstgid="4">
+                <tile id="3">
+                    <name value="exit_button_out"/>
+                    <source value="./assets/drawable/button/exit_button/exit_button_out.png"/>
+                    <width value="43"/>
+                    <height value="43"/>
+                    <numColumns value="1"/>
+                    <numRows value="1"/>
+                </tile>
+                <tile id="4">
+                    <name value="exit_button_over"/>
+                    <source value="./assets/drawable/button/exit_button/exit_button_over.png"/>
+                    <width value="43"/>
+                    <height value="43"/>
+                    <numColumns value="1"/>
+                    <numRows value="1"/>
+                </tile>
+                <tile id="5">
+                    <name value="exit_button_click"/>
+                    <source value="./assets/drawable/button/exit_button/exit_button_click.png"/>
+                    <width value="43"/>
+                    <height value="43"/>
+                    <numColumns value="1"/>
+                    <numRows value="1"/>
+                </tile>
+            </texture>
+            <texture name="panel" firstgid="7">
+                <tile id="6">
+                    <name value="panel_1"/>
+                    <source value="./assets/drawable/button/panel/panel_1.png"/>
+                    <width value="603"/>
+                    <height value="402"/>
+                    <numColumns value="1"/>
+                    <numRows value="1"/>
+                </tile>
+            </texture>
+        </textures>
+    </materials>
+    <objects>
+        <object name="login_button">
+            <type value="MenuButton"/>
+            <x value="100"/>
+            <y value="300"/>
+            <textures>
+                <texture>
+                    <name value="login_button_out"/>
+                    <callbackId value="1"/>
+                    <animeSpeed value="10"/>
+                </texture>
+                <texture>
+                    <name value="login_button_over"/>
+                    <callbackId value="1"/>
+                    <animeSpeed value="10"/>
+                </texture>
+                <texture>
+                    <name value="login_button_click"/>
+                    <callbackId value="1"/>
+                    <animeSpeed value="10"/>
+                </texture>
+            </textures>
+        </object>
+        <object name="exit_button">
+            <type value="MenuButton"/>
+            <x value="100"/>
+            <y value="100"/>
+            <textures>
+                <texture>
+                    <name value="exit_button_out"/>
+                    <callbackId value="2"/>
+                    <animeSpeed value="10"/>
+                </texture>
+                <texture>
+                    <name value="exit_button_over"/>
+                    <callbackId value="2"/>
+                    <animeSpeed value="10"/>
+                </texture>
+                <texture>
+                    <name value="exit_button_click"/>
+                    <callbackId value="2"/>
+                    <animeSpeed value="10"/>
+                </texture>
+            </textures>
+        </object>
+    </objects>
+</menu>

@@ -9,8 +9,6 @@
 #include "PlayState.h"
 #include "log.h"
 
-const std::string MainMenuState::menuId = "MENU";
-
 void MainMenuState::Update()
 {
     LOG_DBG("[MainMenuState][Update] Updating the main menu state");
@@ -38,7 +36,7 @@ bool MainMenuState::OnEnter()
     LOG_DBG("[MainMenuState][OnEnter] Entering the main menu state");
 
     StateParser stateParser;
-    stateParser.ParseState(StateParser::document, menuId, &gameObjects, &textureIdList);
+    stateParser.ParseState(GetStateId(), &gameObjects);
 
     callbacks.push_back(0);
     callbacks.push_back(MenuToPlay);
@@ -61,12 +59,9 @@ bool MainMenuState::OnExit()
         gameObjects[i]->Clean();
         delete gameObjects[i];
     }
+    Resource::Instance()->Clean();
 
-    for(int i = 0; i < textureIdList.size(); i++) {
-        Resource::Instance()->ClearOneTexture(textureIdList[i]);
-    }
-
-    //Mix_FadeOutMusic(800);
+    Mix_FadeOutMusic(800);
 
     LOG_DBG("[MainMenuState][OnExit] Exited the main menu state");
     return true;

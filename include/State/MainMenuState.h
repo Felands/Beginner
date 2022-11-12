@@ -10,11 +10,6 @@
 class MainMenuState : public MenuState
 {
 public:
-    virtual std::string GetStateId() const
-    {
-        return menuId;
-    }
-
     virtual void Update();
 
     virtual void Render();
@@ -29,9 +24,6 @@ private:
     static void MenuToPlay();
 
     static void ExitFromMenu();
-
-    static const std::string menuId;
-    std::vector<GameObject*> gameObjects;
 };
 
 #endif

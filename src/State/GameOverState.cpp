@@ -25,7 +25,7 @@ void GameOverState::RestartPlay()
 bool GameOverState::OnEnter()
 {
     StateParser stateParser;
-    stateParser.ParseState(StateParser::document, gameOverId, &gameObjects, &textureIdList);
+    stateParser.ParseState(gameOverId, &gameObjects);
 
     callbacks.push_back(0);
     callbacks.push_back(GameOverToMain);
@@ -57,10 +57,7 @@ bool GameOverState::OnExit()
     for(int i = 0; i < gameObjects.size(); i++) {
         gameObjects[i]->Clean();
     }
-
-    for(int i = 0; i < textureIdList.size(); i++) {
-        Resource::Instance()->ClearOneTexture(textureIdList[i]);
-    }
+    Resource::Instance()->Clean();
 
     std::cout << "Exiting PauseState\n";
     return true;

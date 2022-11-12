@@ -7,6 +7,12 @@
 
 class MenuState : public GameState
 {
+public:
+    virtual std::string GetStateId() const
+    {
+        return "MENU";
+    }
+
 protected:
     typedef void(*Callback)();
 
