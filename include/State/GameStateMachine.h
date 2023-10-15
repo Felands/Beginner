@@ -8,24 +8,29 @@
 class GameStateMachine
 {
 public:
-    void Update();
+    GameStateMachine()
+    {}
 
-    void Render();
+    ~GameStateMachine()
+    {}
 
-    void Clean();
-
-    void PushState(GameState *state);
-
-    void ChangeState(GameState *state);
-
-    void PopState();
-
+    // 获取GameStateMachine类的成员：当前游戏状态
     GameState* GetCurrentState()
     {
         return gameStates.back();
     }
 
+    // 实现GameStateMachine类的功能：主流程
+    void Update();
+    void Render();
+    void Clean();
+    // 实现GameStateMachine类的功能：状态处理
+    void PushState(GameState *state);
+    void ChangeState(GameState *state);
+    void PopState();
+
 private:
+    // GameStateMachine类状态组
     std::vector<GameState*> gameStates;
 };
 

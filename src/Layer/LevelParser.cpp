@@ -8,7 +8,7 @@
 #include "base64.h"
 #include "zlib.h"
 #include "GameObjectFactory.h"
-#include "log.h"
+#include "Log.h"
 
 const char *LevelParser::level = "./assets/map.xml";
 
@@ -40,12 +40,10 @@ Level *LevelParser::ParseLevel(const char *levelFile)
     level->SetHeight(height);
     level->SetWidth(width);
     for (TiXmlElement *e = root->FirstChildElement(); e != nullptr; e = e->NextSiblingElement()) {
-        if (e->Value() == std::string("tilesets")) {
-            ParseTilesets(e, level->GetTilesets());
+        if (e->Value() == std::string("materials")) {
+            ParseMaterials(e, level);
         } else if (e->Value() == std::string("layers")) {
             ParseLayers(e, level);
-        } else if (e->Value() == std::string("sounds")) {
-            ParseSounds(e);
         }
     }
 
@@ -94,6 +92,21 @@ void LevelParser::ParseTilesets(TiXmlElement *tilesetsRoot, std::vector<Tileset>
     }
 
     LOG_DBG("[LevelParser][ParseTilesets] Parsed tilesets ");
+}
+
+void LevelParser::ParseMaterials(TiXmlElement *materialsRoot, Level* level)
+{
+    LOG_DBG("[LevelParser][ParseMaterials] Parsing materials");
+
+    for (TiXmlElement *e = materialsRoot->FirstChildElement(); e != nullptr; e = e->NextSiblingElement()) {
+        if(e->Value() == std::string("tilesets")) {
+            ParseTilesets(e, level->GetTilesets());
+        } else if (e->Value() == std::string("sounds")) {
+            ParseSounds(e);
+        }
+    }
+
+    LOG_DBG("[LevelParser][ParseMaterials] Parsed materials");
 }
 
 void LevelParser::ParseLayers(TiXmlElement *layersRoot, Level* level)

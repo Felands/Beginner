@@ -17,6 +17,7 @@ public:
 private:
     void ParseTilesets(TiXmlElement *tilesetsRoot, std::vector<Tileset> *tilesets);
 
+    void ParseMaterials(TiXmlElement *materialsRoot, Level* level);
     void ParseLayers(TiXmlElement *layersRoot, Level* level);
 
     void ParseTileLayers(TiXmlElement *tileLayersRoot, Level* level);

@@ -2,7 +2,7 @@
 
 #include "Player.h"
 #include "InputHandler.h"
-#include "log.h"
+#include "Log.h"
 #include "Resource.h"
 #include "Game.h"
 #include "Camera.h"
@@ -120,7 +120,7 @@ void Player::Draw()
 
 void Player::Ressurect()
 {
-    Game::Instance()->SetPlayerLives(Game::Instance()->GetPlayerLives() - 1);
+    //Game::Instance()->SetPlayerLives(Game::Instance()->GetPlayerLives() - 1);
     position.SetX(10);
     position.SetY(200);
     dying = false;

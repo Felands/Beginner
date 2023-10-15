@@ -7,35 +7,19 @@
 #include "Game.h"
 #include "PauseState.h"
 #include "GameOverState.h"
-#include "log.h"
+#include "Log.h"
 #include "Camera.h"
 
-const std::string PlayState::playId = "PLAY";
-
+#pragma region 主流程
 bool PlayState::OnEnter()
 {
     LOG_DBG("[PlayState][OnEnter] Entering the play state");
 
     LevelParser levelParser;
     level = levelParser.ParseLevel(LevelParser::level);
-    Camera::Instance()->SetTarget(level->GetPlayer());
+    //Camera::Instance()->SetTarget(level->GetPlayer());
 
     LOG_DBG("[PlayState][OnEnter] Entered the play state");
-    return true;
-}
-
-bool PlayState::OnExit()
-{
-    LOG_DBG("[PlayState][OnExit] Exiting the play state");
-
-    InputHandler::Instance()->Reset();
-
-    Resource::Instance()->Clean();
-
-    level->Clean();
-    delete level;
-
-    LOG_DBG("[PlayState][OnExit] Exited the play state");
     return true;
 }
 
@@ -53,7 +37,7 @@ void PlayState::Update()
     LOG_DBG("[PlayState][Update] Updating the play state");
 
     level->Update();
-    Camera::Instance()->Update();
+    //Camera::Instance()->Update();
 
     /*if (CheckCollision(dynamic_cast<SDLGameObject*>(gameObjects[0]),
         dynamic_cast<SDLGameObject*>(gameObjects[1]))) {
@@ -65,11 +49,28 @@ void PlayState::Update()
     LOG_DBG("[PlayState][Update] Updated the play state");
 }
 
-/*bool PlayState::CheckCollision(SDLGameObject *object1, SDLGameObject *object2)
+bool PlayState::OnExit()
+{
+    LOG_DBG("[PlayState][OnExit] Exiting the play state");
+
+    InputHandler::Instance()->Reset();
+
+    Resource::Instance()->Clean();
+
+    level->Clean();
+    delete level;
+
+    LOG_DBG("[PlayState][OnExit] Exited the play state");
+    return true;
+}
+#pragma endregion
+
+
+bool PlayState::CheckCollision(SDLGameObject *object1, SDLGameObject *object2)
 {
     LOG_DBG("[PlayState][CheckCollision] Checking the collision");
 
-    uint32_t leftA, leftB;
+    /*uint32_t leftA, leftB;
     uint32_t rightA, rightB;
     uint32_t topA, topB;
     uint32_t bottomA, bottomB;
@@ -95,8 +96,8 @@ void PlayState::Update()
     }
     if( leftA >= rightB ) {
         return false;
-    }
+    }*/
 
     return true;
     LOG_DBG("[PlayState][CheckCollision] Checked the collision");
-}*/
+}

@@ -7,7 +7,26 @@
 #include "Resource.h"
 #include "InputHandler.h"
 #include "PlayState.h"
-#include "log.h"
+#include "Log.h"
+
+#pragma region 主流程
+bool MainMenuState::OnEnter()
+{
+    LOG_DBG("[MainMenuState][OnEnter] Entering the main menu state");
+
+    StateParser stateParser;
+    stateParser.ParseState(GetStateId(), &gameObjects);
+
+    callbacks.push_back(0);
+    callbacks.push_back(MenuToPlay);
+    callbacks.push_back(ExitFromMenu);
+    SetCallbacks(callbacks);
+
+    Resource::Instance()->Play("main_title", 1);
+
+    LOG_DBG("[MainMenuState][OnEnter] Entered the main menu state");
+    return true;
+}
 
 void MainMenuState::Update()
 {
@@ -31,24 +50,6 @@ void MainMenuState::Render()
     LOG_DBG("[MainMenuState][Render] Rendered the main menu state");
 }
 
-bool MainMenuState::OnEnter()
-{
-    LOG_DBG("[MainMenuState][OnEnter] Entering the main menu state");
-
-    StateParser stateParser;
-    stateParser.ParseState(GetStateId(), &gameObjects);
-
-    callbacks.push_back(0);
-    callbacks.push_back(MenuToPlay);
-    callbacks.push_back(ExitFromMenu);
-    SetCallbacks(callbacks);
-
-    Resource::Instance()->Play("main_title", 1);
-
-    LOG_DBG("[MainMenuState][OnEnter] Entered the main menu state");
-    return true;
-}
-
 bool MainMenuState::OnExit()
 {
     LOG_DBG("[MainMenuState][OnExit] Exiting the main menu state");
@@ -66,7 +67,9 @@ bool MainMenuState::OnExit()
     LOG_DBG("[MainMenuState][OnExit] Exited the main menu state");
     return true;
 }
+#pragma endregion
 
+#pragma region 回调函数
 void MainMenuState::ExitFromMenu()
 {
     LOG_DBG("[MainMenuState][ExitFromMenu] Exiting from the main menu state");
@@ -98,3 +101,4 @@ void MainMenuState::SetCallbacks(const std::vector<Callback> &callbacks)
 
     LOG_DBG("[MainMenuState][SetCallbacks] Set call-backs of menu butttons");
 }
+#pragma endregion

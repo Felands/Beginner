@@ -4,7 +4,7 @@
 #include <stdint.h>
 
 #include "Game.h"
-#include "log.h"
+#include "Log.h"
 #include "PlayState.h"
 
 Camera* Camera::instance = nullptr;

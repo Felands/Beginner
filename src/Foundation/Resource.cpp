@@ -3,7 +3,7 @@
 
 #include "Resource.h"
 
-#include "log.h"
+#include "Log.h"
 
 Resource* Resource::instance = nullptr;
 

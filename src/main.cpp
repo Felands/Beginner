@@ -2,17 +2,18 @@
 
 #include "SDL.h"
 
+#include "ErrorCode.h"
 #include "Game.h"
 
-const uint32_t FPS = 30;  
-const uint32_t DELAY_TIME = 1000.0f / FPS;
+// 窗口参数
 const char* WINDOW_TITLE = "DungeonRush";
 const uint32_t WINDOW_X_POS = 100;
 const uint32_t WINDOW_Y_POS = 100;
-const uint32_t WINDOW_HEIGHT = 320;
-const uint32_t WINDOW_WIDTH = 400;
-const int32_t OK = 0;
-const int32_t ERR = 1;
+const uint32_t WINDOW_HEIGHT = 480;
+const uint32_t WINDOW_WIDTH = 600;
+// 刷新频率
+const uint32_t FPS = 30;
+const uint32_t DELAY_TIME = 1000.0f / FPS;
 
 int main(int argc, char **args)
 {

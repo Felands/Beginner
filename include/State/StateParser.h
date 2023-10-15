@@ -11,9 +11,13 @@ class GameObject;
 class StateParser
 {
 public:
-    void ParseState(std::string stateId, std::vector<GameObject*> *objects);
+    StateParser()
+    {}
 
-    static const char *document;
+    ~StateParser()
+    {}
+
+    void ParseState(std::string stateId, std::vector<GameObject*> *objects);
 
 private:
     void ParseOtherState(std::string source, std::vector<GameObject*>* objects);
@@ -28,6 +32,9 @@ private:
     void ParseObject(TiXmlElement* objectRoot, std::vector<GameObject*>* objects);
     void ParseObjectTextures(TiXmlElement *texturesRoot,
         std::vector<ObjectAnimeInfo>* objectAnimeInfos);
+
+public:
+    static const char *document;
 };
 
 #endif

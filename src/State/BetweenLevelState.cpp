@@ -1,5 +1,5 @@
 #include "BetweenLevelState.h"
-#include "log.h"
+#include "Log.h"
 
 const std::string BetweenLevelState::betweenLevelId = "PAUSE";
 

@@ -1,7 +1,7 @@
 #include "MenuButton.h"
 #include "Resource.h"
 #include "InputHandler.h"
-#include "log.h"
+#include "Log.h"
 #include "Resource.h"
 #include "Game.h"
 

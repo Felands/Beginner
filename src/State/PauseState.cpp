@@ -9,12 +9,10 @@
 #include "Resource.h"
 #include "MenuButton.h"
 
-const std::string PauseState::pauseId = "PAUSE";
-
 bool PauseState::OnEnter()
 {
-    StateParser stateParser;
-    stateParser.ParseState(pauseId, &gameObjects);  
+    //StateParser stateParser;
+    //stateParser.ParseState(pauseId, &gameObjects);  
 
     callbacks.push_back(0);
     callbacks.push_back(PauseToMain);

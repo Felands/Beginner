@@ -1,9 +1,20 @@
 #include <iostream>
 
+#include "SDL.h"
+
 #include "InputHandler.h"
 #include "Game.h"
+#include "Vector2D.h"
 
 InputHandler *InputHandler::instance = nullptr;
+
+#pragma region 主流程
+InputHandler::InputHandler() : keyStates(SDL_GetKeyboardState(nullptr)), mousePosition(0, 0)
+{
+    for(size_t i = (size_t)MouseButtons::LEFT; i <= (size_t)MouseButtons::RIGHT; ++i) {
+        mouseButtonStates.push_back(false);
+    }
+}
 
 void InputHandler::Update()
 {
@@ -34,23 +45,6 @@ void InputHandler::Update()
     }
 }
 
-void InputHandler::Clean()
-{
-    if (instance != nullptr) {
-        delete instance;
-    }
-}
-
-bool InputHandler::IsKeyDown(SDL_Scancode key)
-{
-    if(keyStates != nullptr) {
-        if(keyStates[key] == 1) {
-            return true;
-        }
-    }
-    return false;
-}
-
 void InputHandler::Reset()
 {
     mouseButtonStates[(size_t)MouseButtons::LEFT] = false;
@@ -58,13 +52,27 @@ void InputHandler::Reset()
     mouseButtonStates[(size_t)MouseButtons::RIGHT] = false;
 }
 
-InputHandler::InputHandler() : keyStates(SDL_GetKeyboardState(nullptr)), mousePosition(0, 0)
+void InputHandler::Clean()
 {
-    for(size_t i = (size_t)MouseButtons::LEFT; i <= (size_t)MouseButtons::RIGHT; ++i) {
-        mouseButtonStates.push_back(false);
+    if (instance != nullptr) {
+        delete instance;
     }
 }
+#pragma endregion
 
+#pragma region 键盘
+bool InputHandler::IsKeyDown(SDL_Scancode key)
+{
+    if(keyStates != nullptr) {
+        if(keyStates[(size_t)key] == 1) {
+            return true;
+        }
+    }
+    return false;
+}
+#pragma endregion
+
+#pragma region 鼠标
 void InputHandler::OnMouseMove(SDL_Event &event)
 {
     mousePosition.SetX(event.motion.x);
@@ -96,3 +104,4 @@ void InputHandler::OnMouseButtonUp(SDL_Event& event)
         mouseButtonStates[(size_t)MouseButtons::RIGHT] = false;
     }
 }
+#pragma endregion

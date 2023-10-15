@@ -1,7 +1,7 @@
 #include "SDLGameObject.h"
 #include "Game.h"
 #include "Resource.h"
-#include "log.h"
+#include "Log.h"
 #include "TileLayer.h"
 
 void SDLGameObject::Load(int32_t x, int32_t y, std::vector<ObjectAnimeInfo> objectAnimeInfos)
@@ -40,7 +40,7 @@ std::string SDLGameObject::Type()
 
 void SDLGameObject::DoDyingAnimation()
 {
-    Scroll(Game::Instance()->GetScrollSpeed());
+    //Scroll(Game::Instance()->GetScrollSpeed());
     if (dyingCounter == dyingTime) {
         dead = true;
         dyingCounter = 0;

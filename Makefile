@@ -22,7 +22,7 @@ INCLUDE = -I ./include/ -I ./include/SDL2/ -I ./include/Foundation/ -I ./include
 
 HEADFILE = ./include/Game.h \
            ./include/Foundation/InputHandler.h ./include/Foundation/Resource.h ./include/Foundation/Vector2D.h \
-		   ./include/Foundation/log.h ./include/Foundation/BulletHandler.h \
+		   ./include/Foundation/Log.h ./include/Foundation/BulletHandler.h \
 		   ./include/Foundation/CollisionManager.h ./include/Foundation/Collision.h ./include/Foundation/Camera.h \
 		   ./include/Object/GameObjectFactory.h ./include/Object/GameObject.h ./include/Object/SDLGameObject.h \
 		   ./include/Object/MenuButton.h ./include/Object/Player.h ./include/Object/Enemy.h \
@@ -131,4 +131,4 @@ beginner : $(OBJECT)
 	$(CC) $(INCLUDE) -o ./bin/tinyxmlparser.o -c ./src/TinyXml/tinyxmlparser.cpp
 
 clean:
-	rm ./bin/*.o beginner
+	rm ./bin/*.o *.exe

@@ -10,28 +10,28 @@
 class PauseState : public MenuState
 {
 public:
+    PauseState()
+    {}
+
+    ~PauseState()
+    {}
+
+    // 获取MenuState类的相关信息：状态Id
     virtual std::string GetStateId() const
     {
-        return pauseId;
+        return "PAUSE";
     }
 
+    // 实现PauseState类的功能：主流程
     virtual bool OnEnter();
-
-    virtual bool OnExit();
-
     virtual void Update();
-
     virtual void Render();
-
-    virtual void SetCallbacks(const std::vector<Callback>& callbacks);
-
+    virtual bool OnExit();
 private:
+    // 实现PauseState类的功能：回调函数及设置回调函数组
+    virtual void SetCallbacks(const std::vector<Callback>& callbacks);
     static void PauseToMain();
-
     static void ResumePlay();
-
-    static const std::string pauseId;
-    std::vector<GameObject*> gameObjects;
 };
 
 #endif

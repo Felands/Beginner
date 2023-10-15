@@ -121,4 +121,11 @@
             </textures>
         </object>
     </objects>
+    <backgrounds>
+        <background name="panel">
+            <x value="0"/>
+            <y value="0"/>
+            <texture value="panel_1"/>
+        </background>
+    </backgrounds>
 </menu>

@@ -6,35 +6,36 @@
 #include "Game.h"
 #include "Resource.h"
 #include "InputHandler.h"
-#include "log.h"
+#include "Log.h"
 #include "MainMenuState.h"
 #include "GameObjectFactory.h"
 #include "BetweenLevelState.h"
 
 Game *Game::instance = nullptr;
 
-bool Game::Init(const char *title, int32_t xpos, int32_t ypos, uint32_t height_, uint32_t width_, bool isFullScreen)
+#pragma region 主流程
+bool Game::Init(const char *title, int32_t xpos, int32_t ypos, uint32_t height, uint32_t width, bool isFullScreen)
 {
-    LOG_DBG("[Game][Init] Initting the game");
+    LOG_INFO("[Game][Init] Initting the game");
 
-    width = width_;
-    height = height_;
-    isRunning = true;
-    scrollSpeed = 0;
-    playerLives = 3;
-    levelComplete = false;
-    currentLevel = 1;
+    this->width = width;
+    this->height = height;
+    this->isRunning = true;
+    /*this->scrollSpeed = 0;
+    this->playerLives = 3;
+    this->levelComplete = false;
+    this->currentLevel = 1;*/
 
     // 初始化SDL系统，并创建窗口和渲染器
     if(SDL_Init(SDL_INIT_EVERYTHING) == 0) {
-        LOG_DBG("[Game][Init] The SDL system is initialized successfully");
-        window = SDL_CreateWindow(title, xpos, ypos, width, height,
+        LOG_INFO("[Game][Init] The SDL system is initialized successfully");
+        this->window = SDL_CreateWindow(title, xpos, ypos, this->width, this->height,
             isFullScreen ? SDL_WINDOW_FULLSCREEN : SDL_WINDOW_SHOWN);
         if(window != nullptr) {
-            LOG_DBG("[Game][Init] The window is created successfully");
+            LOG_INFO("[Game][Init] The window is created successfully");
             renderer = SDL_CreateRenderer(window, -1, 0);
             if (renderer != nullptr) {
-                LOG_DBG("[Game][Init] The renderer is created successfully");
+                LOG_INFO("[Game][Init] The renderer is created successfully");
             } else {
                 LOG_ERR("[Game][Init] The renderer creation failed");
                 return false;
@@ -52,7 +53,7 @@ bool Game::Init(const char *title, int32_t xpos, int32_t ypos, uint32_t height_,
     int flag = IMG_INIT_PNG;
     int initted = IMG_Init(flag);
     if ((flag & initted) != false) {
-        LOG_DBG("[Game][Init] The IMG is initialized successfully");
+        LOG_INFO("[Game][Init] The IMG is initialized successfully");
     } else {
         LOG_ERR("[Game][Init] The IMG initialization failed");
         return false;
@@ -61,11 +62,11 @@ bool Game::Init(const char *title, int32_t xpos, int32_t ypos, uint32_t height_,
     // object创建器初始化
     GameObjectFactory::Instance()-> RegisterType();
 
-    // 进入主菜单界面
+    // 初始化状态机：进入主菜单界面
     gameStateMachine = new GameStateMachine();
     gameStateMachine->ChangeState(new MainMenuState());
 
-    LOG_DBG("[Game][Init] Initted the game");
+    LOG_INFO("[Game][Init] Initted the game");
     return true;
 }
 
@@ -100,7 +101,7 @@ void Game::Render()
 
 void Game::Clean()
 {
-    LOG_DBG("[Game][Clean] Cleaning the game");
+    LOG_INFO("[Game][Clean] Cleaning the game");
 
     gameStateMachine->Clean();
     Resource::Instance()->Clean();
@@ -111,12 +112,13 @@ void Game::Clean()
     SDL_Quit();
     delete instance;
 
-    LOG_DBG("[Game][Clean] Cleaned the game");
+    LOG_INFO("[Game][Clean] Cleaned the game");
 }
+#pragma endregion
 
-void Game::SetCurrentLevel(uint32_t currentLevel)
+/*void Game::SetCurrentLevel(uint32_t currentLevel)
 {
     this->currentLevel = currentLevel;
     // gameStateMachine->ChangeState(new BetweenLevelState());
     levelComplete = false;
-}
+}*/

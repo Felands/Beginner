@@ -2,7 +2,7 @@
 #include "Game.h"
 #include "Resource.h"
 #include "GameObjectFactory.h"
-#include "log.h"
+#include "Log.h"
 
 const char* StateParser::document = "./assets/state.xml";
 
@@ -48,6 +48,8 @@ void StateParser::ParseOtherState(std::string source, std::vector<GameObject*>* 
             ParseMaterials(e);
         } else if (e->Value() == std::string("objects")) {
             ParseObjects(e, objects);
+        } else if (e->Value() == std::string("backgrouds")) {
+            //ParseBackgrounds(e);
         }
     }
 
@@ -223,6 +225,40 @@ void StateParser::ParseObject(TiXmlElement *objectRoot, std::vector<GameObject*>
 
     LOG_DBG("[StateParser][ParseObject] Parsed the objects ", objectRoot->Attribute("name"));
 }
+
+/*void StateParser::ParseBackgrounds(TiXmlElement* backgroundsRoot)
+{
+    LOG_DBG("[StateParser][ParseBackgrounds] Parsing the objects");
+
+    for(TiXmlElement* backgroundRoot = backgroundsRoot->FirstChildElement(); backgroundRoot != nullptr;
+        backgroundRoot = backgroundRoot->NextSiblingElement()) {
+        ParseBackgrounds(backgroundRoot);
+    }
+
+    LOG_DBG("[StateParser][ParseBackgrounds] Parsed the objects");
+}*/
+
+/*void StateParser::ParseBackgrounds(TiXmlElement* backgroundRoot)
+{
+    LOG_DBG("[StateParser][ParseBackgrounds] Parsing the object ", backgroundRoot->Attribute("name"));
+
+    int32_t x;
+    int32_t y;
+    std::string textureName;
+    for (TiXmlElement* e = backgroundRoot->FirstChildElement(); e != nullptr; e = e->NextSiblingElement()) {
+        if (e->Value() == std::string("x")) {
+            e->Attribute("value", &x);
+        } else if (e->Value() == std::string("y")) {
+            e->Attribute("value", &y);
+        } else if (e->Value() == std::string("texture")) {
+            textureName = e->Attribute("value");
+        }
+    }
+
+    
+
+    LOG_DBG("[StateParser][ParseBackgrounds] Parsed the objects ", backgroundRoot->Attribute("name"));
+}*/
 
 void StateParser::ParseObjectTextures(TiXmlElement *texturesRoot,
     std::vector<ObjectAnimeInfo>* objectAnimeInfos)

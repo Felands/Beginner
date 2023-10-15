@@ -1,5 +1,5 @@
 #include "ObjectLayer.h"
-#include "log.h"
+#include "Log.h"
 
 void ObjectLayer::Update()
 {

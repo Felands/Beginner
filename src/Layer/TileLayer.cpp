@@ -1,7 +1,7 @@
 #include "TileLayer.h"
 #include "Game.h"
 #include "Resource.h"
-#include "log.h"
+#include "Log.h"
 #include "Camera.h"
 
 TileLayer::TileLayer(const std::vector<Tileset> &tilesets_) : tilesets(tilesets_)

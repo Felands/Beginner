@@ -1,6 +1,7 @@
 #include "GameStateMachine.h"
-#include "log.h"
+#include "Log.h"
 
+#pragma region 主流程
 void GameStateMachine::Update()
 {
     LOG_DBG("[GameStateMachine][Update] Updating the game state machine");
@@ -35,7 +36,9 @@ void GameStateMachine::Clean()
 
     LOG_DBG("[GameStateMachine][Clean] Cleaning the game state machine");
 }
+#pragma endregion
 
+#pragma region 状态处理
 void GameStateMachine::PushState(GameState *state)
 {
     if (state == nullptr) {
@@ -50,6 +53,16 @@ void GameStateMachine::PushState(GameState *state)
     gameStates.back()->OnEnter();
 
     LOG_DBG("[GameStateMachine][PushState] Pushed the game state machine a new state");
+}
+
+void GameStateMachine::ChangeState(GameState *state)
+{
+    LOG_DBG("[GameStateMachine][ChangeState] Changing the game state machine");
+
+    PopState();
+    PushState(state);
+
+    LOG_DBG("[GameStateMachine][ChangeState] Changed the game state machine");
 }
 
 void GameStateMachine::PopState()
@@ -67,13 +80,4 @@ void GameStateMachine::PopState()
 
     LOG_DBG("[GameStateMachine][PopState] Popped an old state on the back of the game state machine");
 }
-
-void GameStateMachine::ChangeState(GameState *state)
-{
-    LOG_DBG("[GameStateMachine][ChangeState] Changing the game state machine");
-
-    PopState();
-    PushState(state);
-
-    LOG_DBG("[GameStateMachine][ChangeState] Changed the game state machine");
-}
+#pragma endregion
