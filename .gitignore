@@ -1,2 +1,4 @@
 bin/
-*.exe
+install/
+build/
+!.gitkeep

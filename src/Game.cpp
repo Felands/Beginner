@@ -13,7 +13,6 @@
 
 Game *Game::instance = nullptr;
 
-#pragma region 主流程
 bool Game::Init(const char *title, int32_t xpos, int32_t ypos, uint32_t height, uint32_t width, bool isFullScreen)
 {
     LOG_INFO("[Game][Init] Initting the game");
@@ -114,7 +113,6 @@ void Game::Clean()
 
     LOG_INFO("[Game][Clean] Cleaned the game");
 }
-#pragma endregion
 
 /*void Game::SetCurrentLevel(uint32_t currentLevel)
 {

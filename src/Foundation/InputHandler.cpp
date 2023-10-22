@@ -8,7 +8,6 @@
 
 InputHandler *InputHandler::instance = nullptr;
 
-#pragma region 主流程
 InputHandler::InputHandler() : keyStates(SDL_GetKeyboardState(nullptr)), mousePosition(0, 0)
 {
     for(size_t i = (size_t)MouseButtons::LEFT; i <= (size_t)MouseButtons::RIGHT; ++i) {
@@ -58,9 +57,7 @@ void InputHandler::Clean()
         delete instance;
     }
 }
-#pragma endregion
 
-#pragma region 键盘
 bool InputHandler::IsKeyDown(SDL_Scancode key)
 {
     if(keyStates != nullptr) {
@@ -70,9 +67,7 @@ bool InputHandler::IsKeyDown(SDL_Scancode key)
     }
     return false;
 }
-#pragma endregion
 
-#pragma region 鼠标
 void InputHandler::OnMouseMove(SDL_Event &event)
 {
     mousePosition.SetX(event.motion.x);
@@ -104,4 +99,3 @@ void InputHandler::OnMouseButtonUp(SDL_Event& event)
         mouseButtonStates[(size_t)MouseButtons::RIGHT] = false;
     }
 }
-#pragma endregion

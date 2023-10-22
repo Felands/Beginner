@@ -10,7 +10,6 @@
 #include "Log.h"
 #include "Camera.h"
 
-#pragma region 主流程
 bool PlayState::OnEnter()
 {
     LOG_DBG("[PlayState][OnEnter] Entering the play state");
@@ -63,8 +62,6 @@ bool PlayState::OnExit()
     LOG_DBG("[PlayState][OnExit] Exited the play state");
     return true;
 }
-#pragma endregion
-
 
 bool PlayState::CheckCollision(SDLGameObject *object1, SDLGameObject *object2)
 {

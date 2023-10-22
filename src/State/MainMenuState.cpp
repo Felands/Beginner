@@ -9,7 +9,6 @@
 #include "PlayState.h"
 #include "Log.h"
 
-#pragma region 主流程
 bool MainMenuState::OnEnter()
 {
     LOG_DBG("[MainMenuState][OnEnter] Entering the main menu state");
@@ -67,9 +66,7 @@ bool MainMenuState::OnExit()
     LOG_DBG("[MainMenuState][OnExit] Exited the main menu state");
     return true;
 }
-#pragma endregion
 
-#pragma region 回调函数
 void MainMenuState::ExitFromMenu()
 {
     LOG_DBG("[MainMenuState][ExitFromMenu] Exiting from the main menu state");
@@ -101,4 +98,3 @@ void MainMenuState::SetCallbacks(const std::vector<Callback> &callbacks)
 
     LOG_DBG("[MainMenuState][SetCallbacks] Set call-backs of menu butttons");
 }
-#pragma endregion
